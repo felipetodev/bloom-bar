@@ -6,10 +6,11 @@ const Home = () => {
       <Head>
         <title>Bloom Bar (Coming soon)</title>
         <link rel='icon' href='/favicon.ico' />
+        <link rel='stylesheet' href='https://use.typekit.net/qwn6cbc.css' />
       </Head>
 
       <main className='bg-comming-soon bg-cover bg-center h-screen w-full flex justify-center items-center'>
-        <section className='flex justify-center items-center flex-col gap-24 text-center'>
+        <section className='flex justify-center items-center flex-col gap-24 text-center overflow-hidden'>
           <img src='/bloom-logo.png' alt='Bloom Logo' className='w-11/12 min-w-[800px]' />
           <div className='flex flex-col justify-center items-center'>
             <h1 className='text-3xl md:text-6xl text-bloom-orange-100'>Pronto sabrás de nosotros.</h1>
