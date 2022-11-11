@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 
-const Heading = ({ title, variant = 'primary', subtitle, icon }) => {
+const Heading = ({ title, variant = 'primary', subtitle }) => {
   const styles = clsx(
     'ml-4 flex-grow border-t',
     {
@@ -9,11 +9,8 @@ const Heading = ({ title, variant = 'primary', subtitle, icon }) => {
     }
   )
   return (
-    <div className='relative flex items-center pb-10'>
-      {icon && (
-        <span className='mr-4 text-bloom-softGray-100'>(🌱)</span>
-      )}
-      <h2 className='text-xl text-bloom-softGray-100 tracking-widest'>
+    <div className='relative flex items-center pb-20'>
+      <h2 id={title} className='text-xl text-bloom-softGray-100 tracking-widest sm:max-w-[140px] md:max-w-full'>
         {title}
       </h2>
       <div className={styles} />

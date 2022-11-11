@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 
-const MainHeading = ({ variant = 'primary' }) => {
+const MainHeading = ({ title = 'BLOOM', variant = 'primary' }) => {
   const headingStyles = clsx(
-    'text-xl text-center mt-60 mb-20 sm:text-[30px] tracking-widest',
+    'text-xl text-center mt-60 mb-20 sm:text-[30px] tracking-widest font-marcellus',
     {
       'text-bloom-orange-100': variant === 'primary',
       'text-bloom-celeste-100': variant === 'secondary'
@@ -10,7 +10,7 @@ const MainHeading = ({ variant = 'primary' }) => {
   )
   return (
     <h1 className={headingStyles}>
-      BLOOM NIKKEI
+      {title}
     </h1>
   )
 }

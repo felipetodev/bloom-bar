@@ -6,5 +6,171 @@
   html {
     font-family: "gopher", system-ui, sans-serif;
     background-color: #141414;
+    overflow-x: hidden;
   }
+
+  #__next {
+    overflow-x: hidden;
+  }
+
+  .is-active {
+    transition: all 100ms ease-in-out;
+  }
+
+  input,
+  textarea {
+    border-radius: 0%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    background: none;
+  }
+
+  .DropdownMenuContent,
+  .DropdownMenuSubContent {
+    min-width: 280px;
+    max-width: 280px;
+    box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+    animation-duration: 400ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+
+  [data-radix-popper-content-wrapper] {
+    top: -10px !important;
+    z-index: 20 !important;
+  }
+
+  .DropdownMenuContent[data-side='top'],
+  .DropdownMenuSubContent[data-side='top'] {
+    animation-name: slideDownAndFade;
+  }
+
+  .DropdownMenuContent[data-side='right'],
+  .DropdownMenuSubContent[data-side='right'] {
+    animation-name: slideLeftAndFade;
+  }
+
+  .DropdownMenuContent[data-side='bottom'],
+  .DropdownMenuSubContent[data-side='bottom'] {
+    animation-name: slideUpAndFade;
+  }
+
+  .DropdownMenuContent[data-side='left'],
+  .DropdownMenuSubContent[data-side='left'] {
+    animation-name: slideRightAndFade;
+  }
+
+  .DropdownMenuItem,
+  .DropdownMenuCheckboxItem,
+  .DropdownMenuRadioItem,
+  .DropdownMenuSubTrigger {
+    line-height: 1;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    height: 25px;
+    padding: 0 5px;
+    position: relative;
+    padding-left: 25px;
+    user-select: none;
+    outline: none;
+  }
+
+  @keyframes slideUpAndFade {
+    from {
+      opacity: 0;
+      transform: translateY(2px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideRightAndFade {
+    from {
+      opacity: 0;
+      transform: translateX(-2px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideDownAndFade {
+    from {
+      opacity: 0;
+      transform: translateY(-2px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideLeftAndFade {
+    from {
+      opacity: 0;
+      transform: translateX(2px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .swiper-slide {
+    width: 80%;
+  }
+
+  .swiper-slide:nth-child(2n) {
+    width: 60%;
+  }
+
+  .swiper-slide:nth-child(3n) {
+    width: 40%;
+  }
+
 }

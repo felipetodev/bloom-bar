@@ -4,8 +4,8 @@ import Button from '../ui/Button'
 
 const Promotion = () => {
   return (
-    <div className='relative overflow-hidden'>
-      <Image className='max-h-[700px] min-h-[450px] object-cover w-full h-full' alt='dj' src={dj} placeholder='blur' />
+    <div id='promotion' className='relative overflow-hidden'>
+      <Image loading='lazy' className='max-h-[700px] min-h-[450px] object-cover w-full h-full' alt='dj' src={dj} placeholder='blur' />
       {/* gradient bg */}
       <div className='absolute top-0 left-0 h-full w-full bg-promotion-gradient' />
       {/* gradient bg */}
@@ -22,11 +22,11 @@ const Promotion = () => {
             Y EVENTOS
           </h1>
         </div>
-        <div className='mt-4'>
+        <a href='https://www.instagram.com/bloom_barcl' rel='noopener noreferrer' target='_blank' className='mt-4'>
           <Button variant='secondary'>
             SÍGUENOS EN INSTAGRAM
           </Button>
-        </div>
+        </a>
       </div>
     </div>
   )

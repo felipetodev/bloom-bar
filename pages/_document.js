@@ -5,6 +5,9 @@ export default function Document () {
     <Html>
       <Head>
         <link rel='stylesheet' href='https://use.typekit.net/qwn6cbc.css' />
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin='anonymous' />
+        <link href='https://fonts.googleapis.com/css2?family=Abel&display=swap' rel='stylesheet' />
       </Head>
       <body>
         <Main />
