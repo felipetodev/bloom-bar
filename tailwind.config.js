@@ -28,10 +28,10 @@ module.exports = {
         'comming-soon': "url('/coming-soon-bg.jpeg')",
         'logo-gradient-radial': 'radial-gradient(41.82% 41.82% at 50% 50%, rgba(0, 0, 0, 0.5) 55.9%, rgba(0, 0, 0, 0) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 21.04%)',
         'promotion-gradient': 'linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%)',
-        'nav-gradient': 'linear-gradient(180deg, rgba(0, 0, 0, 0.8) -28.53%, rgba(0, 0, 0, 0) 90.35%)',
+        'nav-gradient': 'linear-gradient(180deg,rgba(0,0,0,.6) -50%, transparent 80%)',
         'menu-card': 'linear-gradient(180deg, rgba(0, 0, 0, 0) 79.36%, rgba(0, 0, 0, 0.8) 100%)',
         'island-gradient': 'linear-gradient(0deg, rgba(0, 0, 0, 0.8) -28.53%, rgba(0, 0, 0, 0) 90.35%)',
-        'bottom-island-gradient': 'linear-gradient(0deg, rgba(0, 0, 0, 1.8) -28.53%, rgba(0, 0, 0, 0) 90.35%)'
+        'bottom-island-gradient': 'linear-gradient(180deg,#0000 31.42%,#000)'
       },
       colors: {
         bloom: {
