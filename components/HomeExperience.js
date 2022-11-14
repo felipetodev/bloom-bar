@@ -3,7 +3,7 @@ import FlameIcon from '../ui/FlameIcon'
 const HomeExperience = ({ experiencePost }) => {
   return (
     <section data-scroll-section className='relative bg-bloom-darkGreen-100 py-[60px] px-[30px] md:py-[148px] md:px-[100px] lg:px-[269px] lg:py-[148px] overflow-hidden'>
-      <div className='flex flex-col text-bloom-softGray-100 text-center gap-7 relative'>
+      <div className='relative flex flex-col items-center text-bloom-softGray-100 text-center gap-7'>
         <h2 className='text-2xl'>{experiencePost.titleFirstSection}</h2>
         <p className='text-lg max-w-bloom font-abel leading-[25px] sm:leading-[30px] sm:text-xl'>
           {experiencePost?.descriptionFirstSection}
