@@ -12,7 +12,7 @@ const HomeExperience = ({ experiencePost }) => {
           <FlameIcon />
         </span>
       </div>
-      <div data-scroll data-scroll-speed='3' className='absolute top-0 -left-8 blur-sm select-none pointer-events-none'>
+      <div data-scroll data-scroll-speed='3' className='absolute top-20 -left-8 blur-sm select-none pointer-events-none'>
         <img src='/plant.svg' alt='bloom plant' />
       </div>
     </section>
