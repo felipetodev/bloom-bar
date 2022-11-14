@@ -25,14 +25,14 @@ const Navbar = ({ navbarButton }) => {
               </Button>
             )}
             <span className='cursor-pointer select-none' onClick={() => setIsOpen(!isOpen)}>
-              <MenuIcon className='select-none !w-8 sm:!w-[41px]' />
+              <MenuIcon isOpen={isOpen} className='select-none !w-8 sm:!w-[41px]' />
             </span>
           </div>
         </div>
       </nav>
       <AnimatePresence>
         {isOpen && (
-          <NavMenu />
+          <NavMenu isOpen={isOpen} />
         )}
       </AnimatePresence>
     </>
