@@ -2,8 +2,8 @@ import Head from 'next/head'
 import Navbar from '../../components/Navbar'
 import Menu from '../../components/Menu'
 import Promotion from '../../components/Promotion'
-import { getAllMenuSlugs, getMenuBySlug } from '../../contentful/api'
 import Island from '../../ui/Island'
+import { getAllMenuSlugs, getMenuBySlug } from '../../contentful/api'
 
 const Nikkei = ({ menuData }) => {
   return (
@@ -17,7 +17,8 @@ const Nikkei = ({ menuData }) => {
         <Navbar navbarButton={menuData?.navbarButton} />
         <Menu menu={menuData} />
       </div>
-      <Promotion promotionSection={menuData?.promotion} />
+      <Promotion hasGradient promotionSection={menuData?.promotion} />
+      <div className='h-32 w-full bg-bottom-island-gradient bg-black opacity-75 select-none pointer-events-none' />
       <Island />
     </>
   )
