@@ -37,6 +37,9 @@ const useLocomotiveScroll = ({ location, ignore }) => {
       $('body').style.overflow = 'hidden'
       $('#__next').style.overflow = 'hidden'
       initLocoScroll()
+      setTimeout(() => {
+        window.locomotive?.update()
+      }, 5000)
     }
 
     return () => {
