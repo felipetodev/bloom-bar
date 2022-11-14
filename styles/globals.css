@@ -9,7 +9,7 @@
   }
 
   .anchor {
-    scroll-margin-top: calc(58px + 2.5em);
+    scroll-margin-top: calc(80px + 2.5em);
   }
 
   /* LOCOMOTIVE 🚂 */
@@ -132,8 +132,8 @@
 
   .DropdownMenuContent,
   .DropdownMenuSubContent {
-    min-width: 280px;
-    max-width: 280px;
+    min-width: 313px;
+    max-width: 313px;
     box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2);
     animation-duration: 400ms;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
@@ -177,9 +177,7 @@
     display: flex;
     align-items: center;
     height: 25px;
-    padding: 0 5px;
     position: relative;
-    padding-left: 25px;
     user-select: none;
     outline: none;
   }
