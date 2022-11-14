@@ -8,6 +8,10 @@
     background-color: #141414;
   }
 
+  .anchor {
+    scroll-margin-top: calc(58px + 2.5em);
+  }
+
   /* LOCOMOTIVE 🚂 */
   html .has-scroll-smooth {
     overflow: hidden !important;
