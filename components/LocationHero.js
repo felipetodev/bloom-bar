@@ -20,7 +20,7 @@ const LocationHero = ({ locationPost }) => (
       <h1 className='text-[30px] md:text-[40px]'>
         {locationPost.subtitle}
       </h1>
-      <Button type='link' href={locationPost.buttonLink} className='!py-3 sm:!py-[5px] sm:px-[41.5px]' variant='secondary'>
+      <Button type='link' href={locationPost.buttonLink} rel='noopener noreferrer' target='_blank' className='!py-3 sm:!py-[5px] sm:px-[41.5px]' variant='secondary'>
         {locationPost.buttonCopy}
       </Button>
     </div>
