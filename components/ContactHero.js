@@ -19,8 +19,10 @@ const ContactHero = ({ heroPost }) => {
         <img className='w-52 sm:w-full' src='/plant-contact.svg' alt='bloom plant' />
       </div>
       <Image
+        data-scroll
+        data-scroll-speed='1'
         loading='lazy'
-        className='object-cover w-[40%] sm:w-1/5 md:w-1/6 h-fit absolute top-14 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:left-36 md:left-[170px] lg:left-[15%]'
+        className='absolute object-cover w-[40%] sm:w-1/5 md:w-1/6 h-fit -top-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:left-36 md:left-[170px] lg:left-[15%]'
         alt='bloombar-wave-bg'
         src={selloViaje}
       />
