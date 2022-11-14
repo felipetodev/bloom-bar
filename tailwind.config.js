@@ -30,7 +30,8 @@ module.exports = {
         'promotion-gradient': 'linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%)',
         'nav-gradient': 'linear-gradient(180deg, rgba(0, 0, 0, 0.8) -28.53%, rgba(0, 0, 0, 0) 90.35%)',
         'menu-card': 'linear-gradient(180deg, rgba(0, 0, 0, 0) 79.36%, rgba(0, 0, 0, 0.8) 100%)',
-        'island-gradient': 'linear-gradient(0deg, rgba(0, 0, 0, 0.8) -28.53%, rgba(0, 0, 0, 0) 90.35%)'
+        'island-gradient': 'linear-gradient(0deg, rgba(0, 0, 0, 0.8) -28.53%, rgba(0, 0, 0, 0) 90.35%)',
+        'bottom-island-gradient': 'linear-gradient(0deg, rgba(0, 0, 0, 1.8) -28.53%, rgba(0, 0, 0, 0) 90.35%)'
       },
       colors: {
         bloom: {
