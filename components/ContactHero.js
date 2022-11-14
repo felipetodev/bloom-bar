@@ -4,7 +4,7 @@ import selloViaje from '../public/sello-viaje-2.png'
 const ContactHero = ({ heroPost }) => {
   return (
     <div data-scroll-section className='relative bg-bloom-softGray-100'>
-      <div className='flex flex-col justify-center items-center gap-3 pt-[200px] pb-[100px] sm:pt-[250px] sm:pb-[250px] sm:gap-8'>
+      <div className='flex flex-col justify-center items-center gap-3 md:gap-2 pt-[200px] pb-[100px] sm:pt-[250px] sm:pb-[250px] sm:gap-8'>
         <h1 className='text-lg sm:text-2xl text-bloom-orange-100'>
           {heroPost?.contactUs}
         </h1>
