@@ -7,7 +7,7 @@ import 'swiper/css/pagination'
 
 const tailwindMQ = '(max-width: 640px)'
 
-const Carousel = () => {
+const Carousel = ({ carouselCollection }) => {
   const isMobile = useMediaQuery(tailwindMQ)
   return (
     <div data-scroll-section className='relative'>
@@ -27,30 +27,16 @@ const Carousel = () => {
         grabCursor
         className='swiper bloom-carousel'
       >
-        <SwiperSlide className='swiper-slide !h-[400px] sm:!h-[500px]'>
-          <img
-            loading='lazy'
-            className='work-image max-w-xl object-cover min-w-full'
-            src='/chef.jpeg'
-            alt='chef'
-          />
-        </SwiperSlide>
-        <SwiperSlide className='swiper-slide !h-[400px] sm:!h-[500px]'>
-          <img
-            loading='lazy'
-            className='work-image max-w-xl object-cover min-w-full'
-            src='/dj.jpeg'
-            alt='chef'
-          />
-        </SwiperSlide>
-        <SwiperSlide className='swiper-slide !h-[400px] sm:!h-[500px]'>
-          <img
-            loading='lazy'
-            className='work-image max-w-xl object-cover min-w-full'
-            src='/hero-home.jpeg'
-            alt='chef'
-          />
-        </SwiperSlide>
+        {carouselCollection?.items?.map((item) => (
+          <SwiperSlide key={item.sys.id} className='swiper-slide !h-[400px] sm:!h-[500px]'>
+            <img
+              loading='lazy'
+              className='work-image max-w-xl object-cover min-w-full'
+              src={item.image.url}
+              alt={item.image.title}
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
       <div data-scroll data-scroll-speed='1' className='absolute z-30 -top-24 right-8 md:right-9 select-none pointer-events-none'>
         <PaintSvg className='max-w-[130px] md:max-w-full' />

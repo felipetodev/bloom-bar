@@ -54,6 +54,22 @@ query GetMenuPage($slug: String!) {
           ...MenuSectionDetails
         }
       }
+      navbarButton {
+        title
+        link
+      }
+      promotion {
+        firstTitle
+        description
+        promotionButton {
+          title
+          link
+        }
+        image {
+          title
+          url
+        }
+      }
     }
   }
 }

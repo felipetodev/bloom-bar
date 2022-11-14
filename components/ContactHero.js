@@ -1,16 +1,18 @@
 import Image from 'next/image'
 import selloViaje from '../public/sello-viaje-2.png'
 
-const ContactHero = () => {
+const ContactHero = ({ heroPost }) => {
   return (
     <div data-scroll-section className='relative bg-bloom-softGray-100'>
       <div className='flex flex-col justify-center items-center gap-3 pt-[200px] pb-[100px] sm:pt-[250px] sm:pb-[250px] sm:gap-8'>
-        <h1 className='text-lg sm:text-2xl text-bloom-orange-100'>Llámanos o escríbenos</h1>
-        <a href='tel:+56953031387' className='text-bloom-darkGreen-100 text-[26px] sm:text-[40px] hover:underline'>
-          +569 5303 1387
+        <h1 className='text-lg sm:text-2xl text-bloom-orange-100'>
+          {heroPost?.contactUs}
+        </h1>
+        <a href={heroPost?.numberLink} className='text-bloom-darkGreen-100 text-[26px] sm:text-[40px] hover:underline'>
+          {heroPost?.number}
         </a>
-        <a href='mailto:contacto@bloombar.cl' className='text-bloom-darkGreen-100 text-[26px] sm:text-[40px] hover:underline'>
-          contacto@bloombar.cl
+        <a href={heroPost?.emailLink} className='text-bloom-darkGreen-100 text-[26px] sm:text-[40px] hover:underline'>
+          {heroPost?.email}
         </a>
       </div>
       <div data-scroll data-scroll-speed='3' className='absolute bottom-4 -right-10 pointer-events-none select-none blur-sm'>

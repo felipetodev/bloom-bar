@@ -24,13 +24,7 @@ const initLocoScroll = async () => {
 
     window.locomotive = new LocomotiveScroll({
       el: dataScrollContainer ?? undefined,
-      smooth: true,
-      tablet: {
-        smooth: false
-      },
-      smartphone: {
-        smooth: false
-      }
+      smooth: true
     })
   } catch (error) {}
 }

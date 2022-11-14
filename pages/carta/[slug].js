@@ -14,10 +14,10 @@ const Nikkei = ({ menuData }) => {
           <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
           <link href='https://fonts.googleapis.com/css2?family=Marcellus&family=Roboto:wght@100;400;500;700&display=swap' rel='stylesheet' />
         </Head>
-        <Navbar />
+        <Navbar navbarButton={menuData?.navbarButton} />
         <Menu menu={menuData} />
       </div>
-      <Promotion />
+      <Promotion promotionSection={menuData?.promotion} />
       <Island />
     </>
   )
@@ -49,6 +49,7 @@ export async function getStaticProps ({ preview = false, params }) {
   }
 
   return {
-    props: { preview, menuData }
+    props: { preview, menuData },
+    revalidate: 10
   }
 }

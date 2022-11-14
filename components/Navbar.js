@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic'
 
 const NavMenu = dynamic(() => import('./NavMenu'))
 
-const Navbar = () => {
+const Navbar = ({ navbarButton }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -19,9 +19,11 @@ const Navbar = () => {
             <Image priority src='/b-logo.svg' alt='Bloom Logo' width={41} height={89} />
           </Link>
           <div className='flex md:order-2 items-center gap-[30px] sm:gap-[58px] pointer-events-auto'>
-            <Button className='!px-[17px] !py-[6px] sm:!px-[42px] sm:!py-[5px] hover:bg-bloom-orange-200 hover:border-bloom-orange-200' variant='nav'>
-              RESERVA
-            </Button>
+            {navbarButton?.link && (
+              <Button href={navbarButton.link} rel='noopener noreferrer' target='_blank' type='link' className='!px-[17px] !py-[6px] sm:!px-[42px] sm:!py-[5px] hover:bg-bloom-orange-200 hover:border-bloom-orange-200' variant='nav'>
+                {navbarButton?.title?.toUpperCase()}
+              </Button>
+            )}
             <span className='cursor-pointer select-none' onClick={() => setIsOpen(!isOpen)}>
               <MenuIcon className='select-none !w-8 sm:!w-[41px]' />
             </span>

@@ -1,17 +1,17 @@
 import Image from 'next/image'
 
-const Hero = () => {
+const Hero = ({ image, video }) => {
   return (
     <div data-scroll-section className='relative w-full h-screen'>
       <video
-        poster='/hero-home.jpeg'
+        poster={image?.url}
         className='w-full h-full object-cover brightness-50'
         playsInline
         autoPlay
         muted
         loop
       >
-        <source src='/bloom-hero.mp4' alt='bloom video' type='video/mp4' />
+        <source src={video?.url} alt={video?.title} type='video/mp4' />
       </video>
       <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20'>
         <Image

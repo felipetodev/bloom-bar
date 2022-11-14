@@ -9,8 +9,6 @@ function MyApp ({ Component, pageProps }) {
   const mobileDevice = useDeviceDetect()
   useLocomotiveScroll({ location: asPath, ignore: !!query.slug || mobileDevice })
 
-  console.log({ locoDisabled: !!query.slug || mobileDevice })
-
   return (
     <IslandProvider>
       <div data-scroll-container className='scroll-container'>

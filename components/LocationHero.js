@@ -2,7 +2,7 @@ import Image from 'next/image'
 import locationHero from '../public/location-waves.jpeg'
 import Button from '../ui/Button'
 
-const LocationHero = () => (
+const LocationHero = ({ locationPost }) => (
   <div data-scroll-section className='relative flex flex-col text-bloom-gray-100 w-full h-full min-h-[85vh]'>
     <div className='overflow-hidden max-h-[85vh] w-full'>
       <Image
@@ -14,12 +14,14 @@ const LocationHero = () => (
     </div>
     <div className='absolute flex flex-col h-full w-full justify-center items-center z-10 text-center gap-5 py-36 md:py-48 px-5 sm:px-10'>
       <Image src='/cup.svg' alt='cup' width={85} height={77} />
-      <h2 className='text-xl text-bloom-orange-100 md:text-[30px]'>Estamos en</h2>
+      <h2 className='text-xl text-bloom-orange-100 md:text-[30px]'>
+        {locationPost.orangeTitle}
+      </h2>
       <h1 className='text-[30px] md:text-[40px]'>
-        Av. Borgoño 15480 Sector 5, Reñaca.
+        {locationPost.subtitle}
       </h1>
-      <Button className='!py-3 sm:!py-[5px] sm:px-[41.5px]' variant='secondary'>
-        CÓMO LLEGAR
+      <Button type='link' href={locationPost.buttonLink} className='!py-3 sm:!py-[5px] sm:px-[41.5px]' variant='secondary'>
+        {locationPost.buttonCopy}
       </Button>
     </div>
   </div>

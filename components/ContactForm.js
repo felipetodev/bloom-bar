@@ -1,9 +1,8 @@
 import Image from 'next/image'
-import cocktail from '../public/cocktail.jpeg'
 import Button from '../ui/Button'
 import FlameIcon from '../ui/FlameIcon'
 
-const ContactForm = () => {
+const ContactForm = ({ formPost }) => {
   return (
     <div data-scroll-section className='grid grid-cols-1 sm:grid-cols-2 bg-bloom-black-100 lg:max-h-[900px]'>
       <div className='px-5 pt-[200px] sm:pt-0 flex flex-col justify-center items-center sm:px-10 md:px-14 sm:my-28 lg:py-20'>
@@ -12,7 +11,7 @@ const ContactForm = () => {
             <FlameIcon />
           </span>
           <h1 className='text-2xl text-bloom-softGray-100 text-center'>
-            PONTE EN CONTACTO CON NOSOTROS
+            {formPost?.formTitle}
           </h1>
         </div>
         <form className='flex flex-col gap-5 pt-10 md:pt-16 w-full'>
@@ -43,9 +42,11 @@ const ContactForm = () => {
       </div>
       <div data-scroll data-scroll-speed='1' className='w-full mt-28 max-h-48 sm:min-h-full sm:mt-0'>
         <Image
+          width={1000}
+          height={720}
           className='object-cover -mt-[3%] min-h-[130%] sm:min-h-[115%] w-full h-full object-bottom sm:object-center'
-          alt='bloombar-wave-bg' src={cocktail}
-          placeholder='blur'
+          alt={formPost?.image?.title}
+          src={formPost.image?.url}
         />
       </div>
     </div>
