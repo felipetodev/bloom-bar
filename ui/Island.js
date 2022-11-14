@@ -5,8 +5,8 @@ import FlameIcon from './FlameIcon'
 import ArrowIcon from './ArrowIcon'
 import ArrowNext from './ArrowNext'
 import WineCupIcon from './WineCupIcon'
-import { useIsland } from '../context/island-context'
 import clsx from 'clsx'
+import { useIsland } from '../context/island-context'
 
 const Island = () => {
   const [open, setIsOpen] = useState(false)

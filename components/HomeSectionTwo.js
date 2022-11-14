@@ -5,7 +5,7 @@ import Button from '../ui/Button'
 const HomeSectionTwo = ({ sectionTwoPost }) => {
   return (
     <div data-scroll-section className='bg-bloom-softGray-100 grid place-items-center grid-cols-1 sm:grid-cols-landscape md:grid-cols-2'>
-      <div className='overflow-hidden h-full'>
+      <div className='overflow-hidden h-full w-full'>
         <Image
           data-scroll
           data-scroll-speed='1'
@@ -17,7 +17,7 @@ const HomeSectionTwo = ({ sectionTwoPost }) => {
         />
       </div>
       <div className='flex flex-col justify-center items-center sm:items-start text-bloom-darkGreen-100 py-[60px] px-[30px] md:p-[83px]'>
-        <p className='text-sm text-center sm:text-start sm:text-base max-w-[364px] font-abel'>
+        <p className='text-sm text-center sm:text-start sm:text-base max-w-[364px] lg:max-w-[600px] font-abel'>
           {sectionTwoPost?.descriptionSecondSection}
         </p>
         <div className='flex-col lg:flex lg:flex-row mt-5 text-center sm:text-start'>
