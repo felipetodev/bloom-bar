@@ -7,7 +7,7 @@ const Promotion = ({ hasFlower, hasGradient, promotionSection }) => {
     <div data-scroll-section id='promotion' className='relative'>
       <Image width={1440} height={700} className='max-h-[700px] min-h-[450px] object-cover w-full h-full' alt={promotionSection?.image?.title} src={promotionSection?.image?.url} />
       <div className='absolute top-0 left-0 h-full w-full bg-promotion-gradient' />
-      <div className='absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center p-5 sm:px-10 md:px-14'>
+      <div className='absolute z-10 top-0 left-0 right-0 bottom-0 flex flex-col justify-center p-5 sm:px-10 md:px-14'>
         <h2 className='text-2xl text-bloom-orange-100 mb-4'>
           {promotionSection?.firstTitle}
         </h2>
@@ -30,7 +30,7 @@ const Promotion = ({ hasFlower, hasGradient, promotionSection }) => {
         </div>
       )}
       {hasGradient && (
-        <div className='absolute bottom-0 w-full h-32 bg-island-gradient' />
+        <div className='absolute bottom-0 top-0 left-0 right-0 bg-bottom-island-gradient' />
       )}
     </div>
   )

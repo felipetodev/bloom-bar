@@ -18,7 +18,7 @@ const Nikkei = ({ menuData }) => {
         <Menu menu={menuData} />
       </div>
       <Promotion hasGradient promotionSection={menuData?.promotion} />
-      <div className='h-32 w-full bg-bottom-island-gradient bg-black opacity-75 select-none pointer-events-none' />
+      <div className='h-32 w-full bg-black select-none pointer-events-none' />
       <Island />
     </>
   )
