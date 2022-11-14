@@ -4,8 +4,9 @@ import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ErrorPlantIcon from '../ui/ErrorPlantIcon'
+import { getPagesBySlug } from '../contentful/api'
 
-export default function Custom404 () {
+export default function Custom404 ({ footer }) {
   return (
     <>
       <Head>
@@ -18,11 +19,20 @@ export default function Custom404 () {
         <Link href='/' className='text-bloom-orange-100 hover:underline'>
           Ir al inicio
         </Link>
-        <div data-scroll data-scroll-speed='1' className='absolute -bottom-14 right-0 select-none pointer-events-none md:-bottom-2'>
+        <div data-scroll data-scroll-speed='1' className='absolute -bottom-14 right-0 select-none pointer-events-none md:-bottom-2 blur-sm'>
           <ErrorPlantIcon className='!w-[231px] md:!w-[331px]' />
         </div>
       </section>
-      <Footer />
+      <Footer footer={footer} />
     </>
   )
+}
+
+export async function getStaticProps ({ preview = false }) {
+  const [{ footer }] = (await getPagesBySlug(preview, 'error')) ?? []
+
+  return {
+    props: { preview, footer },
+    revalidate: 10
+  }
 }

@@ -1,4 +1,5 @@
 import { GET_CONTACT_ENTRY } from './query/contact'
+import { GET_ERROR_ENTRY } from './query/error'
 import { GET_HOME_ENTRY } from './query/home'
 import { GET_LOCATION_ENTRY } from './query/location'
 import { GET_ALL_MENU_WITH_SLUG, GET_MENU_ENTRY } from './query/menu'
@@ -9,7 +10,7 @@ function extractMenuEntries (fetchResponse) {
 
 function extractHomeEntries (fetchResponse, slug) {
   const contentTypeId = `${slug}PageCollection`
-  return fetchResponse?.data[contentTypeId].items
+  return fetchResponse?.data?.[contentTypeId]?.items
 }
 
 async function fetchGraphQL (query, preview = false, slug = null) {
@@ -81,7 +82,8 @@ export async function getPagesBySlug (preview, slug) {
   const pages = {
     home: GET_HOME_ENTRY,
     location: GET_LOCATION_ENTRY,
-    contact: GET_CONTACT_ENTRY
+    contact: GET_CONTACT_ENTRY,
+    error: GET_ERROR_ENTRY
   }
   const query = pages[slug]
 
