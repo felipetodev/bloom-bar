@@ -36,8 +36,7 @@ module.exports = {
         bloom: {
           orange: {
             50: '#FF5C00',
-            100: '#E38E69',
-            200: '#D16A1B'
+            100: '#D16A1B'
           },
           black: {
             100: '#141414'
