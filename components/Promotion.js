@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Button from '../ui/Button'
 import FlowerIcon from '../ui/FlowerIcon'
 
-const Promotion = ({ hasFlower, promotionSection }) => {
+const Promotion = ({ hasFlower, hasGradient, promotionSection }) => {
   return (
     <div data-scroll-section id='promotion' className='relative'>
       <Image width={1440} height={700} className='max-h-[700px] min-h-[450px] object-cover w-full h-full' alt={promotionSection?.image?.title} src={promotionSection?.image?.url} />
@@ -28,6 +28,9 @@ const Promotion = ({ hasFlower, promotionSection }) => {
         <div className='absolute z-20 text-bloom-orange-100 top-[0px] left-1/2 sm:left-[42.92%] md:left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
           <FlowerIcon />
         </div>
+      )}
+      {hasGradient && (
+        <div className='absolute bottom-0 w-full h-32 bg-island-gradient' />
       )}
     </div>
   )
