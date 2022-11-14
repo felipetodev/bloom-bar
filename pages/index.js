@@ -5,7 +5,7 @@ const Home = () => {
     <div className='flex min-h-screen flex-col items-center justify-center'>
       <Head>
         <title>Bloom Bar (Coming soon)</title>
-        <link rel='icon' href='/favicon.ico' />
+        <link rel='icon' href='/favicon-bloombar.svg' />
       </Head>
 
       <main className='bg-comming-soon bg-cover bg-center h-screen w-full flex justify-center items-center'>

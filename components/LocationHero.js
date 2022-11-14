@@ -1,10 +1,9 @@
 import Image from 'next/image'
 import locationHero from '../public/location-waves.jpeg'
 import Button from '../ui/Button'
-import PaintSvg from '../ui/PaintSvg'
 
 const LocationHero = () => (
-  <div className='relative flex flex-col text-bloom-gray-100 w-full h-full min-h-[85vh]'>
+  <div data-scroll-section className='relative flex flex-col text-bloom-gray-100 w-full h-full min-h-[85vh]'>
     <div className='overflow-hidden max-h-[85vh] w-full'>
       <Image
         style={{ objectPosition: '0 80%' }}
@@ -22,9 +21,6 @@ const LocationHero = () => (
       <Button className='!py-3 sm:!py-[5px] sm:px-[41.5px]' variant='secondary'>
         CÓMO LLEGAR
       </Button>
-    </div>
-    <div className='absolute -bottom-24 right-8 md:right-9 z-30 select-none pointer-events-none'>
-      <PaintSvg className='max-w-[130px] md:max-w-full' />
     </div>
   </div>
 )

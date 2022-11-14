@@ -3,17 +3,17 @@ import clsx from 'clsx'
 
 const Dish = ({ title, hasTitle, description, price, isVegan }) => {
   const styles = clsx(
-    'text-lg font-marcellus',
+    'text-[17px] sm:text-[22px] font-marcellus',
     {
       'mb-0': hasTitle,
-      'mb-3': !hasTitle
+      'mb-[10px]': !hasTitle
     }
   )
   return (
     <div className={clsx(
       'text-bloom-softGray-100 flex',
       {
-        'mb-[10px]': hasTitle,
+        'mb-[10px] sm:mb-[20px]': hasTitle,
         'first:pt-0 pt-8 sm:pt-10': !hasTitle
       }
     )}
@@ -28,11 +28,11 @@ const Dish = ({ title, hasTitle, description, price, isVegan }) => {
           <h3 className={styles}>{title}</h3>
         </div>
         {!hasTitle && (
-          <p className='text-sm font-abel'>{description}</p>
+          <p className='text-[15px] sm:text-lg font-abel'>{description}</p>
         )}
       </div>
       {price && (
-        <span className='pl-8 ml-auto text-lg font-abel'>
+        <span className='text-[15px] sm:text-lg pl-8 ml-auto font-abel'>
           {price}
         </span>
       )}

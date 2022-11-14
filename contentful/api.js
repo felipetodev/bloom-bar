@@ -63,5 +63,8 @@ export async function getAllMenuData (preview) {
     GET_ALL_MENU_WITH_SLUG,
     preview
   )
+  if (entries.errors) {
+    console.error({ error: entries.errors?.[0]?.message })
+  }
   return extractMenuEntries(entries) ?? null
 }

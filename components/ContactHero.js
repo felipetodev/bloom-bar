@@ -3,7 +3,7 @@ import selloViaje from '../public/sello-viaje-2.png'
 
 const ContactHero = () => {
   return (
-    <div className='relative bg-bloom-softGray-100'>
+    <div data-scroll-section className='relative bg-bloom-softGray-100'>
       <div className='flex flex-col justify-center items-center gap-3 pt-[200px] pb-[100px] sm:pt-[250px] sm:pb-[250px] sm:gap-8'>
         <h1 className='text-lg sm:text-2xl text-bloom-orange-100'>Llámanos o escríbenos</h1>
         <a href='tel:+56953031387' className='text-bloom-darkGreen-100 text-[26px] sm:text-[40px] hover:underline'>
@@ -13,7 +13,7 @@ const ContactHero = () => {
           contacto@bloombar.cl
         </a>
       </div>
-      <div className='absolute bottom-2 -right-10 pointer-events-none select-none blur-sm'>
+      <div data-scroll data-scroll-speed='3' className='absolute bottom-4 -right-10 pointer-events-none select-none blur-sm'>
         <img className='w-52 sm:w-full' src='/plant-contact.svg' alt='bloom plant' />
       </div>
       <Image

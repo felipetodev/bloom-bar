@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <footer className='relative bg-bloom-black-100 font-abel'>
+    <footer data-scroll-section className='relative bg-bloom-black-100 font-abel'>
       <div className='md:flex md:justify-between px-5 pt-8 sm:px-10 md:px-14 md:pt-14'>
         <div className='mb-6 md:mb-0'>
           <Link href='/' className='flex items-center'>

@@ -39,17 +39,17 @@ query GetMenuPage($slug: String!) {
       mainTitle
       slug
       color
-      desktopRightSideCollection(limit: 1) {
+      desktopRightSideCollection(limit: 11) {
         items {
           ...MenuSectionDetails
         }
       }
-      desktopLeftSideCollection(limit: 1) {
+      desktopLeftSideCollection(limit: 11) {
         items {
           ...MenuSectionDetails
         }
       }
-      menuCategoriesCollection {
+      menuCategoriesCollection(limit: 84) {
         items {
           ...MenuSectionDetails
         }

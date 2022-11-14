@@ -5,7 +5,7 @@ import FlameIcon from '../ui/FlameIcon'
 
 const ContactForm = () => {
   return (
-    <div className='grid grid-cols-1 sm:grid-cols-2 bg-bloom-black-100 lg:max-h-[900px]'>
+    <div data-scroll-section className='grid grid-cols-1 sm:grid-cols-2 bg-bloom-black-100 lg:max-h-[900px]'>
       <div className='px-5 pt-[200px] sm:pt-0 flex flex-col justify-center items-center sm:px-10 md:px-14 sm:my-28 lg:py-20'>
         <div className='flex flex-col items-center gap-5'>
           <span className='text-bloom-orange-100'>
@@ -35,15 +35,15 @@ const ContactForm = () => {
             </label>
           </div>
           <div className='text-center'>
-            <Button type='submit' variant='secondary' className='!py-3 sm:!py-[5px] sm:px-[41.5px]'>
+            <Button type='submit' variant='secondary' className='!py-3 sm:!py-[5px] sm:px-[41.5px] hover:border-bloom-orange-200 hover:bg-bloom-orange-200 hover:text-bloom-softGray-100'>
               ENVIAR
             </Button>
           </div>
         </form>
       </div>
-      <div className='overflow-hidden w-full mt-28 max-h-44 sm:min-h-full sm:mt-0'>
+      <div data-scroll data-scroll-speed='1' className='w-full mt-28 max-h-48 sm:min-h-full sm:mt-0'>
         <Image
-          className='object-cover w-full h-full object-bottom sm:object-center lg:max-h-[900px]'
+          className='object-cover -mt-[3%] min-h-[130%] sm:min-h-[115%] w-full h-full object-bottom sm:object-center'
           alt='bloombar-wave-bg' src={cocktail}
           placeholder='blur'
         />
