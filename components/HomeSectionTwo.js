@@ -22,13 +22,13 @@ const HomeSectionTwo = ({ sectionTwoPost }) => {
         </p>
         <div className='flex-col lg:flex lg:flex-row mt-5 text-center sm:text-start'>
           <Link href={sectionTwoPost?.leftButtonSecondSection.link} className='min-w-fit'>
-            <Button className='hover:border-bloom-orange-200 hover:bg-bloom-orange-200 hover:text-bloom-softGray-100'>
+            <Button className='hover:border-bloom-orange-100 hover:bg-bloom-orange-100 hover:text-bloom-softGray-100'>
               {sectionTwoPost?.leftButtonSecondSection.title?.toUpperCase()}
             </Button>
           </Link>
           <div className='mt-5 lg:ml-5' />
           <Link href={sectionTwoPost?.rightButtonSecondSection.link} className='min-w-fit'>
-            <Button className='hover:border-bloom-orange-200 hover:bg-bloom-orange-200 hover:text-bloom-softGray-100'>
+            <Button className='hover:border-bloom-orange-100 hover:bg-bloom-orange-100 hover:text-bloom-softGray-100'>
               {sectionTwoPost?.rightButtonSecondSection.title?.toUpperCase()}
             </Button>
           </Link>

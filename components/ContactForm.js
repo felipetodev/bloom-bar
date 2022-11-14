@@ -34,7 +34,7 @@ const ContactForm = ({ formPost }) => {
             </label>
           </div>
           <div className='text-center'>
-            <Button type='submit' variant='secondary' className='!py-3 sm:!py-[5px] sm:px-[41.5px] hover:border-bloom-orange-200 hover:bg-bloom-orange-200 hover:text-bloom-softGray-100'>
+            <Button type='submit' variant='secondary' className='!py-3 sm:!py-[5px] sm:px-[41.5px] hover:border-bloom-orange-100 hover:bg-bloom-orange-100 hover:text-bloom-softGray-100'>
               ENVIAR
             </Button>
           </div>

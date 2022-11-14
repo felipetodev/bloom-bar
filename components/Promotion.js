@@ -19,7 +19,7 @@ const Promotion = ({ hasFlower, promotionSection }) => {
           />
         </div>
         <a href={promotionSection?.promotionButton?.link} rel='noopener noreferrer' target='_blank' className='mt-4'>
-          <Button className='hover:border-bloom-orange-200 hover:bg-bloom-orange-200 hover:text-bloom-softGray-100' variant='secondary'>
+          <Button className='hover:border-bloom-orange-100 hover:bg-bloom-orange-100 hover:text-bloom-softGray-100' variant='secondary'>
             {promotionSection?.promotionButton?.title}
           </Button>
         </a>

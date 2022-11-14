@@ -20,7 +20,7 @@ const Navbar = ({ navbarButton }) => {
           </Link>
           <div className='flex md:order-2 items-center gap-[30px] sm:gap-[58px] pointer-events-auto'>
             {navbarButton?.link && (
-              <Button href={navbarButton.link} rel='noopener noreferrer' target='_blank' type='link' className='!px-[17px] !py-[6px] sm:!px-[42px] sm:!py-[5px] hover:bg-bloom-orange-200 hover:border-bloom-orange-200' variant='nav'>
+              <Button href={navbarButton.link} rel='noopener noreferrer' target='_blank' type='link' className='!px-[17px] !py-[6px] sm:!px-[42px] sm:!py-[5px] hover:bg-bloom-orange-100 hover:border-bloom-orange-100' variant='nav'>
                 {navbarButton?.title?.toUpperCase()}
               </Button>
             )}
