@@ -10,7 +10,7 @@ const Heading = ({ title, variant = 'primary', subtitle }) => {
   )
   return (
     <div className='relative flex items-center pb-[70px] sm:pb-20'>
-      <h2 id={title?.replaceAll(' ', '')} className='anchor text-xl sm:text-[30px] text-bloom-softGray-100 tracking-widest sm:max-w-[140px] md:max-w-[270px] font-marcellus leading-tight'>
+      <h2 id={title?.replaceAll(' ', '')} className='anchor text-xl sm:text-[30px] text-bloom-softGray-100 tracking-bloom sm:max-w-[140px] md:max-w-[270px] font-marcellus leading-tight'>
         {title}
       </h2>
       <div className={styles} />
