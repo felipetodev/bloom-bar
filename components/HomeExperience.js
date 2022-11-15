@@ -1,4 +1,5 @@
-import FlameIcon from '../ui/FlameIcon'
+// import FlameIcon from '../ui/FlameIcon'
+import Image from 'next/image'
 
 const HomeExperience = ({ experiencePost }) => {
   return (
@@ -9,7 +10,8 @@ const HomeExperience = ({ experiencePost }) => {
           {experiencePost?.descriptionFirstSection}
         </p>
         <span className='text-bloom-softGray-100 mx-auto'>
-          <FlameIcon />
+          <Image src='/bien-flama-gris.gif' alt='flame icon' width={16} height={21} />
+          {/* <FlameIcon /> */}
         </span>
       </div>
       <div data-scroll data-scroll-speed='3' className='absolute top-20 -left-8 blur-sm select-none pointer-events-none'>
