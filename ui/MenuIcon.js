@@ -19,7 +19,10 @@ const MenuIcon = ({ isOpen, ...props }) => (
     <motion.line
       variants={{
         closed: { opacity: 1 },
-        open: { opacity: 0 }
+        open: {
+          opacity: 0,
+          transition: { duration: 0 }
+        }
       }}
       animate={isOpen ? 'open' : 'closed'}
       x1='1.55078'
