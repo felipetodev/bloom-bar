@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import Link from 'next/link'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import FlameIcon from './FlameIcon'
@@ -87,11 +87,22 @@ const Island = () => {
               sideOffset={5}
             >
               {menuCategoriesCollection?.items?.map(category => (
-                <DropdownMenu.Item key={category.sys.id} onClick={() => setIsOpen(false)} className='DropdownMenuItem text-[18px] hover:underline'>
-                  <Link scroll={false} href={`/carta/${slug}/#${category.title?.replaceAll(' ', '')}`}>
-                    {category.title}
-                  </Link>
-                </DropdownMenu.Item>
+                <Fragment key={category.sys.id}>
+                  {category?.mainTitle && slug === 'drinks' && (
+                    <DropdownMenu.Item onClick={() => setIsOpen(false)} className='DropdownMenuItem text-[18px] hover:underline'>
+                      <Link scroll={false} href={`/carta/${slug}/#${category.mainTitle?.replaceAll(' ', '')}`}>
+                        {category.mainTitle}
+                      </Link>
+                    </DropdownMenu.Item>
+                  )}
+                  {category?.title && slug === 'nikkei' && (
+                    <DropdownMenu.Item onClick={() => setIsOpen(false)} className='DropdownMenuItem text-[18px] hover:underline'>
+                      <Link scroll={false} href={`/carta/${slug}/#${category.title?.replaceAll(' ', '')}`}>
+                        {category.title}
+                      </Link>
+                    </DropdownMenu.Item>
+                  )}
+                </Fragment>
               ))}
             </DropdownMenu.Content>
           </DropdownMenu.Portal>

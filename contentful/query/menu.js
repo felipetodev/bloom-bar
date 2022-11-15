@@ -51,6 +51,7 @@ query GetMenuPage($slug: String!) {
       }
       firstDivider {
         title
+        mainTitle
       }
       desktopSection2LeftCollection(limit: 12) {
         items {
@@ -64,6 +65,7 @@ query GetMenuPage($slug: String!) {
       }
       secondDivider {
         title
+        mainTitle
       }
       desktopSection3LeftCollection(limit: 5) {
         items {
@@ -77,6 +79,7 @@ query GetMenuPage($slug: String!) {
       }
       thirdDivider {
         title
+        mainTitle
       }
       desktopSection4LeftCollection(limit: 5) {
         items {
@@ -91,6 +94,7 @@ query GetMenuPage($slug: String!) {
       menuCategoriesCollection(limit: 40) {
         items {
           ...MenuSectionDetails
+          ...DividerDetails
         }
       }
       navbarButton {
@@ -113,6 +117,13 @@ query GetMenuPage($slug: String!) {
   }
 }
 
+fragment DividerDetails on Divider {
+  sys {
+   id
+ }
+ mainTitle 
+}
+
 ${MENU_SECTION_FRAGMENT}
 `
 
@@ -125,13 +136,25 @@ query {
       slug
       menuCategoriesCollection {
         items {
-          sys {
-            id
-          }
-          title
+          ...DividerDetails
+          ...MenuSectionDetails
         }
       }
     }
   }
+}
+
+fragment DividerDetails on Divider {
+   sys {
+    id
+  }
+  mainTitle 
+}
+
+fragment MenuSectionDetails on MenuSection {
+  sys {
+    id
+  }
+  title
 }
 `

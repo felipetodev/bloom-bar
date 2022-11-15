@@ -8,6 +8,7 @@ import MenuSection from './menu/MenuSection'
 import Divider from './menu/Divider'
 import FlowerIconSpacer from '../ui/FlowerIconSpacer'
 import useMediaQuery from '../hooks/useMediaQuery'
+import { Fragment } from 'react'
 
 const tailwindMQ = '(max-width: 640px)'
 
@@ -65,32 +66,40 @@ const Menu = ({ menu }) => {
       {isMobile && (
         <div className='grid-cols-1'>
           {categories?.map((category, idx) => (
-            <div key={category.sys.id} className='h-fit'>
-              <Heading title={category.title} subtitle={category.subtitle} variant={menu?.color} />
-              <div className='flex flex-col'>
-                {category.dishesCollection.items.map((dish) => (
-                  <Dish
-                    key={dish.sys.id}
-                    title={dish.title}
-                    price={dish.price}
-                    hasTitle={dish.uniqueTitle}
-                    description={dish.description}
-                    isVegan={dish.vegan}
-                  />
-                ))}
-              </div>
-              {category.image && (
-                <CardImage cardInfo={category.image} variant={menu?.color} />
-              )}
-              {category.card && (
-                <CardOutlined cardInfo={category.card} />
-              )}
-              {idx !== categories.length - 1 && (
-                <div className='text-bloom-softGray-100 flex justify-center py-[55px] sm:py-[85px]'>
-                  <FlowerIconSpacer />
-                </div>
-              )}
-            </div>
+            <Fragment key={category?.sys?.id || idx}>
+              {category?.mainTitle
+                ? <Divider isMobile divider={category} />
+                : (
+                  <div className='h-fit'>
+                    {(category.title || category.subtitle) && (
+                      <Heading title={category.title} subtitle={category.subtitle} variant={menu?.color} />
+                    )}
+                    <div className='flex flex-col'>
+                      {category.dishesCollection?.items.map((dish) => (
+                        <Dish
+                          key={dish.sys.id}
+                          title={dish.title}
+                          price={dish.price}
+                          hasTitle={dish.uniqueTitle}
+                          description={dish.description}
+                          isVegan={dish.vegan}
+                        />
+                      ))}
+                    </div>
+                    {category.image && (
+                      <CardImage cardInfo={category.image} variant={menu?.color} />
+                    )}
+                    {category.card && (
+                      <CardOutlined cardInfo={category.card} />
+                    )}
+                    {idx !== categories.length - 1 && (
+                      <div className='text-bloom-softGray-100 flex justify-center py-[55px] sm:py-[85px]'>
+                        <FlowerIconSpacer />
+                      </div>
+                    )}
+                  </div>
+                  )}
+            </Fragment>
           ))}
         </div>
       )}
