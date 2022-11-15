@@ -20,9 +20,9 @@ const ContactHero = ({ heroPost }) => {
       </div>
       <Image
         data-scroll
-        data-scroll-speed='1'
+        data-scroll-speed='2'
         loading='lazy'
-        className='absolute object-cover w-[40%] sm:w-1/5 md:w-1/6 h-fit -top-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:left-36 md:left-[170px] lg:left-[15%]'
+        className='absolute object-cover w-[40%] sm:w-1/5 md:w-1/6 h-fit top-8 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:top-4 sm:left-36 md:left-[170px] lg:-top-10 lg:left-[12%]'
         alt='bloombar-wave-bg'
         src={selloViaje}
       />
