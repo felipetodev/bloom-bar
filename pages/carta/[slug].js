@@ -17,7 +17,7 @@ const Nikkei = ({ menuData }) => {
         <Navbar navbarButton={menuData?.navbarButton} />
         <Menu menu={menuData} />
       </div>
-      <Promotion hasGradient promotionSection={menuData?.promotion} />
+      <Promotion promotionSection={menuData?.promotion} />
       <div className='h-32 w-full bg-black select-none pointer-events-none' />
       <Island />
     </>

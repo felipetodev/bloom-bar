@@ -29,9 +29,7 @@ const Promotion = ({ hasFlower, hasGradient, promotionSection }) => {
           <FlowerIcon style={{ width: 53, height: 53 }} />
         </div>
       )}
-      {hasGradient && (
-        <div className='absolute bottom-0 top-0 left-0 right-0 bg-bottom-island-gradient' />
-      )}
+      <div className='absolute bottom-0 top-0 left-0 right-0 bg-bottom-island-gradient' />
     </div>
   )
 }
