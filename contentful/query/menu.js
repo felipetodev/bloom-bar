@@ -39,17 +39,56 @@ query GetMenuPage($slug: String!) {
       mainTitle
       slug
       color
-      desktopRightSideCollection(limit: 11) {
+      desktopSection1LeftCollection(limit: 5) {
         items {
           ...MenuSectionDetails
         }
       }
-      desktopLeftSideCollection(limit: 11) {
+      desktopSection1RightCollection(limit: 5) {
         items {
           ...MenuSectionDetails
         }
       }
-      menuCategoriesCollection(limit: 84) {
+      firstDivider {
+        title
+      }
+      desktopSection2LeftCollection(limit: 12) {
+        items {
+          ...MenuSectionDetails
+        }
+      }
+      desktopSection2RightCollection(limit: 12) {
+        items {
+          ...MenuSectionDetails
+        }
+      }
+      secondDivider {
+        title
+      }
+      desktopSection3LeftCollection(limit: 5) {
+        items {
+          ...MenuSectionDetails
+        }
+      }
+      desktopSection3RightCollection(limit: 5) {
+        items {
+          ...MenuSectionDetails
+        }
+      }
+      thirdDivider {
+        title
+      }
+      desktopSection4LeftCollection(limit: 5) {
+        items {
+          ...MenuSectionDetails
+        }
+      }
+      desktopSection4RightCollection(limit: 5) {
+        items {
+          ...MenuSectionDetails
+        }
+      }
+      menuCategoriesCollection(limit: 40) {
         items {
           ...MenuSectionDetails
         }

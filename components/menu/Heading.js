@@ -15,7 +15,7 @@ const Heading = ({ title, variant = 'primary', subtitle }) => {
       </h2>
       <div className={styles} />
       {subtitle && (
-        <h3 className='ml-4 text-lg text-bloom-softGray-100'>
+        <h3 className='ml-4 text-lg text-bloom-softGray-100 font-abel'>
           {subtitle}
         </h3>
       )}
