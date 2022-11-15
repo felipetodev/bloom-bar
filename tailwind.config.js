@@ -33,6 +33,9 @@ module.exports = {
         'island-gradient': 'linear-gradient(0deg, rgba(0, 0, 0, 0.8) -28.53%, rgba(0, 0, 0, 0) 90.35%)',
         'bottom-island-gradient': 'linear-gradient(180deg,#0000 31.42%,#000)'
       },
+      letterSpacing: {
+        bloom: '0.3em'
+      },
       colors: {
         bloom: {
           orange: {
