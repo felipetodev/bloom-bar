@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Button from '../ui/Button'
-import FlameIcon from '../ui/FlameIcon'
+// import FlameIcon from '../ui/FlameIcon'
 
 const ContactForm = ({ formPost }) => {
   return (
@@ -8,7 +8,8 @@ const ContactForm = ({ formPost }) => {
       <div className='px-5 pt-[200px] sm:pt-0 flex flex-col justify-center items-center sm:px-10 md:px-14 sm:my-28 lg:pb-20 lg:pt-24'>
         <div className='flex flex-col items-center gap-5'>
           <span className='text-bloom-orange-100'>
-            <FlameIcon />
+            {/* <FlameIcon /> */}
+            <Image src='/bien-flama.gif' alt='flame icon' width={16} height={21} />
           </span>
           <h1 className='text-2xl text-bloom-softGray-100 text-center'>
             {formPost?.formTitle}
