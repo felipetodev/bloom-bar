@@ -41,7 +41,7 @@ const Island = () => {
               </div>
             )}
             {hasQuerySlug && nextMenu?.color !== 'secondary' && (
-              <Link scroll={false} href={`/carta/${nextMenu?.slug}`} className='flex justify-between items-center group'>
+              <Link href={`/carta/${nextMenu?.slug}`} className='flex justify-between items-center group'>
                 <div className={styles}>
                   {nextMenu?.slug === 'nikkei' ? <FlameIcon /> : <WineCupIcon />}
                 </div>
@@ -61,7 +61,7 @@ const Island = () => {
               </button>
             </DropdownMenu.Trigger>
             {(!hasQuerySlug || nextMenu?.color === 'secondary') && (
-              <Link scroll={false} href={`/carta/${nextMenu?.slug}`} className='flex justify-between items-center group'>
+              <Link href={`/carta/${nextMenu?.slug}`} className='flex justify-between items-center group'>
                 <div className='mr-2 text-bloom-softGray-100 self-center w-[70px]'>
                   <p className='text-[8px]'>
                     {hasQuerySlug && nextMenu?.color !== 'secondary' ? 'VOLVER A CARTA' : 'IR A CARTA'}
@@ -90,14 +90,14 @@ const Island = () => {
                 <Fragment key={category.sys.id}>
                   {category?.mainTitle && slug === 'drinks' && (
                     <DropdownMenu.Item onClick={() => setIsOpen(false)} className='DropdownMenuItem text-[18px] hover:underline'>
-                      <Link scroll={false} href={`/carta/${slug}/#${category.mainTitle?.replaceAll(' ', '')}`}>
+                      <Link href={`/carta/${slug}/#${category.mainTitle?.replaceAll(' ', '')}`}>
                         {category.mainTitle}
                       </Link>
                     </DropdownMenu.Item>
                   )}
                   {category?.title && slug === 'nikkei' && (
                     <DropdownMenu.Item onClick={() => setIsOpen(false)} className='DropdownMenuItem text-[18px] hover:underline'>
-                      <Link scroll={false} href={`/carta/${slug}/#${category.title?.replaceAll(' ', '')}`}>
+                      <Link href={`/carta/${slug}/#${category.title?.replaceAll(' ', '')}`}>
                         {category.title}
                       </Link>
                     </DropdownMenu.Item>
