@@ -19,7 +19,7 @@ const Dish = ({ title, hasTitle, description, price, isVegan }) => {
     )}
     >
       <div className='flex flex-col justify-center'>
-        <div className='flex'>
+        <div className='flex items-baseline'>
           {isVegan && (
             <span className='pr-2 md:pr-4 text-bloom-softGray-100'>
               <VeganIcon />
