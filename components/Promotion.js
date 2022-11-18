@@ -8,7 +8,7 @@ const Promotion = ({ hasFlower, promotionSection }) => {
       <Image width={1440} height={700} className='max-h-[700px] min-h-[450px] object-cover w-full h-full' alt={promotionSection?.image?.title} src={promotionSection?.image?.url} />
       <div className='absolute top-0 left-0 h-full w-full bg-promotion-gradient' />
       <div className='absolute z-10 top-0 left-0 right-0 bottom-0 flex flex-col justify-center p-5 sm:px-10 md:px-14'>
-        <h2 className='text-lg sm:text-2xl text-bloom-orange-100 mb-4'>
+        <h2 className='text-lg sm:text-2xl text-bloom-orange-100 mb-3'>
           {promotionSection?.firstTitle}
         </h2>
         <div className='flex flex-col text-bloom-softGray-100'>
@@ -18,7 +18,7 @@ const Promotion = ({ hasFlower, promotionSection }) => {
             }}
           />
         </div>
-        <a href={promotionSection?.promotionButton?.link} rel='noopener noreferrer' target='_blank' className='mt-4'>
+        <a href={promotionSection?.promotionButton?.link} rel='noopener noreferrer' target='_blank' className='mt-[25px]'>
           <Button className='hover:border-bloom-orange-100 hover:bg-bloom-orange-100 hover:text-bloom-softGray-100' variant='secondary'>
             {promotionSection?.promotionButton?.title}
           </Button>

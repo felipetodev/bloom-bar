@@ -25,7 +25,7 @@ const NAV_MENU = [
 
 const tailwindMQ = '(max-width: 640px)'
 
-const NavMenu = () => {
+const NavMenu = ({ setIsOpen }) => {
   const isMobile = useMediaQuery(tailwindMQ)
   const [transition, setTransition] = useState(null)
   return (
@@ -44,6 +44,7 @@ const NavMenu = () => {
               className='relative'
               onMouseEnter={() => setTransition(it.name)}
               onMouseLeave={() => setTransition(null)}
+              onClick={() => setIsOpen(false)}
             >
               <Link href={it.route}>
                 {it.name}
@@ -51,7 +52,7 @@ const NavMenu = () => {
               <AnimatePresence>
                 {!isMobile && transition === it.name
                   ? (
-                    <div key={it.name} className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 max-w-[210.74px] rounded-[7px] overflow-hidden'>
+                    <div key={it.name} className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 overflow-hidden'>
                       <SignIcon />
                     </div>
                     )

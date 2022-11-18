@@ -14,7 +14,7 @@ const tailwindMQ = '(max-width: 640px)'
 
 const Menu = ({ menu }) => {
   const isMobile = useMediaQuery(tailwindMQ)
-  const categories = menu?.menuCategoriesCollection.items
+  const categories = menu?.menuCategoriesCollection?.items
   const isPrimary = menu?.color === 'primary'
   const { desktopSection1LeftCollection, desktopSection1RightCollection, firstDivider } = menu || {}
   const { desktopSection2LeftCollection, desktopSection2RightCollection, secondDivider } = menu || {}

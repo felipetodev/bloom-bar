@@ -7,7 +7,9 @@ const LocationHero = ({ locationPost }) => (
     <div className='overflow-hidden max-h-[85vh] w-full'>
       <Image
         style={{ objectPosition: '0 80%' }}
-        className='grayscale brightness-25 object-cover h-screen w-full'
+        data-scroll
+        data-scroll-speed='1'
+        className='grayscale brightness-25 object-cover h-screen w-full min-h-[150%]'
         alt='bloombar-wave-bg' src={locationHero}
         placeholder='blur'
       />

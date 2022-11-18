@@ -2,7 +2,7 @@ import clsx from 'clsx'
 
 const Button = ({ type = 'button', children, variant = 'primary', className, ...props }) => {
   const styles = clsx(
-    'min-w-fit text-sm sm:text-base border border-solid py-1 px-10 rounded-[4px]',
+    'min-w-fit text-sm sm:text-base border border-solid py-1 px-10 rounded-[4px] !py-3 sm:!py-[5px] sm:px-[41.5px]',
     className,
     {
       'border-bloom-orange-100 text-bloom-orange-100': variant === 'primary',

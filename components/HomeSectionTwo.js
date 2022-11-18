@@ -5,7 +5,7 @@ import Button from '../ui/Button'
 const HomeSectionTwo = ({ sectionTwoPost }) => {
   return (
     <div data-scroll-section className='bg-bloom-softGray-100 grid place-items-center grid-cols-1 sm:grid-cols-landscape md:grid-cols-2'>
-      <div className='overflow-hidden h-full w-full'>
+      <div className='overflow-hidden h-full w-full min-h-[600px]'>
         <Image
           data-scroll
           data-scroll-speed='1'
