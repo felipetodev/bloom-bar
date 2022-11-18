@@ -62,7 +62,7 @@ const Island = () => {
             </DropdownMenu.Trigger>
             {(!hasQuerySlug || nextMenu?.color === 'secondary') && (
               <Link href={`/carta/${nextMenu?.slug}`} className='flex justify-between items-center group'>
-                <div className='mr-2 text-bloom-softGray-100 self-center w-[70px]'>
+                <div className='mr-2 text-bloom-softGray-100 self-center'>
                   <p className='text-[8px]'>
                     {hasQuerySlug && nextMenu?.color !== 'secondary' ? 'VOLVER A CARTA' : 'IR A CARTA'}
                   </p>
@@ -83,11 +83,22 @@ const Island = () => {
             <DropdownMenu.Content
               align='start'
               alignOffset={hasQuerySlug && nextMenu?.color !== 'secondary' ? -156 : -10}
-              className='DropdownMenuContent max-h-[400px] sm:max-h-[500px] bg-bloom-black-100 rounded-lg text-bloom-softGray-100 flex flex-col gap-8 border border-solid border-bloom-softGray-100 p-[30px]'
+              className={clsx(
+                'DropdownMenuContent max-h-[400px] sm:max-h-[500px] bg-bloom-black-100 rounded-lg text-bloom-softGray-100 flex flex-col gap-8 border border-solid border-bloom-softGray-100 p-[30px]', {
+                  'min-w-[294px]': nextMenu?.color === 'secondary'
+                }
+              )}
               sideOffset={5}
             >
               {menuCategoriesCollection?.items?.map(category => (
                 <Fragment key={category.sys.id}>
+                  {category?.navbarIsland && (
+                    <DropdownMenu.Item onClick={() => setIsOpen(false)} className='DropdownMenuItem text-[18px] hover:underline'>
+                      <Link href={`/carta/${slug}/#${category?.title?.replaceAll(' ', '') || category?.mainTitle?.replaceAll(' ', '')}`}>
+                        {category?.title || category?.mainTitle}
+                      </Link>
+                    </DropdownMenu.Item>
+                  )}
                   {category?.mainTitle && slug === 'drinks' && (
                     <DropdownMenu.Item onClick={() => setIsOpen(false)} className='DropdownMenuItem text-[18px] hover:underline'>
                       <Link href={`/carta/${slug}/#${category.mainTitle?.replaceAll(' ', '')}`}>

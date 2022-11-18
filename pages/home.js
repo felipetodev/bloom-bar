@@ -50,7 +50,6 @@ export async function getStaticProps ({ preview = false }) {
   const [homePosts] = (await getPagesBySlug(preview, 'home')) ?? []
 
   return {
-    props: { preview, homePosts },
-    revalidate: 10
+    props: { preview, homePosts }
   }
 }

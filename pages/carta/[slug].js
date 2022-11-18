@@ -33,7 +33,6 @@ export async function getStaticProps ({ preview = false, params }) {
   const [menuData] = await getMenuBySlug(preview, slug) ?? []
 
   return {
-    props: { preview, menuData },
-    revalidate: 10
+    props: { preview, menuData }
   }
 }

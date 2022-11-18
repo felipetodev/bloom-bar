@@ -156,5 +156,6 @@ fragment MenuSectionDetails on MenuSection {
     id
   }
   title
+  navbarIsland
 }
 `
