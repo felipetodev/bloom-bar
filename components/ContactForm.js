@@ -30,7 +30,7 @@ const ContactForm = ({ formPost }) => {
           </div>
           <div className='relative z-0 mb-6 w-full group'>
             <textarea rows='3' type='email' name='floating_email' id='floating_email' className='block py-2.5 px-0 w-full text-md text-bloom-softGray-100 bg-transparent border-0 border-b-2 border-bloom-softGray-100 appearance-none focus:outline-none focus:ring-0 focus:border-bloom-orange-100' placeholder=' ' required />
-            <label htmlFor='floating_email' className='peer-focus:font-medium absolute text-md text-bloom-softGray-100 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-bloom-orange-100 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'>
+            <label htmlFor='floating_email' className='w-full bg-bloom-black-100 peer-focus:font-medium absolute text-md text-bloom-softGray-100 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:left-0 peer-focus:text-bloom-orange-100 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'>
               Mensaje
             </label>
           </div>
