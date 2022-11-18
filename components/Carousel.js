@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, FreeMode } from 'swiper'
 import useMediaQuery from '../hooks/useMediaQuery'
@@ -29,7 +30,9 @@ const Carousel = ({ carouselCollection }) => {
       >
         {carouselCollection?.items?.map((item) => (
           <SwiperSlide key={item.sys.id} className='swiper-slide !h-[400px] sm:!h-[500px]'>
-            <img
+            <Image
+              height={400}
+              width={500}
               loading='lazy'
               className='work-image max-w-xl object-cover min-w-full'
               src={item.image.url}
