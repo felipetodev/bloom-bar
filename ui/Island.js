@@ -14,6 +14,7 @@ const Island = () => {
     hasQuerySlug,
     nextMenu,
     slug,
+    loading,
     menuCategoriesCollection
   } = useIsland()
 
@@ -29,6 +30,8 @@ const Island = () => {
       'ml-2': hasQuerySlug && nextMenu?.color !== 'secondary',
       'mr-2': hasQuerySlug && nextMenu?.color === 'secondary'
     })
+
+  if (loading) return null
 
   return (
     <div className='bg-transparent pointer-events-none flex justify-center items-center fixed w-full bottom-0 py-10 bg-island-gradient z-30'>

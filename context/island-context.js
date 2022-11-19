@@ -16,13 +16,18 @@ export const useIsland = () => useContext(IslandContext)
 
 const IslandProvider = ({ children }) => {
   const [menu, setMenu] = useState(null)
+  const [loading, setLoading] = useState(true)
   const router = useRouter()
 
   useEffect(() => {
     async function fetchMenu () {
       await fetch('/api/menu')
         .then(res => res.json())
-        .then(data => setMenu(data))
+        .then(data => {
+          setMenu(data)
+          setLoading(false)
+        })
+        .finally(() => setLoading(false))
     }
     fetchMenu()
   }, [])
@@ -44,6 +49,7 @@ const IslandProvider = ({ children }) => {
       hasQuerySlug,
       nextMenu,
       slug,
+      loading,
       menuCategoriesCollection
     }
   }, [hasQuerySlug, nextMenu, menu])
