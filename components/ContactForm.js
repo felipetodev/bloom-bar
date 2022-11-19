@@ -9,10 +9,12 @@ const DEFAULT_STATE = {
   message: ''
 }
 
+const { NEXT_PUBLIC_FORM_EMAIL = '' } = process.env
+
 const api = {
   sendForm: async (payload) => {
     try {
-      const res = await fetch(`https://formsubmit.co/ajax/${process.env.NEXT_PUBLIC_FORM_EMAIL}`, {
+      const res = await fetch(`https://formsubmit.co/ajax/${NEXT_PUBLIC_FORM_EMAIL}`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
@@ -35,7 +37,6 @@ const ContactForm = ({ formPost }) => {
     e.preventDefault()
     if (form.name && form.email) {
       const res = await api.sendForm(form)
-      console.log(res)
       if (res?.success === 'true') {
         setMessage(formPost.submitMessage)
       } else {
