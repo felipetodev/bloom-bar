@@ -1,35 +1,60 @@
 import Head from 'next/head'
+import Footer from '../components/Footer'
+import Hero from '../components/Hero'
+import HomeExperience from '../components/HomeExperience'
+import HomeSectionTwo from '../components/HomeSectionTwo'
+import Navbar from '../components/Navbar'
+import Promotion from '../components/Promotion'
+import { getPagesBySlug } from '../contentful/api'
 
-const Home = () => {
+const Home = ({ homePosts }) => {
+  const {
+    navbarButton,
+    video,
+    image,
+    titleFirstSection,
+    descriptionFirstSection,
+    leftImageSecondSection,
+    descriptionSecondSection,
+    leftButtonSecondSection,
+    rightButtonSecondSection,
+    promotionSection,
+    footer
+  } = homePosts || {}
+
+  const experiencePost = {
+    titleFirstSection,
+    descriptionFirstSection
+  }
+  const sectionTwoPost = {
+    leftImageSecondSection,
+    descriptionSecondSection,
+    leftButtonSecondSection,
+    rightButtonSecondSection
+
+  }
   return (
-    <div className='flex min-h-screen flex-col items-center justify-center'>
+    <>
       <Head>
-        <title>Bloom Bar (Coming soon)</title>
+        <title>Bloom Bar</title>
         <link rel='icon' href='/favicon-bloombar.svg' />
       </Head>
-
-      <main className='bg-comming-soon bg-cover bg-center h-screen w-full flex justify-center items-center'>
-        <section className='flex justify-center items-center flex-col gap-24 text-center overflow-hidden'>
-          <img src='/bloomlogo.svg' alt='Bloom Logo' className='w-5/12 min-w-[200px]' />
-          <div className='flex flex-col justify-center items-center'>
-            <h1 className='text-3xl md:text-6xl text-[#FF5C00]'>Pronto sabrás de nosotros.</h1>
-            <h2 className='text-lg md:text-2xl text-bloom-gray-100 mt-2'>Estamos trabajando en nuestra experiencia digital.</h2>
-          </div>
-          <h2 className='text-lg md:text-2xl text-bloom-gray-100'>
-            Síguenos en{' '}
-            <a
-              href='https://www.instagram.com/bloom_barcl'
-              rel='noopener noreferrer'
-              target='_blank'
-              className='text-[#FF5C00] underline'
-            >
-              Instagram
-            </a>
-          </h2>
-        </section>
-      </main>
-    </div>
+      <Navbar navbarButton={navbarButton} />
+      <Hero video={video} image={image} />
+      <HomeExperience experiencePost={experiencePost} />
+      <HomeSectionTwo sectionTwoPost={sectionTwoPost} />
+      <Promotion hasFlower promotionSection={promotionSection} />
+      <Footer footer={footer} />
+    </>
   )
 }
 
 export default Home
+
+export async function getStaticProps ({ preview = false }) {
+  const [homePosts] = (await getPagesBySlug(preview, 'home')) ?? []
+
+  return {
+    props: { preview, homePosts }
+  }
+}

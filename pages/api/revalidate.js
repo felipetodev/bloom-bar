@@ -6,7 +6,6 @@ export default async function handler (req, res) {
       await res.revalidate('/carta/nikkei')
       await res.revalidate('/carta/drinks')
       await res.revalidate('/')
-      await res.revalidate('/home')
       await res.revalidate('/contacto')
       await res.revalidate('/ubicacion')
       await res.revalidate('/404')
