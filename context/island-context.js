@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useContext, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 
 const defaultContext = {
@@ -16,27 +16,17 @@ export const useIsland = () => useContext(IslandContext)
 
 const IslandProvider = ({ children }) => {
   const [menu, setMenu] = useState(null)
-  const [loading, setLoading] = useState(true)
   const router = useRouter()
-
-  useEffect(() => {
-    async function fetchMenu () {
-      await fetch('/api/menu')
-        .then(res => res.json())
-        .then(data => {
-          setMenu(data)
-          setLoading(false)
-        })
-        .finally(() => setLoading(false))
-    }
-    fetchMenu()
-  }, [])
 
   const hasQuerySlug = Boolean(router.query.slug)
 
   const nextMenu = hasQuerySlug
     ? menu?.find(el => el.slug !== router.query.slug)
     : menu?.find(el => el.color === 'primary')
+
+  const updateValues = (menu) => {
+    menu && setMenu(menu)
+  }
 
   const { slug = '', menuCategoriesCollection = [] } = useMemo(() => {
     return hasQuerySlug
@@ -49,7 +39,7 @@ const IslandProvider = ({ children }) => {
       hasQuerySlug,
       nextMenu,
       slug,
-      loading,
+      updateValues,
       menuCategoriesCollection
     }
   }, [hasQuerySlug, nextMenu, menu])

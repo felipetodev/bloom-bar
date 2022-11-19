@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import Link from 'next/link'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import FlameIcon from './FlameIcon'
@@ -8,15 +8,19 @@ import WineCupIcon from './WineCupIcon'
 import clsx from 'clsx'
 import { useIsland } from '../context/island-context'
 
-const Island = () => {
+const Island = ({ islandMenu }) => {
   const [open, setIsOpen] = useState(false)
   const {
     hasQuerySlug,
     nextMenu,
     slug,
-    loading,
+    updateValues,
     menuCategoriesCollection
   } = useIsland()
+
+  useEffect(() => {
+    updateValues(islandMenu)
+  }, [])
 
   const styles = clsx(
     'rounded-full flex justify-center items-center min-w-[36px] w-[36px] h-[36px] min-h-[36px]', {
@@ -30,8 +34,6 @@ const Island = () => {
       'ml-2': hasQuerySlug && nextMenu?.color !== 'secondary',
       'mr-2': hasQuerySlug && nextMenu?.color === 'secondary'
     })
-
-  if (loading) return null
 
   return (
     <div className='bg-transparent pointer-events-none flex justify-center items-center fixed w-full bottom-0 py-10 bg-island-gradient z-30'>
