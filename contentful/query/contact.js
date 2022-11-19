@@ -19,6 +19,8 @@ query GetLayoutPage($slug: String!) {
       numberLink
       email
       emailLink
+      submitMessage
+      errorMessage
       footer {
         title
         firstColumnCollection {

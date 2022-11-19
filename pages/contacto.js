@@ -5,10 +5,12 @@ import ContactHero from '../components/ContactHero'
 import { getPagesBySlug } from '../contentful/api'
 
 const ContactPage = ({ contactPosts }) => {
-  const { footer, navbarButton, image, formTitle, ...rest } = contactPosts
+  const { footer, navbarButton, image, formTitle, errorMessage, submitMessage, ...rest } = contactPosts || {}
   const formPost = {
     image,
-    formTitle
+    formTitle,
+    submitMessage,
+    errorMessage
   }
   return (
     <>
