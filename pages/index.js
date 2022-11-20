@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Footer from '../components/Footer'
 import Hero from '../components/Hero'
 import HomeExperience from '../components/HomeExperience'
@@ -35,10 +34,6 @@ const Home = ({ homePosts }) => {
   }
   return (
     <>
-      <Head>
-        <title>Bloom Bar</title>
-        <link rel='icon' href='/favicon-bloombar.svg' />
-      </Head>
       <Navbar navbarButton={navbarButton} />
       <Hero video={video} image={image} />
       <HomeExperience experiencePost={experiencePost} />

@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import ContactForm from '../components/ContactForm'
 import ContactHero from '../components/ContactHero'
 import { getPagesBySlug } from '../contentful/api'
+import Head from 'next/head'
 
 const ContactPage = ({ contactPosts }) => {
   const { footer, navbarButton, image, formTitle, errorMessage, submitMessage, ...rest } = contactPosts || {}
@@ -14,6 +15,9 @@ const ContactPage = ({ contactPosts }) => {
   }
   return (
     <>
+      <Head>
+        <title>Bloombar | Contacto</title>
+      </Head>
       <Navbar navbarButton={navbarButton} />
       <ContactForm formPost={formPost} />
       <ContactHero heroPost={rest} />

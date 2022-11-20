@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Navbar from '../../components/Navbar'
 import Menu from '../../components/Menu'
 import Promotion from '../../components/Promotion'
@@ -7,6 +8,9 @@ import { getAllMenuData, getAllMenuSlugs, getMenuBySlug } from '../../contentful
 const Nikkei = ({ menuData, islandMenu }) => {
   return (
     <>
+      <Head>
+        <title>Bloombar | Carta</title>
+      </Head>
       <div className='relative px-5 sm:px-10 md:px-14 pb-14 sm:pb-40 min-h-screen overflow-x-hidden'>
         <Navbar navbarButton={menuData?.navbarButton} />
         <Menu menu={menuData} />

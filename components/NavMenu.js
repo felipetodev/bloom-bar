@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 const NAV_MENU = [
   {
     name: 'INICIO',
-    route: '/home'
+    route: '/'
   },
   {
     name: 'CARTA',

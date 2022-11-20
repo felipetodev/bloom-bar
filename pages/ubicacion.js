@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Carousel from '../components/Carousel'
 import Footer from '../components/Footer'
 import LocationHero from '../components/LocationHero'
@@ -22,6 +23,9 @@ const LocationPage = ({ locationPosts }) => {
   }
   return (
     <>
+      <Head>
+        <title>Bloombar | Ubicación</title>
+      </Head>
       <Navbar navbarButton={navbarButton} />
       <LocationHero locationPost={locationPost} />
       <Carousel carouselCollection={carouselGalleryCollection} />
