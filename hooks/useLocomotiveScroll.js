@@ -2,12 +2,6 @@ import { useEffect } from 'react'
 
 const $ = (selector) => document.querySelector(selector)
 
-const removeLocoScroll = () => {
-  $('body').style.overflow = 'auto'
-  $('#__next').style.overflow = 'auto'
-  window.locomotive?.destroy()
-}
-
 const initLocoScroll = async () => {
   try {
     const LocomotiveScroll = (await import('locomotive-scroll')).default
@@ -32,7 +26,8 @@ const initLocoScroll = async () => {
 const useLocomotiveScroll = ({ location, ignore }) => {
   useEffect(() => {
     if (ignore) {
-      return removeLocoScroll()
+      $('body').style.overflow = 'auto'
+      $('#__next').style.overflow = 'auto'
     } else {
       $('body').style.overflow = 'hidden'
       $('#__next').style.overflow = 'hidden'
