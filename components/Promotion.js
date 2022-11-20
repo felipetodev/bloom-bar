@@ -1,10 +1,15 @@
 import Image from 'next/image'
 import Button from '../ui/Button'
 import FlowerIcon from '../ui/FlowerIcon'
+import clsx from 'clsx'
 
-const Promotion = ({ hasFlower, promotionSection }) => {
+const Promotion = ({ hasFlower, promotionSection, hasMenu }) => {
   return (
-    <div data-scroll-section id='promotion' className='relative'>
+    <div
+      data-scroll-section id='promotion' className={clsx('relative', {
+        '!opacity-1 !pointer-events-auto !transform-none': hasMenu
+      })}
+    >
       <Image width={1440} height={700} className='max-h-[700px] min-h-[450px] object-cover w-full h-full' alt={promotionSection?.image?.title} src={promotionSection?.image?.url} />
       <div className='absolute top-0 left-0 h-full w-full bg-promotion-gradient' />
       <div className='absolute z-10 top-0 left-0 right-0 bottom-0 flex flex-col justify-center p-5 sm:px-10 md:px-14'>
