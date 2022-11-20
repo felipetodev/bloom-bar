@@ -1,21 +1,25 @@
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, FreeMode } from 'swiper'
-import useMediaQuery from '../hooks/useMediaQuery'
 import PaintSvg from '../ui/PaintSvg'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
-const tailwindMQ = '(max-width: 640px)'
-
 const Carousel = ({ carouselCollection }) => {
-  const isMobile = useMediaQuery(tailwindMQ)
   return (
     <div data-scroll-section className='relative'>
       <Swiper
         loop
-        slidesPerView={isMobile ? 1.65 : 2.4}
-        spaceBetween={0}
+        breakpoints={{
+          1: {
+            slidesPerView: 1.65,
+            spaceBetween: 0
+          },
+          640: {
+            slidesPerView: 2.4,
+            spaceBetween: 0
+          }
+        }}
         pagination={{
           clickable: true
         }}
@@ -26,10 +30,10 @@ const Carousel = ({ carouselCollection }) => {
         speed={5000}
         modules={[Autoplay, FreeMode]}
         grabCursor
-        className='swiper bloom-carousel'
+        className='swiper bloom-carousel !h-[400px] sm:!h-[500px]'
       >
         {carouselCollection?.items?.map((item) => (
-          <SwiperSlide key={item.sys.id} className='swiper-slide !h-[400px] sm:!h-[500px]'>
+          <SwiperSlide key={item.sys.id} className='swiper-slide h-full'>
             <Image
               height={400}
               width={500}
