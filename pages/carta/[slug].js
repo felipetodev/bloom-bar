@@ -15,7 +15,7 @@ const Nikkei = ({ menuData, islandMenu }) => {
         <Navbar navbarButton={menuData?.navbarButton} />
         <Menu menu={menuData} />
       </div>
-      <Promotion hasMenu promotionSection={menuData?.promotion} />
+      <Promotion promotionSection={menuData?.promotion} />
       <div className='h-32 w-full bg-black select-none pointer-events-none' />
       <Island islandMenu={islandMenu} />
     </>
