@@ -2,12 +2,12 @@ import Head from 'next/head'
 
 import { META } from '../config'
 
-const SeoLayout = ({ children }) => (
+const SeoLayout = ({ children, canonical }) => (
   <>
     <Head>
       <link href={META.favicon} rel='icon' />
       <link href={META.appleicon} rel='apple-touch-icon' />
-      <link href={META.url} rel='canonical' />
+      <link href={canonical} rel='canonical' />
       <title>{META.title}</title>
       <meta content={META.theme} name='theme-color' />
       <meta content={META.description} name='description' />

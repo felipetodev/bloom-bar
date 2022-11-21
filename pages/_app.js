@@ -6,7 +6,7 @@ import useDeviceDetect from '../hooks/useDevice'
 import useLocomotiveScroll from '../hooks/useLocomotiveScroll'
 import '../styles/globals.css'
 
-function MyApp ({ Component, pageProps }) {
+function MyApp ({ Component, pageProps, canonical }) {
   const { asPath, query } = useRouter()
   const mobileDevice = useDeviceDetect()
   useLocomotiveScroll({ location: asPath, ignore: !!query.slug || mobileDevice })
@@ -14,7 +14,7 @@ function MyApp ({ Component, pageProps }) {
   return (
     <>
       <Analytics />
-      <SeoLayout>
+      <SeoLayout canonical={canonical}>
         <IslandProvider>
           <div data-scroll-container className='scroll-container'>
             <Component {...pageProps} />
@@ -26,3 +26,13 @@ function MyApp ({ Component, pageProps }) {
 }
 
 export default MyApp
+
+MyApp.getInitialProps = async ({ ctx }) => {
+  const baseUrl = 'https://bloombar.cl'
+  const { asPath } = ctx
+  const canonical = baseUrl + asPath
+
+  return {
+    canonical
+  }
+}

@@ -99,6 +99,7 @@ const ContactForm = ({ formPost }) => {
       </div>
       <div data-scroll data-scroll-speed='1' className='w-full mt-28 max-h-48 sm:min-h-full sm:mt-0'>
         <Image
+          priority
           width={1000}
           height={720}
           className='object-cover -mt-[3%] min-h-[130%] sm:min-h-[115%] w-full h-full object-bottom sm:object-center'
