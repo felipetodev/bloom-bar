@@ -32,7 +32,6 @@ export async function getStaticProps ({ preview = false }) {
   const [{ footer }] = (await getPagesBySlug(preview, 'error')) ?? []
 
   return {
-    props: { preview, footer },
-    revalidate: 10
+    props: { preview, footer }
   }
 }
