@@ -43,11 +43,13 @@ const Footer = ({ footer }) => {
                 }}
               />
             </li>
-            <li>
-              <a href={footer?.contactLink} className='text-bloom-orange-100 hover:underline'>
-                {footer?.contact}
-              </a>
-            </li>
+            {footer?.contact && (
+              <li>
+                <a href={footer?.contactLink} className='text-bloom-orange-100 hover:underline'>
+                  {footer?.contact}
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>
