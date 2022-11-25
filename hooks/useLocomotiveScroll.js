@@ -20,6 +20,8 @@ const initLocoScroll = async () => {
       el: dataScrollContainer ?? undefined,
       smooth: true
     })
+
+    setTimeout(() => window.locomotive?.update(), 500)
   } catch (error) {}
 }
 
@@ -28,13 +30,11 @@ const useLocomotiveScroll = ({ location, ignore }) => {
     if (ignore) {
       $('body').style.overflow = 'auto'
       $('#__next').style.overflow = 'auto'
+      window.locomotive = null
     } else {
       $('body').style.overflow = 'hidden'
       $('#__next').style.overflow = 'hidden'
       initLocoScroll()
-      setTimeout(() => {
-        window.locomotive?.update()
-      }, 5000)
     }
 
     return () => {
