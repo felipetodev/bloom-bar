@@ -2,7 +2,7 @@ import Head from 'next/head'
 
 import { META } from '../config'
 
-const SeoLayout = ({ children, canonical }) => (
+const SeoLayout = ({ children, canonical, pathname, slug }) => (
   <>
     <Head>
       <link href={META.favicon} rel='icon' />
@@ -14,11 +14,16 @@ const SeoLayout = ({ children, canonical }) => (
       <meta content={META.keywords} name='keywords' />
       <meta content={META.author} name='author' />
       <meta content={META.author} property='og:site_name' />
-      <meta content={META.url} property='og:url' />
+      <meta content={canonical} property='og:url' />
       <meta content='website' property='og:type' />
-      <meta content={META.title} property='og:title' />
+      <meta content={(slug || pathname) ? `Bloombar | ${pathname || `Carta ${slug}`}` : META.title} property='og:title' />
       <meta content={META.description} property='og:description' />
       <meta content={META.title} property='og:image:alt' />
+      <meta name='twitter:card' content='summary_large_image' />
+      <meta name='twitter:title' content={(slug || pathname) ? `Bloombar | ${pathname || `Carta ${slug}`}` : META.title} />
+      <meta property='twitter:domain' content={META.url} />
+      <meta property='twitter:url' content={canonical} />
+      <meta name='twitter:description' content={META.description} />
     </Head>
     {children}
   </>
