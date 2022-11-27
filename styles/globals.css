@@ -12,10 +12,6 @@
     scroll-margin-top: calc(80px + 2.5em);
   }
 
-  .is-active {
-    transition: all 100ms ease-in-out;
-  }
-
   input,
   textarea {
     border-radius: 0%;
