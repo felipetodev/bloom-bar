@@ -30,7 +30,7 @@ export default MyApp
 MyApp.getInitialProps = async ({ ctx }) => {
   const baseUrl = 'https://www.bloombar.cl'
   const { asPath, query } = ctx
-  const canonical = baseUrl + asPath
+  const canonical = baseUrl + asPath + '/'
   const slug = query.slug?.toUpperCase()
   const pathname = slug
     ? null
