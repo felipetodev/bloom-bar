@@ -28,7 +28,7 @@ function MyApp ({ Component, pageProps, canonical, pathname, slug }) {
 export default MyApp
 
 MyApp.getInitialProps = async ({ ctx }) => {
-  const baseUrl = 'https://bloombar.cl'
+  const baseUrl = 'https://www.bloombar.cl'
   const { asPath, query } = ctx
   const canonical = baseUrl + asPath
   const slug = query.slug?.toUpperCase()
