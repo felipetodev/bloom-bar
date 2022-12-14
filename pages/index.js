@@ -4,6 +4,7 @@ import HomeExperience from '../components/HomeExperience'
 import HomeSectionTwo from '../components/HomeSectionTwo'
 import Navbar from '../components/Navbar'
 import Promotion from '../components/Promotion'
+import DialogPromo from '../components/DialogPromo'
 import { getPagesBySlug } from '../contentful/api'
 
 const Home = ({ homePosts }) => {
@@ -40,6 +41,7 @@ const Home = ({ homePosts }) => {
       <HomeSectionTwo sectionTwoPost={sectionTwoPost} />
       <Promotion hasFlower promotionSection={promotionSection} />
       <Footer footer={footer} />
+      <DialogPromo />
     </>
   )
 }
