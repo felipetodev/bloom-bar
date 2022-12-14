@@ -13,7 +13,7 @@ function MyApp ({ Component, pageProps, canonical, pathname, slug }) {
 
   return (
     <>
-      <Analytics />
+      <Analytics mode='production' />
       <SeoLayout canonical={canonical} pathname={pathname} slug={slug}>
         <IslandProvider>
           <div data-scroll-container className='scroll-container'>
@@ -28,7 +28,9 @@ function MyApp ({ Component, pageProps, canonical, pathname, slug }) {
 export default MyApp
 
 MyApp.getInitialProps = async ({ ctx }) => {
-  const baseUrl = 'https://www.bloombar.cl'
+  const baseUrl = process.env.NODE_ENV === 'production'
+    ? 'https://www.bloombar.cl'
+    : 'http://localhost:3000'
   const { asPath, query } = ctx
   const canonical = baseUrl + asPath + '/'
   const slug = query.slug?.toUpperCase()
