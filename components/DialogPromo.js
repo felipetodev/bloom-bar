@@ -65,7 +65,7 @@ export default function DialogPromo () {
                         </svg>
                       </button>
                     </div>
-                    <div className='flex justify-center'>
+                    <div className='flex justify-center h-[70px]'>
                       <Image
                         width={31.53}
                         height={45.77}
