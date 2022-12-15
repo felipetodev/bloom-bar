@@ -43,7 +43,7 @@ export default function DialogPromo () {
               leaveFrom='opacity-100 scale-100'
               leaveTo='opacity-0 scale-95'
             >
-              <Dialog.Panel className='w-full max-w-[300px] md:max-w-[570px] transform overflow-hidden p-[10px] bg-bloom-dark-100 text-left align-middle shadow-xl transition-all font-gopher'>
+              <Dialog.Panel className='w-full max-w-[300px] md:max-w-[570px] transform overflow-hidden p-[10px] bg-bloom-dark-100 text-left align-middle shadow-xl transition-all font-gopher bg-modal bg-cover'>
                 <div className='border border-solid border-[#DAA948]'>
                   <div className='flex flex-col gap-4 md:gap-[25px] p-[10px] md:px-[15px]'>
 
@@ -66,7 +66,12 @@ export default function DialogPromo () {
                       </button>
                     </div>
                     <div className='flex justify-center'>
-                      <Image width={31.53} height={45.77} src='/b-logo-gold.svg' />
+                      <Image
+                        width={31.53}
+                        height={45.77}
+                        src='/b-logo-gold.svg'
+                        alt='bloom bar logo'
+                      />
                     </div>
                     <Dialog.Title
                       as='h3'
@@ -99,23 +104,27 @@ export default function DialogPromo () {
                     </div>
 
                     <div className='text-center'>
-                      <h3 className='text-[#DAA948] text-[12px] md:text-[25px] font-bold tracking-widest'>MAURO BOSS DJ SET</h3>
+                      <h3 className='text-[#DAA948] text-[12px] md:text-[25px] font-bold tracking-widest uppercase'>
+                        dj Richy - Hits Bailables
+                      </h3>
                     </div>
 
-                    <div className='text-center'>
-                      <span className='px-[10px] py-[5px] md:px-[20px] md:py-[6px] bg-[#DAA948] text-bloom-gray-100 text-[13px] md:text-[20px] tracking-widest'>
-                        SOLO 100 CUPOS
-                      </span>
-                    </div>
-
-                    <div className='flex justify-center mb-[20px]'>
+                    <div className='flex justify-center'>
                       <a
-                        href='/'
+                        href='https://walink.co/cbc08a'
                         type='button'
-                        className='px-[35px] py-[5px] rounded-md bg-bloom-gray-100 text-bloom-darkGreen-100 text-[13px] md:text-[16px] hover:bg-[#DAA948] hover:text-bloom-gray-100'
+                        rel='noopener noreferrer'
+                        target='_blank'
+                        className='px-[35px] py-[5px] rounded-md bg-[#DAA948] text-bloom-gray-100 text-[13px] md:text-[16px] font-bold hover:bg-[#c29438]'
                       >
                         RESERVA AHORA
                       </a>
+                    </div>
+
+                    <div className='text-center mb-[20px]'>
+                      <span className='text-bloom-gray-100 text-[10px] md:text-[16px] tracking-widest'>
+                        SOLO 100 CUPOS
+                      </span>
                     </div>
                   </div>
                 </div>

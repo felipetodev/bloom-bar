@@ -25,6 +25,7 @@ module.exports = {
         ]
       },
       backgroundImage: {
+        modal: "linear-gradient(rgba(0, 0, 0, 0.89), rgba(0, 0, 0, 0.89)), url('/modal-waves.webp')",
         'comming-soon': "url('/coming-soon-bg.jpeg')",
         'logo-gradient-radial': 'radial-gradient(41.82% 41.82% at 50% 50%, rgba(0, 0, 0, 0.5) 55.9%, rgba(0, 0, 0, 0) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 21.04%)',
         'promotion-gradient': 'linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%)',
