@@ -32,7 +32,7 @@ MyApp.getInitialProps = async ({ ctx }) => {
     ? 'https://www.bloombar.cl'
     : 'http://localhost:3000'
   const { asPath, query } = ctx
-  const canonical = baseUrl + asPath + '/'
+  const canonical = baseUrl + asPath
   const slug = query.slug?.toUpperCase()
   const pathname = slug
     ? null
