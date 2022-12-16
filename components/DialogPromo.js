@@ -11,7 +11,7 @@ export default function DialogPromo () {
   useEffect(() => {
     const openDialog = setTimeout(() => {
       setIsOpen(true)
-    }, 6000)
+    }, 4000)
     return () => clearTimeout(openDialog)
   }, [])
 
