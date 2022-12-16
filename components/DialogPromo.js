@@ -1,9 +1,11 @@
 import { Fragment, useEffect, useState } from 'react'
+import Image from 'next/image'
 import { Dialog, Transition } from '@headlessui/react'
 import BlazeIcon from '../ui/BlazeIcon'
-import Image from 'next/image'
+import useDeviceDetect from '../hooks/useDevice'
 
 export default function DialogPromo () {
+  const isMobile = useDeviceDetect()
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -112,9 +114,8 @@ export default function DialogPromo () {
                     <div className='flex justify-center'>
                       <a
                         href='https://walink.co/cbc08a'
-                        type='button'
                         rel='noopener noreferrer'
-                        target='_blank'
+                        target={isMobile ? '_self' : '_blank'}
                         className='animate-border inline-block bg-[#DAA948] from-[#cd9b37] via-[#9f7b34] to-[#DAA948] bg-[length:400%_400%] text-[13px] md:text-[16px] text-bloom-gray-100 font-bold hover:bg-gradient-to-r px-[35px] py-[5px] rounded-md tracking-wide'
                       >
                         RESERVA AHORA
