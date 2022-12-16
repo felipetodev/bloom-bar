@@ -24,6 +24,15 @@ module.exports = {
           '0 45px 65px rgba(0, 0, 0, 1)'
         ]
       },
+      animation: {
+        border: 'border 4s ease infinite'
+      },
+      keyframes: {
+        border: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' }
+        }
+      },
       backgroundImage: {
         modal: "linear-gradient(rgba(0, 0, 0, 0.89), rgba(0, 0, 0, 0.89)), url('/modal-waves.webp')",
         'comming-soon': "url('/coming-soon-bg.jpeg')",

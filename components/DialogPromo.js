@@ -115,7 +115,7 @@ export default function DialogPromo () {
                         type='button'
                         rel='noopener noreferrer'
                         target='_blank'
-                        className='px-[35px] py-[5px] rounded-md bg-[#DAA948] text-bloom-gray-100 text-[13px] md:text-[16px] font-bold hover:bg-[#c29438]'
+                        className='animate-border inline-block bg-[#DAA948] from-[#cd9b37] via-[#9f7b34] to-[#DAA948] bg-[length:400%_400%] text-[13px] md:text-[16px] text-bloom-gray-100 font-bold hover:bg-gradient-to-r px-[35px] py-[5px] rounded-md tracking-wide'
                       >
                         RESERVA AHORA
                       </a>
