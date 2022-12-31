@@ -17,7 +17,6 @@ export async function getServerSideProps ({ res }) {
     '',
     'ubicacion',
     'contacto',
-    'carta',
     'carta/nikkei',
     'carta/drinks'
   ]
