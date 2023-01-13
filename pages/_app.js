@@ -5,7 +5,7 @@ import IslandProvider from '../context/island-context'
 import useLocomotiveScroll from '../hooks/useLocomotiveScroll'
 import '../styles/globals.css'
 
-function MyApp ({ Component, pageProps, canonical, pathname, slug, isMobile }) {
+function MyApp ({ Component, pageProps, canonical, isMobile }) {
   const { asPath, query } = useRouter()
   const breakpoint = typeof window !== 'undefined' && window.innerWidth < 1024
   useLocomotiveScroll({
@@ -16,7 +16,7 @@ function MyApp ({ Component, pageProps, canonical, pathname, slug, isMobile }) {
   return (
     <>
       <Analytics mode='production' />
-      <SeoLayout canonical={canonical} pathname={pathname} slug={slug}>
+      <SeoLayout canonical={canonical}>
         <IslandProvider>
           <div data-scroll-container className='scroll-container'>
             <Component {...pageProps} />
@@ -35,17 +35,11 @@ MyApp.getInitialProps = async ({ ctx }) => {
   const baseUrl = process.env.NODE_ENV === 'production'
     ? 'https://www.bloombar.cl'
     : 'http://localhost:3000'
-  const { asPath, query } = ctx
+  const { asPath } = ctx
   const canonical = baseUrl + asPath
-  const slug = query.slug?.toUpperCase()
-  const pathname = slug
-    ? null
-    : asPath.replace('/', '')?.toUpperCase()
 
   return {
     canonical,
-    pathname,
-    slug,
     isMobile
   }
 }
