@@ -114,7 +114,6 @@
     will-change: transform, opacity;
 
     overflow: hidden;
-    overflow-y: scroll;
   }
 
   [data-radix-popper-content-wrapper] {
