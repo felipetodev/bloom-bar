@@ -54,7 +54,7 @@ const Footer = ({ footer }) => {
         </div>
       </div>
       <div className='pt-10 pb-5 pl-5 pr-5 sm:flex sm:items-center sm:justify-between md:px-10 md:pt-14 lg:pt-16 text-bloom-softGray-100 opacity-60'>
-        <span className='text-sm sm:text-center'>© 2022 <a href='/' className='hover:text-bloom-orange-100'>Bloom Bar</a>.
+        <span className='text-sm sm:text-center'>© {new Date().getFullYear()} <a href='/' className='hover:text-bloom-orange-100'>Bloom Bar</a>.
         </span>
         <div className='flex mt-4 space-x-6 sm:justify-center sm:mt-0'>
           <span className='text-sm'>Diseño y desarrollo por {' '}

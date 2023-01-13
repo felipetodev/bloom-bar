@@ -7,4 +7,4 @@
 - [Hanson Studio](https://www.sebastianhansonstudio.com).
 - [Official Website](https://www.bloombar.cl/).
 
-#### All Rights Reserved BLOOM BAR <br/> Copyright © 2022 Bloom Bar.
+#### All Rights Reserved BLOOM BAR <br/> Copyright © 2023 Bloom Bar.
