@@ -3,7 +3,6 @@ lockfileVersion: 5.4
 specifiers:
   '@headlessui/react': 1.7.7
   '@radix-ui/react-dropdown-menu': 2.0.1
-  '@vercel/analytics': ^0.1.7
   autoprefixer: 10.4.13
   clsx: ^1.2.1
   framer-motion: ^8.4.2
@@ -19,7 +18,6 @@ specifiers:
 dependencies:
   '@headlessui/react': 1.7.7_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-dropdown-menu': 2.0.1_biqbaboplfbrettd7655fr4n2y
-  '@vercel/analytics': 0.1.7_react@18.2.0
   clsx: 1.2.1
   framer-motion: 8.4.2_biqbaboplfbrettd7655fr4n2y
   locomotive-scroll: 4.1.4
@@ -640,14 +638,6 @@ packages:
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
-
-  /@vercel/analytics/0.1.7_react@18.2.0:
-    resolution: {integrity: sha512-vaHVFggK1lPBbm73NRONI/D6oBM/Ot1zIXI9IpjxgUsvQMZrO4JpPEIDvGihgnAWbzH7LfpjOOJccxRoaDRtDA==}
-    peerDependencies:
-      react: ^16.8||^17||^18
-    dependencies:
-      react: 18.2.0
-    dev: false
 
   /acorn-jsx/5.3.2_acorn@8.8.1:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}

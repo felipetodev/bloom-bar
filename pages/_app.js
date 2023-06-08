@@ -1,4 +1,3 @@
-import { Analytics } from '@vercel/analytics/react'
 import { useRouter } from 'next/router'
 import SeoLayout from '../components/Seo'
 import IslandProvider from '../context/island-context'
@@ -14,16 +13,13 @@ function MyApp ({ Component, pageProps, canonical, isMobile }) {
   })
 
   return (
-    <>
-      <Analytics mode='production' />
-      <SeoLayout canonical={canonical}>
-        <IslandProvider>
-          <div data-scroll-container className='scroll-container'>
-            <Component {...pageProps} />
-          </div>
-        </IslandProvider>
-      </SeoLayout>
-    </>
+    <SeoLayout canonical={canonical}>
+      <IslandProvider>
+        <div data-scroll-container className='scroll-container'>
+          <Component {...pageProps} />
+        </div>
+      </IslandProvider>
+    </SeoLayout>
   )
 }
 
