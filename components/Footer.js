@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 const Footer = ({ footer }) => {
-  const { firstColumnCollection, secondColumnCollection } = footer || {}
+  const { firstColumn, secondColumn } = footer || {}
   return (
     <footer data-scroll-section className='relative bg-bloom-black-100 font-abel'>
       <div className='md:flex md:justify-between px-5 pt-8 sm:px-10 md:px-14 md:pt-14'>
@@ -13,8 +13,8 @@ const Footer = ({ footer }) => {
         <div className='mt-16 grid grid-cols-2 gap-8 sm:gap-6 md:mt-0'>
           <div>
             <ul className='text-bloom-softGray-100 flex flex-col gap-6'>
-              {firstColumnCollection?.items?.map((item) => (
-                <li key={item.sys.id}>
+              {firstColumn?.map((item) => (
+                <li key={item.id}>
                   <Link href={item.link} className='hover:text-bloom-orange-100'>
                     {item.title}
                   </Link>
@@ -24,8 +24,8 @@ const Footer = ({ footer }) => {
           </div>
           <div>
             <ul className='text-bloom-softGray-100 flex flex-col gap-6'>
-              {secondColumnCollection?.items?.map((item) => (
-                <li key={item.sys.id}>
+              {secondColumn?.map((item) => (
+                <li key={item.id}>
                   <Link href={item.link} className='hover:text-bloom-orange-100'>
                     {item.title}
                   </Link>

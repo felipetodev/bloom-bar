@@ -5,7 +5,7 @@ import PaintSvg from '../ui/PaintSvg'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
-const Carousel = ({ carouselCollection }) => {
+const Carousel = ({ carouselItems }) => {
   return (
     <div data-scroll-section className='relative'>
       <Swiper
@@ -32,8 +32,8 @@ const Carousel = ({ carouselCollection }) => {
         grabCursor
         className='swiper bloom-carousel !h-[400px] sm:!h-[500px]'
       >
-        {carouselCollection?.items?.map((item) => (
-          <SwiperSlide key={item.sys.id} className='swiper-slide h-full'>
+        {carouselItems?.map((item) => (
+          <SwiperSlide key={item.id} className='swiper-slide h-full'>
             <Image
               height={400}
               width={500}

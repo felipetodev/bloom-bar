@@ -5,7 +5,13 @@ import FlowerIcon from '../ui/FlowerIcon'
 const Promotion = ({ hasFlower, promotionSection }) => {
   return (
     <div data-scroll-section id='promotion' className='relative'>
-      <Image width={1440} height={700} className='max-h-[700px] min-h-[450px] object-cover w-full h-full' alt={promotionSection?.image?.title} src={promotionSection?.image?.url} />
+      <Image
+        width={1440}
+        height={700}
+        className='max-h-[700px] min-h-[450px] object-cover w-full h-full'
+        alt={promotionSection?.image?.title}
+        src={promotionSection?.image?.url}
+      />
       <div className='absolute top-0 left-0 h-full w-full bg-promotion-gradient' />
       <div className='absolute z-10 top-0 left-0 right-0 bottom-0 flex flex-col justify-center p-5 sm:px-10 md:px-14'>
         <h2 className='text-lg sm:text-2xl text-bloom-orange-100 mb-3'>

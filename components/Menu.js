@@ -14,12 +14,12 @@ const tailwindMQ = '(max-width: 640px)'
 
 const Menu = ({ menu }) => {
   const isMobile = useMediaQuery(tailwindMQ)
-  const categories = menu?.menuCategoriesCollection?.items
+  const categories = menu?.menuCategories
   const isPrimary = menu?.color === 'primary'
-  const { desktopSection1LeftCollection, desktopSection1RightCollection, firstDivider } = menu || {}
-  const { desktopSection2LeftCollection, desktopSection2RightCollection, secondDivider } = menu || {}
-  const { desktopSection3LeftCollection, desktopSection3RightCollection, thirdDivider } = menu || {}
-  const { desktopSection4LeftCollection, desktopSection4RightCollection } = menu || {}
+  const { desktopSection1Left, desktopSection1Right, firstDivider } = menu || {}
+  const { desktopSection2Left, desktopSection2Right, secondDivider } = menu || {}
+  const { desktopSection3Left, desktopSection3Right, thirdDivider } = menu || {}
+  const { desktopSection4Left, desktopSection4Right } = menu || {}
   return (
     <>
       {isPrimary
@@ -43,30 +43,30 @@ const Menu = ({ menu }) => {
       {!isMobile && (
         <>
           <div className='flex sm:gap-x-24 md:gap-x-36 w-100'>
-            <MenuSection menu={menu} section={desktopSection1LeftCollection} />
-            <MenuSection menu={menu} section={desktopSection1RightCollection} />
+            <MenuSection menu={menu} section={desktopSection1Left} />
+            <MenuSection menu={menu} section={desktopSection1Right} />
           </div>
           <Divider divider={firstDivider} />
           <div className='flex sm:gap-x-24 md:gap-x-36 w-100'>
-            <MenuSection menu={menu} section={desktopSection2LeftCollection} />
-            <MenuSection menu={menu} section={desktopSection2RightCollection} />
+            <MenuSection menu={menu} section={desktopSection2Left} />
+            <MenuSection menu={menu} section={desktopSection2Right} />
           </div>
           <Divider divider={secondDivider} />
           <div className='flex sm:gap-x-24 md:gap-x-36 w-100'>
-            <MenuSection menu={menu} section={desktopSection3LeftCollection} />
-            <MenuSection menu={menu} section={desktopSection3RightCollection} />
+            <MenuSection menu={menu} section={desktopSection3Left} />
+            <MenuSection menu={menu} section={desktopSection3Right} />
           </div>
           <Divider divider={thirdDivider} />
           <div className='flex sm:gap-x-24 md:gap-x-36 w-100'>
-            <MenuSection menu={menu} section={desktopSection4LeftCollection} />
-            <MenuSection menu={menu} section={desktopSection4RightCollection} />
+            <MenuSection menu={menu} section={desktopSection4Left} />
+            <MenuSection menu={menu} section={desktopSection4Right} />
           </div>
         </>
       )}
       {isMobile && (
         <div className='grid-cols-1'>
           {categories?.map((category, idx) => (
-            <Fragment key={category?.sys?.id || idx}>
+            <Fragment key={category?.id || idx}>
               {category?.mainTitle
                 ? <Divider isMobile divider={category} />
                 : (
@@ -75,9 +75,9 @@ const Menu = ({ menu }) => {
                       <Heading title={category.title} subtitle={category.subtitle} variant={menu?.color} />
                     )}
                     <div className='flex flex-col'>
-                      {category.dishesCollection?.items.map((dish) => (
+                      {category.dishes?.map((dish) => (
                         <Dish
-                          key={dish.sys.id}
+                          key={dish.id}
                           title={dish.title}
                           price={dish.price}
                           hasTitle={dish.uniqueTitle}
