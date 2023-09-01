@@ -2,8 +2,8 @@ import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import ContactForm from '../components/ContactForm'
 import ContactHero from '../components/ContactHero'
-import { getPagesBySlug } from '../contentful/api'
 import Head from 'next/head'
+import cmsApi from '../contentful/api-sdk'
 
 const ContactPage = ({ contactPosts }) => {
   const { footer, navbarButton, image, formTitle, errorMessage, submitMessage, ...rest } = contactPosts || {}
@@ -29,7 +29,7 @@ const ContactPage = ({ contactPosts }) => {
 export default ContactPage
 
 export async function getStaticProps ({ preview = false }) {
-  const [contactPosts] = (await getPagesBySlug(preview, 'contact')) ?? []
+  const contactPosts = await cmsApi({ contentType: 'contactPage', slug: 'contact' })
 
   return {
     props: { preview, contactPosts }

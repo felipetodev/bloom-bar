@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import Navbar from '../../components/Navbar'
-import Menu from '../../components/Menu'
+import MenuComponent from '../../components/Menu'
 import Promotion from '../../components/Promotion'
 import Island from '../../ui/Island'
-import { getAllMenuData, getAllMenuSlugs, getMenuBySlug } from '../../contentful/api'
+import { getAllMenuSlugs } from '../../contentful/api-gql'
+import cmsApi from '../../contentful/api-sdk'
+import { createMenuIsland } from '../../utils/utils.contentful'
 
-const Nikkei = ({ menuData, islandMenu }) => {
+const Menu = ({ menuData, islandMenu }) => {
   return (
     <>
       <Head>
@@ -13,7 +15,7 @@ const Nikkei = ({ menuData, islandMenu }) => {
       </Head>
       <div className='relative px-5 sm:px-10 md:px-14 pb-14 sm:pb-40 min-h-screen overflow-x-hidden'>
         <Navbar navbarButton={menuData?.navbarButton} />
-        <Menu menu={menuData} />
+        <MenuComponent menu={menuData} />
       </div>
       <Promotion promotionSection={menuData?.promotion} />
       <div className='h-32 w-full bg-black select-none pointer-events-none' />
@@ -22,7 +24,7 @@ const Nikkei = ({ menuData, islandMenu }) => {
   )
 }
 
-export default Nikkei
+export default Menu
 
 export async function getStaticPaths () {
   const menuSlugsAvailable = await getAllMenuSlugs()
@@ -34,8 +36,9 @@ export async function getStaticPaths () {
 
 export async function getStaticProps ({ preview = false, params }) {
   const { slug } = params
-  const [menuData] = await getMenuBySlug(preview, slug) ?? []
-  const islandMenu = await getAllMenuData() ?? []
+  const menuData = await cmsApi({ contentType: 'menu', slug })
+
+  const islandMenu = createMenuIsland(menuData)
 
   return {
     props: { preview, menuData, islandMenu }
