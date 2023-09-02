@@ -34,7 +34,7 @@ export const createMenuIsland = (menuData) => {
     menuCategories: menuData.menuCategories.map((category) => ({
       id: category.id,
       navbarIsland: category.navbarIsland ?? false,
-      // used to differentiate a divider content type (section) in island menu 👇
+      // used to differentiate a divider content type (as section) in island menu 👇
       ...category.mainTitle
         ? { mainTitle: category.mainTitle }
         : { title: category.title }
