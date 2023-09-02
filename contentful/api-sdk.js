@@ -4,7 +4,9 @@ import { normalizeContentfulData } from '../utils/utils.contentful'
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  host: 'preview.contentful.com'
+  host: process.env.NODE_ENV === 'production'
+    ? 'cdn.contentful.com'
+    : 'preview.contentful.com'
 })
 
 class ContentfulPages {
