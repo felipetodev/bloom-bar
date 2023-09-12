@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import Image from '../ui/Image'
 
 const DishDialog = ({ isOpen, dishImage, onHandleOpen }) => (
   <Transition appear show={isOpen} as={Fragment}>
@@ -30,7 +31,7 @@ const DishDialog = ({ isOpen, dishImage, onHandleOpen }) => (
             <Dialog.Panel className='w-full max-w-full md:max-w-[870px] transform overflow-hidden p-[10px] bg-bloom-dark-100 text-left align-middle shadow-xl transition-all font-gopher bg-modal bg-cover'>
               <div className='w-full flex justify-end text-bloom-gray-100'>
                 <button
-                  className='absolute flex items-center hover:opacity-70 border border-transparent focus:outline-none'
+                  className='z-10 absolute flex items-center hover:opacity-70 border border-transparent p-1 md:p-2 focus:outline-none'
                   type='button'
                   onClick={onHandleOpen}
                 >
@@ -46,8 +47,7 @@ const DishDialog = ({ isOpen, dishImage, onHandleOpen }) => (
                   </svg>
                 </button>
               </div>
-              <img
-                className='object-cover'
+              <Image
                 src={dishImage.url}
                 alt={dishImage.title}
               />
