@@ -19,7 +19,6 @@ const Dish = ({
       'mb-[10px]': !hasTitle
     }
   )
-  console.log({ isPrimary })
   return (
     <div
       className={clsx(
@@ -42,7 +41,7 @@ const Dish = ({
             <button
               onClick={onSelectImage}
               className={clsx(
-                'self-baseline pl-2 md:pl-4 outline-none focus:outline-none transition', {
+                'self-baseline pl-2 md:pl-4 outline-none focus:outline-none transition overflow-visible', {
                   'text-bloom-orange-100 hover:text-bloom-orange-100/70': isPrimary,
                   'text-bloom-celeste-100 hover:text-bloom-celeste-100/70': !isPrimary
                 }
