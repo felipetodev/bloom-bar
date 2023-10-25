@@ -1,3 +1,4 @@
+import { Fragment, useState } from 'react'
 import Image from 'next/image'
 import Heading from './menu/Heading'
 import Dish from './menu/Dish'
@@ -8,18 +9,28 @@ import MenuSection from './menu/MenuSection'
 import Divider from './menu/Divider'
 import FlowerIconSpacer from '../ui/FlowerIconSpacer'
 import useMediaQuery from '../hooks/useMediaQuery'
-import { Fragment } from 'react'
+import DishDialog from './DishDialog'
+import DialogPromo from './DialogPromo'
 
 const tailwindMQ = '(max-width: 640px)'
 
 const Menu = ({ menu }) => {
+  const [isOpen, setIsOpen] = useState(false)
+  const [dishImage, setDishImage] = useState({})
+
   const isMobile = useMediaQuery(tailwindMQ)
-  const categories = menu?.menuCategoriesCollection?.items
+  const categories = menu?.menuCategories
   const isPrimary = menu?.color === 'primary'
-  const { desktopSection1LeftCollection, desktopSection1RightCollection, firstDivider } = menu || {}
-  const { desktopSection2LeftCollection, desktopSection2RightCollection, secondDivider } = menu || {}
-  const { desktopSection3LeftCollection, desktopSection3RightCollection, thirdDivider } = menu || {}
-  const { desktopSection4LeftCollection, desktopSection4RightCollection } = menu || {}
+  const { desktopSection1Left, desktopSection1Right, firstDivider } = menu || {}
+  const { desktopSection2Left, desktopSection2Right, secondDivider } = menu || {}
+  const { desktopSection3Left, desktopSection3Right, thirdDivider } = menu || {}
+  const { desktopSection4Left, desktopSection4Right } = menu || {}
+
+  const onSelectImage = (img) => {
+    setDishImage(img)
+    setIsOpen(true)
+  }
+
   return (
     <>
       {isPrimary
@@ -43,30 +54,30 @@ const Menu = ({ menu }) => {
       {!isMobile && (
         <>
           <div className='flex sm:gap-x-24 md:gap-x-36 w-100'>
-            <MenuSection menu={menu} section={desktopSection1LeftCollection} />
-            <MenuSection menu={menu} section={desktopSection1RightCollection} />
+            <MenuSection menu={menu} section={desktopSection1Left} onSelectImage={onSelectImage} />
+            <MenuSection menu={menu} section={desktopSection1Right} onSelectImage={onSelectImage} />
           </div>
           <Divider divider={firstDivider} />
           <div className='flex sm:gap-x-24 md:gap-x-36 w-100'>
-            <MenuSection menu={menu} section={desktopSection2LeftCollection} />
-            <MenuSection menu={menu} section={desktopSection2RightCollection} />
+            <MenuSection menu={menu} section={desktopSection2Left} onSelectImage={onSelectImage} />
+            <MenuSection menu={menu} section={desktopSection2Right} onSelectImage={onSelectImage} />
           </div>
           <Divider divider={secondDivider} />
           <div className='flex sm:gap-x-24 md:gap-x-36 w-100'>
-            <MenuSection menu={menu} section={desktopSection3LeftCollection} />
-            <MenuSection menu={menu} section={desktopSection3RightCollection} />
+            <MenuSection menu={menu} section={desktopSection3Left} onSelectImage={onSelectImage} />
+            <MenuSection menu={menu} section={desktopSection3Right} onSelectImage={onSelectImage} />
           </div>
           <Divider divider={thirdDivider} />
           <div className='flex sm:gap-x-24 md:gap-x-36 w-100'>
-            <MenuSection menu={menu} section={desktopSection4LeftCollection} />
-            <MenuSection menu={menu} section={desktopSection4RightCollection} />
+            <MenuSection menu={menu} section={desktopSection4Left} onSelectImage={onSelectImage} />
+            <MenuSection menu={menu} section={desktopSection4Right} onSelectImage={onSelectImage} />
           </div>
         </>
       )}
       {isMobile && (
         <div className='grid-cols-1'>
           {categories?.map((category, idx) => (
-            <Fragment key={category?.sys?.id || idx}>
+            <Fragment key={category?.id || idx}>
               {category?.mainTitle
                 ? <Divider isMobile divider={category} />
                 : (
@@ -75,14 +86,17 @@ const Menu = ({ menu }) => {
                       <Heading title={category.title} subtitle={category.subtitle} variant={menu?.color} />
                     )}
                     <div className='flex flex-col'>
-                      {category.dishesCollection?.items.map((dish) => (
+                      {category.dishes?.map((dish) => (
                         <Dish
-                          key={dish.sys.id}
+                          key={dish.id}
                           title={dish.title}
                           price={dish.price}
                           hasTitle={dish.uniqueTitle}
                           description={dish.description}
                           isVegan={dish.vegan}
+                          isPrimary={isPrimary}
+                          image={dish.image}
+                          onSelectImage={() => onSelectImage(dish.image)}
                         />
                       ))}
                     </div>
@@ -103,6 +117,14 @@ const Menu = ({ menu }) => {
           ))}
         </div>
       )}
+
+      <DishDialog
+        isOpen={isOpen}
+        onHandleOpen={() => setIsOpen(false)}
+        dishImage={dishImage}
+      />
+
+      <DialogPromo />
     </>
   )
 }

@@ -3,7 +3,7 @@ import Carousel from '../components/Carousel'
 import Footer from '../components/Footer'
 import LocationHero from '../components/LocationHero'
 import Navbar from '../components/Navbar'
-import { getPagesBySlug } from '../contentful/api'
+import cmsApi from '../contentful/api-sdk'
 
 const LocationPage = ({ locationPosts }) => {
   const {
@@ -13,7 +13,7 @@ const LocationPage = ({ locationPosts }) => {
     buttonLink,
     navbarButton,
     footer,
-    carouselGalleryCollection
+    carouselGallery
   } = locationPosts || {}
   const locationPost = {
     orangeTitle,
@@ -28,7 +28,7 @@ const LocationPage = ({ locationPosts }) => {
       </Head>
       <Navbar navbarButton={navbarButton} />
       <LocationHero locationPost={locationPost} />
-      <Carousel carouselCollection={carouselGalleryCollection} />
+      <Carousel carouselItems={carouselGallery} />
       <Footer footer={footer} />
     </>
   )
@@ -37,7 +37,7 @@ const LocationPage = ({ locationPosts }) => {
 export default LocationPage
 
 export async function getStaticProps ({ preview = false }) {
-  const [locationPosts] = (await getPagesBySlug(preview, 'location')) ?? []
+  const locationPosts = await cmsApi({ contentType: 'locationPage', slug: 'location' })
 
   return {
     props: { preview, locationPosts }

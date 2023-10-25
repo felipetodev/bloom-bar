@@ -4,7 +4,7 @@ import HomeExperience from '../components/HomeExperience'
 import HomeSectionTwo from '../components/HomeSectionTwo'
 import Navbar from '../components/Navbar'
 import Promotion from '../components/Promotion'
-import { getPagesBySlug } from '../contentful/api'
+import cmsApi from '../contentful/api-sdk'
 
 const Home = ({ homePosts }) => {
   const {
@@ -47,9 +47,12 @@ const Home = ({ homePosts }) => {
 export default Home
 
 export async function getStaticProps ({ preview = false }) {
-  const [homePosts] = (await getPagesBySlug(preview, 'home')) ?? []
+  const homePosts = await cmsApi({ contentType: 'homePage', slug: 'home' })
 
   return {
-    props: { preview, homePosts }
+    props: {
+      preview,
+      homePosts
+    }
   }
 }

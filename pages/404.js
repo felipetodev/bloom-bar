@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ErrorPlantIcon from '../ui/ErrorPlantIcon'
-import { getPagesBySlug } from '../contentful/api'
+import cmsApi from '../contentful/api-sdk'
 
 export default function Custom404 ({ footer }) {
   return (
@@ -29,7 +29,7 @@ export default function Custom404 ({ footer }) {
 }
 
 export async function getStaticProps ({ preview = false }) {
-  const [{ footer }] = (await getPagesBySlug(preview, 'error')) ?? []
+  const { footer } = await cmsApi({ contentType: 'errorPage', slug: 'error' })
 
   return {
     props: { preview, footer }

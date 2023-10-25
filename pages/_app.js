@@ -1,11 +1,15 @@
-import { useRouter } from 'next/router'
 import SeoLayout from '../components/Seo'
-import IslandProvider from '../context/island-context'
 import useLocomotiveScroll from '../hooks/useLocomotiveScroll'
 import '../styles/globals.css'
 
-function MyApp ({ Component, pageProps, canonical, isMobile }) {
-  const { asPath, query } = useRouter()
+function MyApp ({
+  Component,
+  pageProps,
+  canonical,
+  isMobile,
+  asPath,
+  query
+}) {
   const breakpoint = typeof window !== 'undefined' && window.innerWidth < 1024
   useLocomotiveScroll({
     location: asPath,
@@ -14,11 +18,9 @@ function MyApp ({ Component, pageProps, canonical, isMobile }) {
 
   return (
     <SeoLayout canonical={canonical}>
-      <IslandProvider>
-        <div data-scroll-container className='scroll-container'>
-          <Component {...pageProps} />
-        </div>
-      </IslandProvider>
+      <div data-scroll-container className='scroll-container'>
+        <Component {...pageProps} />
+      </div>
     </SeoLayout>
   )
 }
@@ -36,6 +38,8 @@ MyApp.getInitialProps = async ({ ctx }) => {
 
   return {
     canonical,
-    isMobile
+    isMobile,
+    asPath: ctx.asPath,
+    query: ctx.query
   }
 }
