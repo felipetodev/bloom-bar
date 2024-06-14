@@ -2,7 +2,7 @@ export default async function handler (req, res) {
   const route = req.headers['x-contentful-webhook-name']
 
   if (req.headers['x-secret'] === process.env.REVALIDATE_SECRET) {
-    if (route === process.env.ROUTE) {
+    if (route === process.env.ROUTE || req.headers['x-secret-route'] === process.env.ROUTE) {
       await res.revalidate('/carta/nikkei')
       await res.revalidate('/carta/drinks')
       await res.revalidate('/')
