@@ -16,7 +16,7 @@ const ContactPage = ({ contactPosts }) => {
   return (
     <>
       <Head>
-        <title>Bloombar | Contacto</title>
+        <title>Bloom Nikkei Bar | Contacto</title>
       </Head>
       <Navbar navbarButton={navbarButton} />
       <ContactForm formPost={formPost} />

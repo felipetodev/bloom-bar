@@ -5,6 +5,6 @@
 ## Links
 
 - [Hanson Studio](https://www.sebastianhansonstudio.com).
-- [Official Website](https://www.bloombar.cl/).
+- [Official Website](https://www.bloomnikkeibar.cl/).
 
 #### All Rights Reserved BLOOM BAR <br/> Copyright © 2023 Bloom Bar.

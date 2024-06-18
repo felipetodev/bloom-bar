@@ -7,7 +7,7 @@ const Footer = ({ footer }) => {
       <div className='md:flex md:justify-between px-5 pt-8 sm:px-10 md:px-14 md:pt-14'>
         <div className='mb-6 md:mb-0'>
           <Link href='/' className='flex items-center'>
-            <img loading='lazy' src='/bloomlogo.svg' alt='Bloom Logo' className='w-20 sm:w-28 md:w-32 -ml-2.5 md:-ml-[13.5px]' />
+            <img loading='lazy' src='/bloombar-logo-footer.svg' alt='Bloom Logo' className='w-20 sm:w-28 md:w-32 -ml-2.5 md:-ml-[13.5px]' />
           </Link>
         </div>
         <div className='mt-16 grid grid-cols-2 gap-8 sm:gap-6 md:mt-0'>

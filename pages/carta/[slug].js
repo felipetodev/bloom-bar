@@ -11,7 +11,7 @@ const Menu = ({ menuData, islandMenu }) => {
   return (
     <>
       <Head>
-        <title>Bloombar | Carta</title>
+        <title>Bloom Nikkei Bar | Carta</title>
       </Head>
       <div className='relative px-5 sm:px-10 md:px-14 pb-14 sm:pb-40 min-h-screen overflow-x-hidden'>
         <Navbar navbarButton={menuData?.navbarButton} />

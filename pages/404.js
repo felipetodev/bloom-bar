@@ -10,7 +10,7 @@ export default function Custom404 ({ footer }) {
   return (
     <>
       <Head>
-        <title>404 | bloombar.cl</title>
+        <title>404 | bloomnikkeibar.cl</title>
       </Head>
       <Navbar />
       <section data-scroll-section className='relative flex flex-col justify-center items-center gap-5 h-[90vh] bg-bloom-darkGreen-100 text-xl sm:text-2xl text-bloom-softGray-100 px-16'>

@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
 
-Host: https://www.bloombar.cl/
+Host: https://www.bloomnikkeibar.cl/
 
-Sitemap: https://www.bloombar.cl/sitemap.xml
+Sitemap: https://www.bloomnikkeibar.cl/sitemap.xml

@@ -4,7 +4,7 @@ const createSitemap = (slugs) => `<?xml version="1.0" encoding="UTF-8"?>
           .map((slug) => {
             return `
                 <url>
-                    <loc>${`https://www.bloombar.cl/${slug}`}</loc>
+                    <loc>${`https://www.bloomnikkeibar.cl/${slug}`}</loc>
                     <lastmod>${new Date().toISOString()}</lastmod>
                 </url>
             `

@@ -30,9 +30,8 @@ export default MyApp
 MyApp.getInitialProps = async ({ ctx }) => {
   const userAgent = ctx.req.headers['user-agent']
   const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)
-  const baseUrl = process.env.NODE_ENV === 'production'
-    ? 'https://www.bloombar.cl'
-    : 'http://localhost:3000'
+  const baseUrl = process.env.VERCEL_URL ?? 'https://bloomnikkeibar.cl'
+
   const { asPath } = ctx
   const canonical = baseUrl + asPath
 

@@ -1,10 +1,10 @@
 export const META = {
   favicon: '/favicon-bloombar.svg',
   theme: '#141414',
-  title: 'Bloom Bar',
+  title: 'Bloom Nikkei Bar',
   description: 'Somos el primer Bar Nikkei de la Quinta Costa',
   appleicon: '/b-logo.svg',
-  keywords: 'chile, viña, reñaca, sushi, bloom, bar, bloombar, nikkei, musica, japón, perú, pub',
+  keywords: 'chile, viña, reñaca, sushi, bloom, bar, bloombar, bloomnikkeibar, nikkei, musica, japón, perú, pub',
   author: 'Bloombar',
-  url: 'https://www.bloombar.cl'
+  url: 'https://www.bloomnikkeibar.cl'
 }

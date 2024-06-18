@@ -24,7 +24,7 @@ const LocationPage = ({ locationPosts }) => {
   return (
     <>
       <Head>
-        <title>Bloombar | Ubicación</title>
+        <title>Bloom Nikkei Bar | Ubicación</title>
       </Head>
       <Navbar navbarButton={navbarButton} />
       <LocationHero locationPost={locationPost} />
