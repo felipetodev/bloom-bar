@@ -10,7 +10,6 @@ import Divider from './menu/Divider'
 import FlowerIconSpacer from '../ui/FlowerIconSpacer'
 import useMediaQuery from '../hooks/useMediaQuery'
 import DishDialog from './DishDialog'
-import DialogPromo from './DialogPromo'
 
 const tailwindMQ = '(max-width: 640px)'
 
@@ -124,7 +123,7 @@ const Menu = ({ menu }) => {
         dishImage={dishImage}
       />
 
-      <DialogPromo />
+      {/* <DialogPromo /> */}
     </>
   )
 }
