@@ -8,6 +8,7 @@ export default async function handler (req, res) {
       await res.revalidate('/')
       await res.revalidate('/contacto')
       await res.revalidate('/ubicacion')
+      await res.revalidate('/rewards')
       await res.revalidate('/404')
 
       return res.json({ revalidated: true })
