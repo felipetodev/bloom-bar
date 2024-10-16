@@ -33,13 +33,15 @@ const PromotionPage = ({ promotionPosts }) => {
             </p>
           </div>
 
-          <div className='flex justify-center md:mr-[5%] lg:mr-[10%] mt-auto'>
-            <img
-              src={promotionPosts.mainCardImage.url}
-              alt='Bloom Rewards Image'
-              className='block object-contain w-full h-full max-w-[250px] max-h-[250px] align-bottom'
-            />
-          </div>
+          {promotionPosts.mainCardImage.url && (
+            <div className='flex justify-center md:mr-[5%] lg:mr-[10%] md:self-end'>
+              <img
+                src={promotionPosts.mainCardImage.url}
+                alt='Bloom Rewards Image'
+                className='block object-contain w-full h-full max-w-[250px] max-h-[250px] align-bottom'
+              />
+            </div>
+          )}
         </div>
 
         <div className='flex flex-col gap-y-10 mt-20 w-full h-full'>
