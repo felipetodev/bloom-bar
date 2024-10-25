@@ -6,6 +6,7 @@ import Island from '../../ui/Island'
 import { getAllMenuSlugs } from '../../contentful/api-gql'
 import cmsApi from '../../contentful/api-sdk'
 import { createMenuIsland } from '../../utils/utils.contentful'
+import { HalloweenDecorations } from '../../components/Halloween'
 
 const Menu = ({ menuData, islandMenu }) => {
   return (
@@ -18,8 +19,11 @@ const Menu = ({ menuData, islandMenu }) => {
         <MenuComponent menu={menuData} />
       </div>
       <Promotion promotionSection={menuData?.promotion} />
-      <div className='h-32 w-full bg-black select-none pointer-events-none' />
+      <div className='h-32 w-full bg-black select-none pointer-events-none relative z-30' />
       <Island islandMenu={islandMenu} />
+
+      {/* Halloween assets */}
+      <HalloweenDecorations slug={islandMenu.slug} />
     </>
   )
 }

@@ -34,7 +34,7 @@ const NavMenu = ({ setIsOpen }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
-      className='bg-bloom-black-100 fixed w-full z-40 top-0 left-0 bottom-0 right-0'
+      className='bg-bloom-black-100 fixed w-full z-50 top-0 left-0 bottom-0 right-0'
     >
       <ul className='text-bloom-softGray-100 flex flex-col gap-9 justify-center items-center h-screen text-[40px] md:gap-8 md:text-[60px]'>
         {NAV_MENU.map((it) => {
