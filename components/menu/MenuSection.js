@@ -37,7 +37,7 @@ const MenuSection = ({ menu, section = [], onSelectImage }) => {
                   <CardOutlined cardInfo={category.card} />
                 )}
                 {idx !== section?.length - 1 && (
-                  <div className='text-bloom-softGray-100 flex justify-center py-[55px] sm:py-[85px]'>
+                  <div className='text-bloom-softGray-100 flex justify-center py-[55px] sm:py-[85px] relative z-10'>
                     <FlowerIconSpacer />
                   </div>
                 )}

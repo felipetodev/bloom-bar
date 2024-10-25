@@ -19,7 +19,7 @@ const Island = memo(({ islandMenu }) => {
   const [open, setIsOpen] = useState(false)
 
   return (
-    <div className='bg-transparent pointer-events-none flex justify-center items-center fixed w-full bottom-0 py-10 bg-island-gradient z-30'>
+    <div className='bg-transparent pointer-events-none flex justify-center items-center fixed w-full bottom-0 py-10 bg-island-gradient z-40'>
       <div className='bg-bloom-black-100 pointer-events-auto flex justify-center items-center rounded-[7px] border border-solid border-bloom-softGray-100 max-w-max max-h-max min-w-[250px] min-h-[50px]'>
         <Root open={open} onOpenChange={(state) => setIsOpen(state)}>
           <IslandMenuOptions

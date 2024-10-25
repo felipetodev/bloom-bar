@@ -8,7 +8,7 @@ const CardImage = ({ cardInfo, variant = 'primary' }) => {
     'text-bloom-celeste-100': variant === 'secondary'
   })
   return (
-    <div className='relative overflow-hidden max-w-fit min-w-full w-full mt-14'>
+    <div className='relative z-10 overflow-hidden max-w-fit min-w-full w-full mt-14'>
       <Image
         className='object-cover rounded-xl w-full'
         width={600}

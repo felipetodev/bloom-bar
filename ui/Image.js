@@ -19,6 +19,7 @@ function Image ({
         alt={alt}
         src={src}
         onLoad={() => setIsLoaded(true)}
+        loading='lazy'
       />
     </div>
   )

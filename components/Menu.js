@@ -38,7 +38,7 @@ const Menu = ({ menu }) => {
             style={{ transform: 'rotate(8deg)' }}
             className='absolute -top-4 -right-5 sm:-top-9 sm:right-14 w-[175.48px] sm:w-[230px] md:-top-3 md:right-20 md:w-[260px]'
           >
-            <Image quality={100} width={400} height={400} src='/homies-carta.png' alt='homies carta' />
+            <Image decoding='sync' quality={100} width={400} height={400} src='/homies-carta.png' alt='homies carta' />
           </div>
           )
         : (
@@ -46,7 +46,7 @@ const Menu = ({ menu }) => {
             style={{ transform: 'rotate(8deg)' }}
             className='absolute top-2 -right-2 sm:-top-4 sm:right-4 w-[175.48px] sm:w-[230px] md:-top-5 md:right-14 md:w-[260px]'
           >
-            <Image quality={100} width={400} height={400} src='/maru-drinks.png' alt='maru drinks' />
+            <Image decoding='sync' quality={100} width={400} height={400} src='/maru-drinks.png' alt='maru drinks' />
           </div>
           )}
       <MainHeading title={menu?.mainTitle} variant={menu?.color} />
