@@ -1,6 +1,6 @@
 {
   "name": "bloom-bar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -17,19 +17,19 @@
     "@radix-ui/react-dropdown-menu": "2.0.6",
     "clsx": "^1.2.1",
     "contentful": "10.15.2",
-    "framer-motion": "^8.5.5",
+    "framer-motion": "^9.1.7",
     "locomotive-scroll": "^4.1.4",
-    "next": "13.5.11",
+    "next": "14.2.35",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "snarkdown": "^2.0.0",
-    "swiper": "^8.4.7"
+    "swiper": "^11.2.10"
   },
   "devDependencies": {
     "autoprefixer": "10.4.13",
     "postcss": "8.4.49",
     "standard": "17.0.0",
-    "tailwindcss": "3.4.17"
+    "tailwindcss": "3.4.19"
   },
   "eslintConfig": {
     "extends": [
