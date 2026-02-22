@@ -17,7 +17,7 @@ export default function Document () {
   js.id=o;js.src=f;js.async=1;fjs.parentNode.insertBefore(js,fjs);
 })(window,document,'script','mw','https://widget.meitre.com/widget.js?v='+Date.now());
 mw('init',{restaurant_widget_id:'bbd9139b86fd4b2a14ac56a6bf9656d1'});
-            `.trim(),
+            `.trim()
           }}
         />
       </Head>
