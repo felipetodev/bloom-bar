@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+#meitre-widget-root .meitre-widget__launch__button button {
+  all: unset !important;
+  cursor: pointer !important;
+
+  /* Your DS primary variant */
+  min-width: fit-content !important;
+  font-size: 0.875rem !important;
+  border: 1px solid #E8581A !important;
+  color: #E8581A !important;
+  background-color: #1f1f1f !important;
+  padding: 12px 41.5px !important;
+  border-radius: 4px !important;
+  font-family: "gopher", system-ui, sans-serif !important;
+  max-width: 50px !important;
+  transition: all 0.05s ease !important;
+
+}
+
+#meitre-widget-root .meitre-widget__launch__button .smaller-button {
+  padding: 12px 16px !important;
+}
+
+#meitre-widget-root .meitre-widget__launch__button .MuiTouchRipple-root {
+  display: none !important;
+}
+
 @layer base {
   html {
     font-family: "gopher", system-ui, sans-serif;
