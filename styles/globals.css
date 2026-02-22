@@ -20,6 +20,10 @@
 
 }
 
+#meitre-widget-root .meitre-widget__status_open {
+  bottom: 70px !important;
+}
+
 #meitre-widget-root .meitre-widget__launch__button {
   bottom: 2.7rem !important;
 }
