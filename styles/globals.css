@@ -15,9 +15,7 @@
   padding: 12px 41.5px !important;
   border-radius: 4px !important;
   font-family: "gopher", system-ui, sans-serif !important;
-  max-width: 50px !important;
   transition: all 0.05s ease !important;
-
 }
 
 #meitre-widget-root .meitre-widget__status_open {
