@@ -39,8 +39,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
       swiper:
-        specifier: ^11.2.10
-        version: 11.2.10
+        specifier: ^9.4.1
+        version: 9.4.1
     devDependencies:
       autoprefixer:
         specifier: 10.4.13
@@ -1777,6 +1777,9 @@ packages:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
+  ssr-window@4.0.2:
+    resolution: {integrity: sha512-ISv/Ch+ig7SOtw7G2+qkwfVASzazUnvlDTwypdLoPoySv+6MqlOV10VwPSE6EWkGjhW50lUmghPmpYZXMu/+AQ==}
+
   standard-engine@15.1.0:
     resolution: {integrity: sha512-VHysfoyxFu/ukT+9v49d4BRXIokFRZuH3z1VRxzFArZdjSCFpro6rEIU3ji7e4AoAtuSfKBkiOmsrDqKW5ZSRw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -1851,8 +1854,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  swiper@11.2.10:
-    resolution: {integrity: sha512-RMeVUUjTQH+6N3ckimK93oxz6Sn5la4aDlgPzB+rBrG/smPdCTicXyhxa+woIpopz+jewEloiEE3lKo1h9w2YQ==}
+  swiper@9.4.1:
+    resolution: {integrity: sha512-1nT2T8EzUpZ0FagEqaN/YAhRj33F2x/lN6cyB0/xoYJDMf8KwTFT3hMOeoB8Tg4o3+P/CKqskP+WX0Df046fqA==}
     engines: {node: '>= 4.7.0'}
 
   tailwindcss@3.4.19:
@@ -3805,6 +3808,8 @@ snapshots:
 
   source-map-js@1.2.1: {}
 
+  ssr-window@4.0.2: {}
+
   standard-engine@15.1.0:
     dependencies:
       get-stdin: 8.0.0
@@ -3908,7 +3913,9 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  swiper@11.2.10: {}
+  swiper@9.4.1:
+    dependencies:
+      ssr-window: 4.0.2
 
   tailwindcss@3.4.19:
     dependencies:

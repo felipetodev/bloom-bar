@@ -1,6 +1,6 @@
 {
   "name": "bloom-bar",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -23,7 +23,7 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "snarkdown": "^2.0.0",
-    "swiper": "^11.2.10"
+    "swiper": "^9.4.1"
   },
   "devDependencies": {
     "autoprefixer": "10.4.13",
