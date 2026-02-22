@@ -5,17 +5,22 @@
 #meitre-widget-root .meitre-widget__launch__button button {
   all: unset !important;
   cursor: pointer !important;
-
-  /* Your DS primary variant */
   min-width: fit-content !important;
   font-size: 0.875rem !important;
-  border: 1px solid #E8581A !important;
-  color: #E8581A !important;
-  background-color: #1f1f1f !important;
+  border: 1px solid #E7EBE7 !important;
+  color: #E7EBE7 !important;
+  background-color: #E8581A !important;
   padding: 12px 41.5px !important;
   border-radius: 4px !important;
   font-family: "gopher", system-ui, sans-serif !important;
   transition: all 0.05s ease !important;
+  text-transform: uppercase !important;
+}
+
+#meitre-widget-root .meitre-widget__launch__button button:hover {
+  border: 1px solid #E8581A !important;
+  color: #E8581A !important;
+  background-color: #FFF !important;
 }
 
 #meitre-widget-root .meitre-widget__status_open {
@@ -33,6 +38,13 @@
 #meitre-widget-root .meitre-widget__launch__button .MuiTouchRipple-root {
   display: none !important;
 }
+
+@media (max-width: 767px) {
+  #meitre-widget-root .meitre-widget__launch__button .smaller-button {
+    display: none !important;
+  }
+}
+
 
 @layer base {
   html {
