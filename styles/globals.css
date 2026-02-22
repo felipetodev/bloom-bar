@@ -20,6 +20,10 @@
 
 }
 
+#meitre-widget-root .meitre-widget__launch__button {
+  bottom: 2.7rem !important;
+}
+
 #meitre-widget-root .meitre-widget__launch__button .smaller-button {
   padding: 12px 16px !important;
 }
