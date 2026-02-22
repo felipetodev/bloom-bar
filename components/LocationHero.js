@@ -9,6 +9,9 @@ const LocationHero = ({ locationPost }) => (
         style={{ objectPosition: '0 80%' }}
         data-scroll
         data-scroll-speed='1'
+        decoding='sync'
+        loading='eager'
+        quality={80}
         className='grayscale brightness-25 object-cover h-screen w-full min-h-[150%]'
         alt='bloombar-wave-bg' src={locationHero}
         placeholder='blur'

@@ -22,7 +22,7 @@ const Dish = ({
   return (
     <div
       className={clsx(
-        'text-bloom-softGray-100 flex',
+        'text-bloom-softGray-100 flex relative z-10',
         {
           'mb-[10px] sm:mb-[20px]': hasTitle,
           'first:pt-0 pt-8 sm:pt-10': !hasTitle

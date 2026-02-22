@@ -18,7 +18,7 @@ const Menu = ({ menuData, islandMenu }) => {
         <MenuComponent menu={menuData} />
       </div>
       <Promotion promotionSection={menuData?.promotion} />
-      <div className='h-32 w-full bg-black select-none pointer-events-none' />
+      <div className='h-32 w-full bg-black select-none pointer-events-none relative z-30' />
       <Island islandMenu={islandMenu} />
     </>
   )

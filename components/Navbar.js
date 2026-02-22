@@ -13,10 +13,10 @@ const Navbar = ({ navbarButton }) => {
 
   return (
     <>
-      <nav className='bg-transparent bg-nav-gradient px-5 sm:px-10 md:px-14 py-2.5 fixed w-full z-50 top-0 left-0 pointer-events-none'>
+      <nav className='bg-transparent bg-nav-gradient px-5 sm:px-10 md:px-14 py-2.5 fixed w-full z-[60] top-0 left-0 pointer-events-none'>
         <div className='my-5 sm:my-10 md:my-[60px] flex flex-wrap justify-between items-start mx-auto'>
           <Link href='/' className='flex items-center pointer-events-auto w-[30px] h-[65.12px] sm:w-auto sm:h-auto'>
-            <Image priority src='/b-logo.svg' alt='Bloom Logo' width={41} height={89} />
+            <Image decoding='sync' loading='eager' priority src='/b-logo.svg' alt='Bloom Logo' width={41} height={89} />
           </Link>
           <div className='flex md:order-2 items-center gap-[30px] sm:gap-[58px] pointer-events-auto'>
             {navbarButton?.link && (

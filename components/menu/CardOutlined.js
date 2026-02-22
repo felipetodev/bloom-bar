@@ -1,7 +1,7 @@
 const CardOutlined = ({ cardInfo }) => {
   const list = Object.values(cardInfo?.list ?? {})
   return (
-    <div className='flex flex-col text-bloom-softGray-100 text-center border border-solid border-bloom-softGray-100 rounded-xl mt-14'>
+    <div className='flex flex-col text-bloom-softGray-100 text-center border border-solid border-bloom-softGray-100 rounded-xl mt-14 relative z-10'>
       <div className='mb-3 mt-5'>
         <h2 id={cardInfo.title} className='text-xl sm:text-[30px] tracking-widest mb-[10px] font-marcellus'>
           {cardInfo.title}

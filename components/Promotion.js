@@ -11,9 +11,10 @@ const Promotion = ({ hasFlower, promotionSection }) => {
         className='max-h-[700px] min-h-[450px] object-cover w-full h-full'
         alt={promotionSection?.image?.title}
         src={promotionSection?.image?.url}
+        loading='lazy'
       />
       <div className='absolute top-0 left-0 h-full w-full bg-promotion-gradient' />
-      <div className='absolute z-10 top-0 left-0 right-0 bottom-0 flex flex-col justify-center p-5 sm:px-10 md:px-14'>
+      <div className='absolute z-[35] top-0 left-0 right-0 bottom-0 flex flex-col justify-center p-5 sm:px-10 md:px-14'>
         <h2 className='text-lg sm:text-2xl text-bloom-orange-100 mb-3'>
           {promotionSection?.firstTitle}
         </h2>
@@ -35,7 +36,7 @@ const Promotion = ({ hasFlower, promotionSection }) => {
           <FlowerIcon style={{ width: 53, height: 53 }} />
         </div>
       )}
-      <div className='absolute bottom-0 top-0 left-0 right-0 bg-bottom-island-gradient' />
+      <div className='absolute z-30 bottom-0 top-0 left-0 right-0 bg-bottom-island-gradient' />
     </div>
   )
 }
