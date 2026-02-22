@@ -35,6 +35,9 @@ importers:
       react-dom:
         specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
+      snarkdown:
+        specifier: ^2.0.0
+        version: 2.0.0
       swiper:
         specifier: ^8.4.7
         version: 8.4.7
@@ -1781,6 +1784,9 @@ packages:
 
   smoothscroll-polyfill@0.4.4:
     resolution: {integrity: sha512-TK5ZA9U5RqCwMpfoMq/l1mrH0JAR7y7KRvOBx0n2869aLxch+gT9GhN3yUfjiw+d/DiF1mKo14+hd62JyMmoBg==}
+
+  snarkdown@2.0.0:
+    resolution: {integrity: sha512-MgL/7k/AZdXCTJiNgrO7chgDqaB9FGM/1Tvlcenenb7div6obaDATzs16JhFyHHBGodHT3B7RzRc5qk8pFhg3A==}
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -3863,6 +3869,8 @@ snapshots:
       side-channel-weakmap: 1.0.2
 
   smoothscroll-polyfill@0.4.4: {}
+
+  snarkdown@2.0.0: {}
 
   source-map-js@1.2.1: {}
 
