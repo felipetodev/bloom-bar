@@ -48,6 +48,16 @@
   #meitre-widget-root .meitre-widget__launch__button .smaller-button {
     display: none !important;
   }
+  #meitre-widget-root .meitre-widget-dialog .close-button {
+    top: .5% !important;
+    right: .5% !important;
+    color: #E7EBE7 !important;
+    background-color: #FF5900 !important;
+  }
+  #meitre-widget-root .meitre-widget-dialog .close-button:hover {
+    color: #FF5900 !important;
+    background-color: #FFF !important;
+  }
 }
 
 
