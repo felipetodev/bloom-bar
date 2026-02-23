@@ -2,6 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+.carta #meitre-widget-root {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#meitre-widget-root .meitre-widget__launch__button button {
+  all: unset !important;
+  cursor: pointer !important;
+  min-width: fit-content !important;
+  font-size: 0.875rem !important;
+  border: 1px solid #E7EBE7 !important;
+  color: #E7EBE7 !important;
+  background-color: #FF5900 !important;
+  padding: 12px 32px !important;
+  border-radius: 4px !important;
+  font-family: "gopher", system-ui, sans-serif !important;
+  transition: all 0.05s ease !important;
+  text-transform: uppercase !important;
+}
+
+#meitre-widget-root .meitre-widget__launch__button button:hover {
+  color: #FF5900 !important;
+  background-color: #FFF !important;
+}
+
+#meitre-widget-root .meitre-widget__status_open {
+  bottom: 70px !important;
+}
+
+#meitre-widget-root .meitre-widget__launch__button {
+  bottom: 2.7rem !important;
+}
+
+#meitre-widget-root .meitre-widget__launch__button .smaller-button {
+  padding: 12px 16px !important;
+}
+
+#meitre-widget-root .meitre-widget__launch__button .MuiTouchRipple-root {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  #meitre-widget-root .meitre-widget__launch__button .smaller-button {
+    display: none !important;
+  }
+}
+
+
 @layer base {
   html {
     font-family: "gopher", system-ui, sans-serif;
