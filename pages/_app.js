@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import Script from 'next/script'
 import SeoLayout from '../components/Seo'
 import useLocomotiveScroll from '../hooks/useLocomotiveScroll'
 import '../styles/globals.css'
@@ -17,7 +18,6 @@ function MyApp ({
     ignore: !!query.slug || isMobile || breakpoint
   })
 
-  // hide reservation widget if is 'carta' path
   const isCartaPath = asPath.startsWith('/carta')
 
   useEffect(() => {
@@ -27,6 +27,15 @@ function MyApp ({
 
   return (
     <SeoLayout canonical={canonical}>
+      {pageProps?.pageScripts
+        ? (
+          <Script
+            id='bloom-widget'
+            strategy='afterInteractive'
+            dangerouslySetInnerHTML={{ __html: pageProps.pageScripts }}
+          />
+          )
+        : null}
       <div data-scroll-container className='scroll-container'>
         <Component {...pageProps} />
       </div>

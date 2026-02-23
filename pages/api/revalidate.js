@@ -3,13 +3,15 @@ export default async function handler (req, res) {
 
   if (req.headers['x-secret'] === process.env.REVALIDATE_SECRET) {
     if (route === process.env.ROUTE || req.headers['x-secret-route'] === process.env.ROUTE) {
-      await res.revalidate('/carta/nikkei')
-      await res.revalidate('/carta/drinks')
-      await res.revalidate('/')
-      await res.revalidate('/contacto')
-      await res.revalidate('/ubicacion')
-      // await res.revalidate('/rewards')
-      await res.revalidate('/404')
+      await Promise.all([
+        res.revalidate('/carta/nikkei'),
+        res.revalidate('/carta/drinks'),
+        res.revalidate('/'),
+        res.revalidate('/contacto'),
+        res.revalidate('/ubicacion'),
+        res.revalidate('/404')
+        // await res.revalidate('/rewards')
+      ])
 
       return res.json({ revalidated: true })
     } else {
