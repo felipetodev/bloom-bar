@@ -4,6 +4,8 @@
 
 .carta #meitre-widget-root {
   display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 #meitre-widget-root .meitre-widget__launch__button button {
