@@ -13,10 +13,10 @@ const NAV_MENU = [
     name: 'CARTA',
     route: '/carta/nikkei'
   },
-  {
-    name: 'BLOOM REWARDS',
-    route: '/rewards'
-  },
+  // {
+  //   name: 'BLOOM REWARDS',
+  //   route: '/rewards'
+  // },
   {
     name: 'UBICACIÓN',
     route: '/ubicacion'
