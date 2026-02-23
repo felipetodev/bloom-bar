@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import SeoLayout from '../components/Seo'
 import useLocomotiveScroll from '../hooks/useLocomotiveScroll'
 import '../styles/globals.css'
@@ -15,6 +16,14 @@ function MyApp ({
     location: asPath,
     ignore: !!query.slug || isMobile || breakpoint
   })
+  
+  // hide reservation widget if is 'carta' path
+  const isCartaPath = asPath.startsWith('/carta')
+
+  useEffect(() => {
+    document.body.classList.toggle('carta', isCartaPath)
+    return () => document.body.classList.remove('carta')
+  }, [isCartaPath])
 
   return (
     <SeoLayout canonical={canonical}>

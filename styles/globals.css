@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.carta #meitre-widget-root {
+  display: none !important;
+}
+
 #meitre-widget-root .meitre-widget__launch__button button {
   all: unset !important;
   cursor: pointer !important;
