@@ -27,13 +27,15 @@ function MyApp ({
 
   return (
     <SeoLayout canonical={canonical}>
-      {pageProps?.pageScripts ? (
-        <Script
-          id='bloom-widget'
-          strategy='afterInteractive'
-          dangerouslySetInnerHTML={{ __html: pageProps.pageScripts }}
-        />
-      ) : null}
+      {pageProps?.pageScripts
+        ? (
+          <Script
+            id='bloom-widget'
+            strategy='afterInteractive'
+            dangerouslySetInnerHTML={{ __html: pageProps.pageScripts }}
+          />
+          )
+        : null}
       <div data-scroll-container className='scroll-container'>
         <Component {...pageProps} />
       </div>
