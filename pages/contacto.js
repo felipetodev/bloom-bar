@@ -31,7 +31,7 @@ export default ContactPage
 export async function getStaticProps ({ preview = false }) {
   const contactPosts = await cmsApi({ contentType: 'contactPage', slug: 'contact' })
 
-  const { reservationWidgetScript: pageScripts } = contactPosts || {}
+  const { reservationWidgetScript: pageScripts = '' } = contactPosts || {}
 
   return {
     props: { preview, contactPosts, pageScripts }

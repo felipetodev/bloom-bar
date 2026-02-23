@@ -39,7 +39,7 @@ export default LocationPage
 export async function getStaticProps ({ preview = false }) {
   const locationPosts = await cmsApi({ contentType: 'locationPage', slug: 'location' })
 
-  const { reservationWidgetScript: pageScripts } = locationPosts || {}
+  const { reservationWidgetScript: pageScripts = '' } = locationPosts || {}
 
   return {
     props: { preview, locationPosts, pageScripts }

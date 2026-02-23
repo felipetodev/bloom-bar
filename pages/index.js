@@ -49,7 +49,7 @@ export default Home
 export async function getStaticProps ({ preview = false }) {
   const homePosts = await cmsApi({ contentType: 'homePage', slug: 'home' })
 
-  const { reservationWidgetScript: pageScripts } = homePosts || {}
+  const { reservationWidgetScript: pageScripts = '' } = homePosts || {}
 
   return {
     props: {
