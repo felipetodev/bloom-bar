@@ -25,7 +25,7 @@ const Dish = ({
   const handlePreloadImage = () => {
     if (!isDesktop()) return
     if (image?.url && !imageCache[image.url]) {
-      const img = new Image()
+      const img = new window.Image()
       img.src = image.url
       imageCache[image.url] = img
     }
