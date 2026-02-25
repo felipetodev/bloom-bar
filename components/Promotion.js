@@ -33,7 +33,7 @@ const Promotion = ({ hasFlower, promotionSection }) => {
       </div>
       {hasFlower && (
         <div className='absolute z-20 text-bloom-orange-100 top-[0px] left-1/2 sm:left-[42.92%] md:left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-          <FlowerIcon style={{ width: 53, height: 53 }} />
+          <FlowerIcon className="size-[53px]" />
         </div>
       )}
       <div className='absolute z-30 bottom-0 top-0 left-0 right-0 bg-bottom-island-gradient' />
