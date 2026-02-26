@@ -53,7 +53,7 @@ const Menu = ({ menu }) => {
       )}
       <MainHeading title={menu?.mainTitle} variant={menu?.color} />
       {!isMobile && (
-        <>
+        <main>
           <div className='flex sm:gap-x-24 md:gap-x-36 w-100'>
             <MenuSection menu={menu} section={desktopSection1Left} onSelectImage={onSelectImage} />
             <MenuSection menu={menu} section={desktopSection1Right} onSelectImage={onSelectImage} />
@@ -73,10 +73,10 @@ const Menu = ({ menu }) => {
             <MenuSection menu={menu} section={desktopSection4Left} onSelectImage={onSelectImage} />
             <MenuSection menu={menu} section={desktopSection4Right} onSelectImage={onSelectImage} />
           </div>
-        </>
+        </main>
       )}
       {isMobile && (
-        <div className='grid-cols-1'>
+        <main className='grid-cols-1'>
           {categories?.map((category, idx) => (
             <Fragment key={category?.id || idx}>
               {category?.mainTitle
@@ -116,7 +116,7 @@ const Menu = ({ menu }) => {
                   )}
             </Fragment>
           ))}
-        </div>
+        </main>
       )}
 
       <DishDialog

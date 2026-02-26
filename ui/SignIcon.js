@@ -2,10 +2,10 @@ import { motion } from 'framer-motion'
 
 const SignIcon = () => {
   return (
-    <svg width='343' height='6' viewBox='0 0 343 6' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg width='343' height='6' viewBox='0 0 343 6' fill='none' xmlns='http://www.w3.org/2000/svg' className='stroke-bloom-orange-100'>
       <motion.path
         d='M3.05078 3.39844H340.289'
-        stroke='#D16A1B'
+        // stroke='#D16A1B'
         strokeWidth='5'
         strokeLinecap='round'
         initial={{

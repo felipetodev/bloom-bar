@@ -1,6 +1,9 @@
 import ImagePreview from '../../ui/ImagePreview'
 import VeganIcon from '../../ui/VeganIcon'
 import clsx from 'clsx'
+import { isDesktop } from '../../utils/isDesktop'
+
+const imageCache = {}
 
 const Dish = ({
   title,
@@ -19,6 +22,14 @@ const Dish = ({
       'mb-[10px]': !hasTitle
     }
   )
+  const handlePreloadImage = () => {
+    if (!isDesktop()) return
+    if (image?.url && !imageCache[image.url]) {
+      const img = new window.Image()
+      img.src = image.url
+      imageCache[image.url] = img
+    }
+  }
   return (
     <div
       className={clsx(
@@ -39,6 +50,7 @@ const Dish = ({
           <h3 className={styles}>{title}</h3>
           {image?.url && (
             <button
+              onMouseEnter={handlePreloadImage}
               onClick={onSelectImage}
               className={clsx(
                 'self-baseline pl-2 md:pl-4 outline-none focus:outline-none transition overflow-visible', {
@@ -47,7 +59,7 @@ const Dish = ({
                 }
               )}
             >
-              <ImagePreview />
+              <ImagePreview aria-label={`Dish image preview for ${title}`} className='size-5 -mb-1' />
             </button>
           )}
         </div>

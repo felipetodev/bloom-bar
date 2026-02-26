@@ -13,9 +13,7 @@
   cursor: pointer !important;
   min-width: fit-content !important;
   font-size: 0.875rem !important;
-  border: 1px solid #E7EBE7 !important;
-  color: #E7EBE7 !important;
-  background-color: #FF5900 !important;
+  @apply border border-[#D9D9D9] text-[#D9D9D9] bg-bloom-dark-100 border-solid !important;
   padding: 12px 32px !important;
   border-radius: 4px !important;
   font-family: "gopher", system-ui, sans-serif !important;
@@ -24,8 +22,8 @@
 }
 
 #meitre-widget-root .meitre-widget__launch__button button:hover {
-  color: #FF5900 !important;
-  background-color: #FFF !important;
+  background-color: #FF5900 !important;
+  border-color: #FF5900 !important;
 }
 
 #meitre-widget-root .meitre-widget__status_open {
@@ -51,12 +49,11 @@
   #meitre-widget-root .meitre-widget-dialog .close-button {
     top: .5% !important;
     right: .5% !important;
-    color: #E7EBE7 !important;
-    background-color: #FF5900 !important;
+    @apply text-[#D9D9D9] bg-bloom-dark-100 border border-[#D9D9D9] border-solid !important;
   }
   #meitre-widget-root .meitre-widget-dialog .close-button:hover {
-    color: #FF5900 !important;
-    background-color: #FFF !important;
+    border-color: #FF5900 !important;
+    background-color: #FF5900 !important;
   }
 }
 

@@ -6,13 +6,12 @@ const LocationHero = ({ locationPost }) => (
   <div data-scroll-section className='relative flex flex-col text-bloom-gray-100 w-full h-full min-h-[85vh]'>
     <div className='overflow-hidden max-h-[85vh] w-full'>
       <Image
-        style={{ objectPosition: '0 80%' }}
         data-scroll
         data-scroll-speed='1'
         decoding='sync'
         loading='eager'
         quality={80}
-        className='grayscale brightness-25 object-cover h-screen w-full min-h-[150%]'
+        className='grayscale brightness-25 object-cover h-screen w-full min-h-[150%] object-[0_80%]'
         alt='bloombar-wave-bg' src={locationHero}
         placeholder='blur'
       />
