@@ -10,7 +10,7 @@ const HomeExperience = ({ experiencePost }) => {
           {experiencePost?.descriptionFirstSection}
         </p>
         <span className='text-bloom-softGray-100 mx-auto'>
-          <Image src='/bien-flama-gris.gif' alt='flame icon' width={16} height={21} />
+          <Image unoptimized src='/bien-flama-gris.gif' alt='flame icon' width={16} height={21} />
           {/* <FlameIcon /> */}
         </span>
       </div>

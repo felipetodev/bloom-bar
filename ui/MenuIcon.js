@@ -1,11 +1,15 @@
 import { motion } from 'framer-motion'
 
+const transition = { type: 'tween', duration: 0.2 }
+
 const MenuIcon = ({ isOpen, ...props }) => (
   <svg {...props} width='41' height='37' viewBox='0 0 41 37' fill='none' xmlns='http://www.w3.org/2000/svg'>
     <motion.line
+      style={{ transformOrigin: '20.5px 10.918px' }}
+      initial={false}
       variants={{
-        closed: { transform: 'rotate(0deg) translate(0px, 0px)' },
-        open: { transform: 'rotate(-43deg) translate(-6px, 6.5px)' }
+        closed: { rotate: 0, y: 0, transition },
+        open: { rotate: -45, y: 7, transition }
       }}
       animate={isOpen ? 'open' : 'closed'}
       x1='1.55078'
@@ -17,12 +21,10 @@ const MenuIcon = ({ isOpen, ...props }) => (
       strokeLinecap='round'
     />
     <motion.line
+      initial={false}
       variants={{
-        closed: { opacity: 1 },
-        open: {
-          opacity: 0,
-          transition: { duration: 0 }
-        }
+        closed: { opacity: 1, transition },
+        open: { opacity: 0, transition: { duration: 0 } }
       }}
       animate={isOpen ? 'open' : 'closed'}
       x1='1.55078'
@@ -34,9 +36,11 @@ const MenuIcon = ({ isOpen, ...props }) => (
       strokeLinecap='round'
     />
     <motion.line
+      style={{ transformOrigin: '20.5px 24.918px' }}
+      initial={false}
       variants={{
-        closed: { transform: 'rotate(0deg) translate(0px, 0px)' },
-        open: { transform: 'rotate(43deg) translate(-3px, -4px)' }
+        closed: { rotate: 0, y: 0, transition },
+        open: { rotate: 45, y: -7, transition }
       }}
       animate={isOpen ? 'open' : 'closed'}
       x1='1.55078'

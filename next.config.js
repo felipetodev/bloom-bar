@@ -2,7 +2,17 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['images.ctfassets.net', 'videos.ctfassets.net']
+    qualities: [80, 100],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.ctfassets.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'videos.ctfassets.net',
+      }
+    ]
   },
   async redirects () {
     return [
