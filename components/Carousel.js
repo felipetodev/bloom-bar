@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, FreeMode } from 'swiper'
+import { Autoplay, FreeMode } from 'swiper/modules'
 import PaintSvg from '../ui/PaintSvg'
 import 'swiper/css'
 import 'swiper/css/pagination'
