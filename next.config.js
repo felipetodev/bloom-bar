@@ -2,6 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
+    unoptimized: true,
     qualities: [80, 100],
     remotePatterns: [
       {
