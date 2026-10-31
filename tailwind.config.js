@@ -40,7 +40,7 @@ module.exports = {
         'promotion-gradient': 'linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%)',
         'nav-gradient': 'linear-gradient(180deg,rgba(0,0,0,.6) -50%, transparent 80%)',
         'menu-card': 'linear-gradient(180deg, rgba(0, 0, 0, 0) 79.36%, rgba(0, 0, 0, 0.8) 100%)',
-        'bottom-island-gradient': 'linear-gradient(180deg,#0000 31.42%,#000)'
+        'promotion-bottom-gradient': 'linear-gradient(180deg,#0000 31.42%,#000)'
       },
       letterSpacing: {
         bloom: '0.3em'
