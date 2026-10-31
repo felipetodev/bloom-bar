@@ -5,16 +5,17 @@ import Button from '../ui/Button'
 import MenuIcon from '../ui/MenuIcon'
 import { AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
+import clsx from 'clsx'
 
 const NavMenu = dynamic(() => import('./NavMenu'))
 
-const Navbar = ({ navbarButton }) => {
+const Navbar = ({ navbarButton, scrollsAway = false, contentClassName }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
-      <nav className='bg-transparent bg-nav-gradient px-5 sm:px-10 md:px-14 py-2.5 fixed w-full z-[60] top-0 left-0 pointer-events-none'>
-        <div className='my-5 sm:my-10 md:my-[60px] flex flex-wrap justify-between items-start mx-auto'>
+      <nav className={clsx('bg-transparent bg-nav-gradient px-5 sm:px-10 md:px-14 py-2.5 w-full z-[60] top-0 left-0 pointer-events-none', scrollsAway ? 'absolute' : 'fixed')}>
+        <div className={clsx('my-5 sm:my-10 md:my-[60px] flex flex-wrap justify-between items-start mx-auto', contentClassName)}>
           <Link href='/' className='flex items-center pointer-events-auto w-[30px] h-[65.12px] sm:w-auto sm:h-auto'>
             <Image decoding='sync' loading='eager' priority src='/b-logo.svg' alt='Bloom Logo' width={41} height={89} />
           </Link>
