@@ -11,7 +11,7 @@ const NAV_MENU = [
   },
   {
     name: 'CARTA',
-    route: '/carta/nikkei'
+    route: '/carta'
   },
   // {
   //   name: 'BLOOM REWARDS',
