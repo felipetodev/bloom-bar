@@ -26,7 +26,7 @@ export const normalizeContentfulData = ({ fields }) => {
   }, {})
 }
 
-export const createMenuIsland = (menuData) => {
+export const createCategoryNav = (menuData) => {
   return {
     mainTitle: menuData.mainTitle,
     color: menuData.color,

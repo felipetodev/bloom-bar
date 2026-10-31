@@ -14,7 +14,7 @@ import DishDialog from './DishDialog'
 
 const tailwindMQ = '(max-width: 640px)'
 
-const Menu = ({ menu, islandMenu }) => {
+const Menu = ({ menu, categoryNav }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [dishImage, setDishImage] = useState({})
 
@@ -53,7 +53,7 @@ const Menu = ({ menu, islandMenu }) => {
         </>
       )}
       <MainHeading title={menu?.mainTitle} variant={menu?.color} />
-      <HorizontalCategoryNav islandMenu={islandMenu} />
+      <HorizontalCategoryNav categoryNav={categoryNav} />
       {!isMobile && (
         <main>
           <div className='flex sm:gap-x-24 md:gap-x-36 w-100'>

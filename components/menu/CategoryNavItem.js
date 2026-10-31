@@ -5,7 +5,7 @@ export const getAnchorId = (category) => (
   category?.title?.replaceAll(' ', '') || category?.mainTitle?.replaceAll(' ', '') || ''
 )
 
-const IslandMenuItem = ({ category, isActive, onClick }) => (
+const CategoryNavItem = ({ category, isActive, onClick }) => (
   <Link
     href={`/carta#${getAnchorId(category)}`}
     onClick={onClick}
@@ -21,4 +21,4 @@ const IslandMenuItem = ({ category, isActive, onClick }) => (
   </Link>
 )
 
-export default IslandMenuItem
+export default CategoryNavItem

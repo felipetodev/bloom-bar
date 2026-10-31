@@ -1,5 +1,5 @@
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
-import IslandMenuItem, { getAnchorId } from '../components/menu/IslandMenuItem'
+import CategoryNavItem, { getAnchorId } from '../components/menu/CategoryNavItem'
 
 // .anchor scroll-margin-top (globals.css) + 2px of tolerance, so a section is active right after clicking its tab
 const SECTION_OFFSET = 82
@@ -27,8 +27,8 @@ const getActiveId = (ids, clickedId) => {
   return activeId
 }
 
-const HorizontalCategoryNav = memo(({ islandMenu }) => {
-  const categories = useMemo(() => getNavCategories(islandMenu), [islandMenu])
+const HorizontalCategoryNav = memo(({ categoryNav }) => {
+  const categories = useMemo(() => getNavCategories(categoryNav), [categoryNav])
   const ids = useMemo(() => categories.map(getAnchorId), [categories])
 
   const [activeId, setActiveId] = useState(ids[0])
@@ -78,7 +78,7 @@ const HorizontalCategoryNav = memo(({ islandMenu }) => {
     >
       <div className='flex gap-1 w-max'>
         {categories.map((category) => (
-          <IslandMenuItem
+          <CategoryNavItem
             key={category.id}
             category={category}
             isActive={getAnchorId(category) === activeId}
