@@ -18,8 +18,8 @@ module.exports = {
   async redirects () {
     return [
       {
-        source: '/carta',
-        destination: '/carta/nikkei',
+        source: '/carta/:slug',
+        destination: '/carta',
         permanent: true
       },
       {

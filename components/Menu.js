@@ -8,12 +8,13 @@ import MainHeading from './menu/MainHeading'
 import MenuSection from './menu/MenuSection'
 import Divider from './menu/Divider'
 import FlowerIconSpacer from '../ui/FlowerIconSpacer'
+import HorizontalCategoryNav from '../ui/HorizontalCategoryNav'
 import useMediaQuery from '../hooks/useMediaQuery'
 import DishDialog from './DishDialog'
 
 const tailwindMQ = '(max-width: 640px)'
 
-const Menu = ({ menu }) => {
+const Menu = ({ menu, islandMenu }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [dishImage, setDishImage] = useState({})
 
@@ -52,6 +53,7 @@ const Menu = ({ menu }) => {
         </>
       )}
       <MainHeading title={menu?.mainTitle} variant={menu?.color} />
+      <HorizontalCategoryNav islandMenu={islandMenu} />
       {!isMobile && (
         <main>
           <div className='flex sm:gap-x-24 md:gap-x-36 w-100'>

@@ -1,17 +1,24 @@
-import { Item } from '@radix-ui/react-dropdown-menu'
 import Link from 'next/link'
+import clsx from 'clsx'
 
-const getAnchorLink = (category) => {
-  const link = category?.title?.replaceAll(' ', '') || category?.mainTitle?.replaceAll(' ', '')
-  return link ? `#${link}` : ''
-}
+export const getAnchorId = (category) => (
+  category?.title?.replaceAll(' ', '') || category?.mainTitle?.replaceAll(' ', '') || ''
+)
 
-const IslandMenuItem = ({ category, slug, onClick }) => (
-  <Item onClick={onClick} className='DropdownMenuItem text-[18px] hover:underline'>
-    <Link href={`/carta/${slug}/${getAnchorLink(category)}`}>
-      {category?.title || category?.mainTitle}
-    </Link>
-  </Item>
+const IslandMenuItem = ({ category, isActive, onClick }) => (
+  <Link
+    href={`/carta#${getAnchorId(category)}`}
+    onClick={onClick}
+    aria-current={isActive ? 'location' : undefined}
+    className={clsx(
+      'shrink-0 whitespace-nowrap rounded px-3 py-2 text-sm uppercase tracking-wider text-bloom-softGray-100 transition-colors hover:bg-white/10', {
+        'bg-white/10': isActive,
+        'opacity-70 hover:opacity-100': !isActive
+      }
+    )}
+  >
+    {category?.title || category?.mainTitle}
+  </Link>
 )
 
 export default IslandMenuItem

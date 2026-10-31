@@ -9,16 +9,15 @@ function MyApp ({
   pageProps,
   canonical,
   isMobile,
-  asPath,
-  query
+  asPath
 }) {
   const breakpoint = typeof window !== 'undefined' && window.innerWidth < 1024
+  const isCartaPath = asPath.startsWith('/carta')
+
   useLocomotiveScroll({
     location: asPath,
-    ignore: !!query.slug || isMobile || breakpoint
+    ignore: isCartaPath || isMobile || breakpoint
   })
-
-  const isCartaPath = asPath.startsWith('/carta')
 
   useEffect(() => {
     document.body.classList.toggle('carta', isCartaPath)
@@ -56,7 +55,6 @@ MyApp.getInitialProps = async ({ ctx }) => {
   return {
     canonical,
     isMobile,
-    asPath: ctx.asPath,
-    query: ctx.query
+    asPath: ctx.asPath
   }
 }

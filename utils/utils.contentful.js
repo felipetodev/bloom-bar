@@ -30,14 +30,12 @@ export const createMenuIsland = (menuData) => {
   return {
     mainTitle: menuData.mainTitle,
     color: menuData.color,
-    slug: menuData.slug,
-    menuCategories: menuData.menuCategories.map((category) => ({
-      id: category.id,
-      navbarIsland: category.navbarIsland ?? false,
-      // used to differentiate a divider content type (as section) in island menu 👇
-      ...category.mainTitle
-        ? { mainTitle: category.mainTitle }
-        : { title: category.title }
-    }))
+    menuCategories: menuData.menuCategories
+      // dividers (mainTitle) are not navigation categories
+      .filter((category) => !category.mainTitle)
+      .map((category) => ({
+        id: category.id,
+        title: category.title ?? null
+      }))
   }
 }

@@ -8,6 +8,12 @@
   pointer-events: none !important;
 }
 
+/* overflow: hidden/auto on these ancestors would break the sticky category nav */
+.carta #__next,
+.carta .scroll-container {
+  overflow: clip !important;
+}
+
 #meitre-widget-root .meitre-widget__launch__button button {
   all: unset !important;
   cursor: pointer !important;
@@ -65,7 +71,7 @@
   }
 
   .anchor {
-    scroll-margin-top: calc(80px + 2.5em);
+    scroll-margin-top: 80px;
   }
 
   input,
