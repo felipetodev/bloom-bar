@@ -17,7 +17,7 @@ class ContentfulPages {
   async getPagesBySlug (slug) {
     const entries = await client.getEntries({
       content_type: this.contentType,
-      'fields.slug': slug,
+      ...(slug ? { 'fields.slug': slug } : {}),
       limit: 1,
       include: 5
     })
