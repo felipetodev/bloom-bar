@@ -11,8 +11,8 @@ const CategoryNavItem = ({ category, isActive, onClick }) => (
     onClick={onClick}
     aria-current={isActive ? 'location' : undefined}
     className={clsx(
-      'shrink-0 whitespace-nowrap rounded px-3 py-2 text-sm uppercase tracking-wider text-bloom-softGray-100 transition-colors hover:bg-white/10', {
-        'bg-white/10': isActive,
+      'shrink-0 whitespace-nowrap rounded-md px-3 py-2 text-sm uppercase tracking-wider text-bloom-softGray-100 transition-colors hover:bg-bloom-darkGreen-200', {
+        'bg-bloom-darkGreen-200': isActive,
         'opacity-70 hover:opacity-100': !isActive
       }
     )}
