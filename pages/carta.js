@@ -12,7 +12,7 @@ const Menu = ({ menuData, categoryNav }) => {
         <title>Bloom Nikkei Bar | Carta</title>
       </Head>
       <div className='relative overflow-x-clip'>
-        <Navbar navbarButton={menuData?.navbarButton} scrollsAway contentClassName='max-w-[1088px]' />
+        <Navbar navbarButton={menuData?.navbarButton} variant='menu' headerImage={menuData?.headerImage} contentClassName='max-w-[1200px]' />
         <div className='relative mx-auto max-w-[1200px] px-5 sm:px-10 md:px-14 pb-14 sm:pb-40 min-h-screen flow-root'>
           <MenuComponent menu={menuData} categoryNav={categoryNav} />
         </div>

@@ -49,7 +49,14 @@ module.exports = {
         bloom: {
           orange: {
             50: '#FF5C00',
-            100: '#FF5900'
+            100: '#FF5900',
+            200: '#D86C18'
+          },
+          peach: {
+            100: '#FCCFB0'
+          },
+          silver: {
+            100: '#D9D9D9'
           },
           black: {
             100: '#141414'
@@ -65,7 +72,8 @@ module.exports = {
             100: '#131B14'
           },
           darkGreen: {
-            100: '#151B15'
+            100: '#151B15',
+            200: '#292E28'
           },
           cyan: {
             50: '#03A2D4',
