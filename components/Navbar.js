@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Button from '../ui/Button'
@@ -7,11 +7,13 @@ import { AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import clsx from 'clsx'
 
-const NavMenu = dynamic(() => import('./NavMenu'))
+// client only: the menu portals into document.body
+const NavMenu = dynamic(() => import('./NavMenu'), { ssr: false })
 
 // overlay: transparent and fixed over the page hero; menu: solid gradient band at the top of the carta
 const Navbar = ({ navbarButton, variant = 'overlay', headerImage, contentClassName }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const menuTriggerRef = useRef(null)
   const isMenu = variant === 'menu'
 
   return (
@@ -69,7 +71,7 @@ const Navbar = ({ navbarButton, variant = 'overlay', headerImage, contentClassNa
                 {navbarButton?.title?.toUpperCase()}
               </Button>
             ) : null}
-            <span className={clsx('cursor-pointer select-none', { 'text-bloom-darkGreen-100': isMenu })} onClick={() => setIsOpen(!isOpen)}>
+            <span ref={menuTriggerRef} className={clsx('cursor-pointer select-none', { 'text-bloom-darkGreen-100': isMenu })} onClick={() => setIsOpen(!isOpen)}>
               <MenuIcon
                 isOpen={isOpen}
                 color={isMenu ? 'currentColor' : undefined}
@@ -81,7 +83,7 @@ const Navbar = ({ navbarButton, variant = 'overlay', headerImage, contentClassNa
       </nav>
       <AnimatePresence>
         {isOpen && (
-          <NavMenu setIsOpen={setIsOpen} />
+          <NavMenu setIsOpen={setIsOpen} triggerRef={menuTriggerRef} />
         )}
       </AnimatePresence>
     </>
