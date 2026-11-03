@@ -14,6 +14,13 @@
   overflow: clip !important;
 }
 
+/* smooth jumps between carta sections (Next keeps CSS scroll-behavior on hash-only changes) */
+@media (prefers-reduced-motion: no-preference) {
+  html:has(body.carta) {
+    scroll-behavior: smooth;
+  }
+}
+
 #meitre-widget-root .meitre-widget__launch__button button {
   all: unset !important;
   cursor: pointer !important;

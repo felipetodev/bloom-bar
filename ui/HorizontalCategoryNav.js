@@ -3,6 +3,8 @@ import CategoryNavItem, { getAnchorId } from '../components/menu/CategoryNavItem
 
 // .anchor scroll-margin-top (globals.css) + 2px of tolerance, so a section is active right after clicking its tab
 const SECTION_OFFSET = 82
+// after a tab click the page scrolls smoothly; the active tab is recomputed once scrolling stops
+const SCROLL_IDLE_MS = 150
 
 const getNavCategories = ({ menuCategories }) => (
   menuCategories?.filter((category) => getAnchorId(category)) ?? []
@@ -34,15 +36,33 @@ const HorizontalCategoryNav = memo(({ categoryNav }) => {
   const [activeId, setActiveId] = useState(ids[0])
   const navRef = useRef(null)
   const clickedIdRef = useRef(null)
+  // timeout id while a tab click is scrolling the page, so the tabs in between are not highlighted
+  const scrollLockRef = useRef(null)
+  const lockUntilIdleRef = useRef(null)
 
   useEffect(() => {
     let frame = null
 
+    const updateActiveId = () => setActiveId(getActiveId(ids, clickedIdRef.current))
+
+    const lockUntilIdle = () => {
+      window.clearTimeout(scrollLockRef.current)
+      scrollLockRef.current = window.setTimeout(() => {
+        scrollLockRef.current = null
+        updateActiveId()
+      }, SCROLL_IDLE_MS)
+    }
+    lockUntilIdleRef.current = lockUntilIdle
+
     const onViewportChange = () => {
+      if (scrollLockRef.current !== null) {
+        lockUntilIdle()
+        return
+      }
       if (frame !== null) return
       frame = window.requestAnimationFrame(() => {
         frame = null
-        setActiveId(getActiveId(ids, clickedIdRef.current))
+        updateActiveId()
       })
     }
 
@@ -52,6 +72,8 @@ const HorizontalCategoryNav = memo(({ categoryNav }) => {
 
     return () => {
       window.cancelAnimationFrame(frame)
+      window.clearTimeout(scrollLockRef.current)
+      scrollLockRef.current = null
       window.removeEventListener('scroll', onViewportChange)
       window.removeEventListener('resize', onViewportChange)
     }
@@ -84,6 +106,7 @@ const HorizontalCategoryNav = memo(({ categoryNav }) => {
             isActive={getAnchorId(category) === activeId}
             onClick={() => {
               clickedIdRef.current = getAnchorId(category)
+              lockUntilIdleRef.current?.()
               // sections in the same row share a scroll position, so the click may not fire a scroll event
               setActiveId(getAnchorId(category))
             }}
