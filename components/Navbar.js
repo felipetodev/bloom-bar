@@ -35,17 +35,19 @@ const Navbar = ({ navbarButton, variant = 'overlay', headerImage, contentClassNa
             contentClassName
           )}
         >
-          {isMenu && headerImage?.url ? (
-            <Image
-              src={headerImage.url}
-              alt=''
-              aria-hidden='true'
-              width={0}
-              height={0}
-              sizes='200px'
-              className='pointer-events-none select-none absolute top-0 left-8 sm:left-16 h-20 sm:h-24 w-auto'
-            />
-          ) : null}
+          {isMenu && headerImage?.url
+            ? (
+              <Image
+                src={headerImage.url}
+                alt=''
+                aria-hidden='true'
+                width={0}
+                height={0}
+                sizes='200px'
+                className='pointer-events-none select-none absolute top-0 left-8 sm:left-16 h-20 sm:h-24 w-auto'
+              />
+              )
+            : null}
           <Link
             href='/'
             className={clsx(
@@ -56,21 +58,23 @@ const Navbar = ({ navbarButton, variant = 'overlay', headerImage, contentClassNa
             <Image decoding='sync' loading='eager' priority src='/b-logo.svg' alt='Bloom Logo' width={41} height={89} className={clsx({ 'w-full h-auto': isMenu })} />
           </Link>
           <div className={clsx('relative flex md:order-2 items-center pointer-events-auto', isMenu ? 'gap-5 sm:gap-7' : 'gap-[30px] sm:gap-[58px]')}>
-            {navbarButton?.link ? (
-              <Button
-                href={navbarButton.link}
-                rel='noopener noreferrer'
-                target='_blank'
-                type='link'
-                variant={isMenu ? 'light' : 'nav'}
-                className={isMenu
-                  // max-sm: beats the base `!py-3` of Button (same !important, emitted later in the CSS)
-                  ? '!px-3 !py-1 max-sm:!py-1 !text-[11px] sm:!text-xs tracking-wider hover:bg-white hover:border-white font-semibold'
-                  : '!px-[17px] !py-[6px] sm:!px-[42px] sm:!py-[5px] hover:bg-bloom-orange-100 hover:border-bloom-orange-100'}
-              >
-                {navbarButton?.title?.toUpperCase()}
-              </Button>
-            ) : null}
+            {/* menu: max-sm:!py-1 beats the base `!py-3` of Button (same !important, emitted later in the CSS) */}
+            {navbarButton?.link
+              ? (
+                <Button
+                  href={navbarButton.link}
+                  rel='noopener noreferrer'
+                  target='_blank'
+                  type='link'
+                  variant={isMenu ? 'light' : 'nav'}
+                  className={isMenu
+                    ? '!px-3 !py-1 max-sm:!py-1 !text-[11px] sm:!text-xs tracking-wider hover:bg-white hover:border-white font-semibold'
+                    : '!px-[17px] !py-[6px] sm:!px-[42px] sm:!py-[5px] hover:bg-bloom-orange-100 hover:border-bloom-orange-100'}
+                >
+                  {navbarButton?.title?.toUpperCase()}
+                </Button>
+                )
+              : null}
             <span ref={menuTriggerRef} className={clsx('cursor-pointer select-none', { 'text-bloom-darkGreen-100': isMenu })} onClick={() => setIsOpen(!isOpen)}>
               <MenuIcon
                 isOpen={isOpen}
