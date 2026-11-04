@@ -1,13 +1,13 @@
-import Link from 'next/link'
 import clsx from 'clsx'
 
 export const getAnchorId = (category) => (
   category?.title?.replaceAll(' ', '') || category?.mainTitle?.replaceAll(' ', '') || ''
 )
 
+// a button (not a link) so the URL never gets a #hash; scrolling is handled in the onClick
 const CategoryNavItem = ({ category, isActive, onClick }) => (
-  <Link
-    href={`/carta#${getAnchorId(category)}`}
+  <button
+    type='button'
     onClick={onClick}
     aria-current={isActive ? 'location' : undefined}
     className={clsx(
@@ -18,7 +18,7 @@ const CategoryNavItem = ({ category, isActive, onClick }) => (
     )}
   >
     {category?.title || category?.mainTitle}
-  </Link>
+  </button>
 )
 
 export default CategoryNavItem
