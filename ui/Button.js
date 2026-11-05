@@ -7,7 +7,8 @@ const Button = ({ type = 'button', children, variant = 'primary', className, ...
     {
       'border-bloom-orange-100 text-bloom-orange-100': variant === 'primary',
       'border-bloom-softGray-100 text-bloom-softGray-100': variant === 'secondary',
-      'border-[#D9D9D9] text-[#D9D9D9] bg-white/25': variant === 'nav'
+      'border-[#D9D9D9] text-[#D9D9D9] bg-white/25': variant === 'nav',
+      'border-bloom-silver-100 text-bloom-black-100 bg-bloom-silver-100': variant === 'light'
     }
   )
 

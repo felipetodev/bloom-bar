@@ -1,19 +1,18 @@
 import { Fragment, useState } from 'react'
-import Image from 'next/image'
 import Heading from './menu/Heading'
 import Dish from './menu/Dish'
 import CardImage from './menu/CardImage'
 import CardOutlined from './menu/CardOutlined'
-import MainHeading from './menu/MainHeading'
 import MenuSection from './menu/MenuSection'
 import Divider from './menu/Divider'
 import FlowerIconSpacer from '../ui/FlowerIconSpacer'
+import HorizontalCategoryNav from '../ui/HorizontalCategoryNav'
 import useMediaQuery from '../hooks/useMediaQuery'
 import DishDialog from './DishDialog'
 
 const tailwindMQ = '(max-width: 640px)'
 
-const Menu = ({ menu }) => {
+const Menu = ({ menu, categoryNav }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [dishImage, setDishImage] = useState({})
 
@@ -32,26 +31,7 @@ const Menu = ({ menu }) => {
 
   return (
     <>
-      {menu.headerImage && (
-        <>
-          {isPrimary
-            ? (
-              <div
-                className='absolute -top-4 -right-5 sm:-top-9 sm:right-14 w-[175.48px] sm:w-[230px] md:-top-3 md:right-20 md:w-[260px] rotate-[8deg]'
-              >
-                <Image decoding='sync' quality={100} width={400} height={400} src={menu?.headerImage?.url} alt={menu?.headerImage} />
-              </div>
-              )
-            : (
-              <div
-                className='absolute top-2 -right-2 sm:-top-4 sm:right-4 w-[175.48px] sm:w-[230px] md:-top-5 md:right-14 md:w-[260px] rotate-[8deg]'
-              >
-                <Image decoding='sync' quality={100} width={400} height={400} src={menu?.headerImage?.url} alt={menu?.headerImage} />
-              </div>
-              )}
-        </>
-      )}
-      <MainHeading title={menu?.mainTitle} variant={menu?.color} />
+      <HorizontalCategoryNav categoryNav={categoryNav} />
       {!isMobile && (
         <main>
           <div className='flex sm:gap-x-24 md:gap-x-36 w-100'>

@@ -17,8 +17,7 @@ export async function getServerSideProps ({ res }) {
     '',
     'ubicacion',
     'contacto',
-    'carta/nikkei',
-    'carta/drinks'
+    'carta'
   ]
 
   res.setHeader('Content-Type', 'text/xml')

@@ -8,6 +8,19 @@
   pointer-events: none !important;
 }
 
+/* overflow: hidden/auto on these ancestors would break the sticky category nav */
+.carta #__next,
+.carta .scroll-container {
+  overflow: clip !important;
+}
+
+/* smooth jumps between carta sections (Next keeps CSS scroll-behavior on hash-only changes) */
+@media (prefers-reduced-motion: no-preference) {
+  html:has(body.carta) {
+    scroll-behavior: smooth;
+  }
+}
+
 #meitre-widget-root .meitre-widget__launch__button button {
   all: unset !important;
   cursor: pointer !important;
@@ -65,7 +78,7 @@
   }
 
   .anchor {
-    scroll-margin-top: calc(80px + 2.5em);
+    scroll-margin-top: 80px;
   }
 
   input,
@@ -159,105 +172,6 @@
   }
 
   /* LOCOMOTIVE END 🚂 */
-
-  .DropdownMenuContent,
-  .DropdownMenuSubContent {
-    min-width: 313px;
-    max-width: 313px;
-    box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2);
-    animation-duration: 400ms;
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform, opacity;
-
-    overflow: hidden;
-  }
-
-  [data-radix-popper-content-wrapper] {
-    top: -10px !important;
-    z-index: 999 !important;
-  }
-
-  .DropdownMenuContent[data-side='top'],
-  .DropdownMenuSubContent[data-side='top'] {
-    animation-name: slideDownAndFade;
-  }
-
-  .DropdownMenuContent[data-side='right'],
-  .DropdownMenuSubContent[data-side='right'] {
-    animation-name: slideLeftAndFade;
-  }
-
-  .DropdownMenuContent[data-side='bottom'],
-  .DropdownMenuSubContent[data-side='bottom'] {
-    animation-name: slideUpAndFade;
-  }
-
-  .DropdownMenuContent[data-side='left'],
-  .DropdownMenuSubContent[data-side='left'] {
-    animation-name: slideRightAndFade;
-  }
-
-  .DropdownMenuItem,
-  .DropdownMenuCheckboxItem,
-  .DropdownMenuRadioItem,
-  .DropdownMenuSubTrigger {
-    line-height: 1;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    height: 25px;
-    position: relative;
-    user-select: none;
-    outline: none;
-  }
-
-  @keyframes slideUpAndFade {
-    from {
-      opacity: 0;
-      transform: translateY(2px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideRightAndFade {
-    from {
-      opacity: 0;
-      transform: translateX(-2px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slideDownAndFade {
-    from {
-      opacity: 0;
-      transform: translateY(-2px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideLeftAndFade {
-    from {
-      opacity: 0;
-      transform: translateX(2px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
 
   .swiper {
     width: 100%;

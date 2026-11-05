@@ -1,0 +1,123 @@
+import { memo, useEffect, useMemo, useRef, useState } from 'react'
+import CategoryNavItem, { getAnchorId } from '../components/menu/CategoryNavItem'
+
+// .anchor scroll-margin-top (globals.css) + 2px of tolerance, so a section is active right after clicking its tab
+const SECTION_OFFSET = 82
+// after a tab click the page scrolls smoothly; the active tab is recomputed once scrolling stops
+const SCROLL_IDLE_MS = 150
+
+const getNavCategories = ({ menuCategories }) => (
+  menuCategories?.filter((category) => getAnchorId(category)) ?? []
+)
+
+// picks by position instead of list order because desktop renders the sections in two columns
+const getActiveId = (ids, clickedId) => {
+  let activeId = ids[0]
+  let activeTop = -Infinity
+
+  ids.forEach((id) => {
+    const top = document.getElementById(id)?.getBoundingClientRect().top
+    if (top === undefined || top > SECTION_OFFSET) return
+
+    const isSameRow = Math.abs(top - activeTop) < 1
+    if (isSameRow ? id === clickedId : top > activeTop) {
+      activeId = id
+      activeTop = top
+    }
+  })
+
+  return activeId
+}
+
+const HorizontalCategoryNav = memo(({ categoryNav }) => {
+  const categories = useMemo(() => getNavCategories(categoryNav), [categoryNav])
+  const ids = useMemo(() => categories.map(getAnchorId), [categories])
+
+  const [activeId, setActiveId] = useState(ids[0])
+  const navRef = useRef(null)
+  const clickedIdRef = useRef(null)
+  // timeout id while a tab click is scrolling the page, so the tabs in between are not highlighted
+  const scrollLockRef = useRef(null)
+  const lockUntilIdleRef = useRef(null)
+
+  useEffect(() => {
+    let frame = null
+
+    const updateActiveId = () => setActiveId(getActiveId(ids, clickedIdRef.current))
+
+    const lockUntilIdle = () => {
+      window.clearTimeout(scrollLockRef.current)
+      scrollLockRef.current = window.setTimeout(() => {
+        scrollLockRef.current = null
+        updateActiveId()
+      }, SCROLL_IDLE_MS)
+    }
+    lockUntilIdleRef.current = lockUntilIdle
+
+    const onViewportChange = () => {
+      if (scrollLockRef.current !== null) {
+        lockUntilIdle()
+        return
+      }
+      if (frame !== null) return
+      frame = window.requestAnimationFrame(() => {
+        frame = null
+        updateActiveId()
+      })
+    }
+
+    onViewportChange()
+    window.addEventListener('scroll', onViewportChange, { passive: true })
+    window.addEventListener('resize', onViewportChange)
+
+    return () => {
+      window.cancelAnimationFrame(frame)
+      window.clearTimeout(scrollLockRef.current)
+      scrollLockRef.current = null
+      window.removeEventListener('scroll', onViewportChange)
+      window.removeEventListener('resize', onViewportChange)
+    }
+  }, [ids])
+
+  useEffect(() => {
+    const nav = navRef.current
+    const tab = nav?.querySelector('[aria-current]')
+    if (!tab) return
+
+    nav.scrollTo({
+      left: tab.offsetLeft - (nav.clientWidth - tab.offsetWidth) / 2,
+      behavior: 'smooth'
+    })
+  }, [activeId])
+
+  if (categories.length === 0) return null
+
+  return (
+    <nav
+      ref={navRef}
+      aria-label='Categorías de la carta'
+      className='sticky top-0 z-40 flex items-center h-14 mb-14 -mx-5 sm:-mx-10 md:-mx-14 px-5 sm:px-10 md:px-14 bg-bloom-darkGreen-100 shadow-[0_0_0_100vmax_theme(colors.bloom.darkGreen.100)] [clip-path:inset(0_-100vmax)] overflow-x-auto overflow-y-hidden overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
+    >
+      <div className='flex gap-1 w-max'>
+        {categories.map((category) => (
+          <CategoryNavItem
+            key={category.id}
+            category={category}
+            isActive={getAnchorId(category) === activeId}
+            onClick={() => {
+              const id = getAnchorId(category)
+              clickedIdRef.current = id
+              lockUntilIdleRef.current?.()
+              // sections in the same row share a scroll position, so the click may not fire a scroll event
+              setActiveId(id)
+              // no URL hash on purpose; smoothness comes from CSS scroll-behavior (respects reduced motion)
+              document.getElementById(id)?.scrollIntoView({ block: 'start' })
+            }}
+          />
+        ))}
+      </div>
+    </nav>
+  )
+})
+
+export default HorizontalCategoryNav
