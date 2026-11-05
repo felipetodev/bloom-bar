@@ -5,9 +5,6 @@ import CategoryNavItem, { getAnchorId } from '../components/menu/CategoryNavItem
 const SECTION_OFFSET = 82
 // after a tab click the page scrolls smoothly; the active tab is recomputed once scrolling stops
 const SCROLL_IDLE_MS = 150
-// sessionStorage key and how long the page height must stay unchanged before manual restoration stops
-const SCROLL_STORAGE_KEY = 'carta-scroll-position'
-const SCROLL_SETTLE_MS = 600
 
 const getNavCategories = ({ menuCategories }) => (
   menuCategories?.filter((category) => getAnchorId(category)) ?? []
@@ -82,99 +79,6 @@ const HorizontalCategoryNav = memo(({ categoryNav }) => {
     }
   }, [ids])
 
-  // Manual scroll restoration anchored to a section (+ offset) instead of raw pixels. The browser restores
-  // before the desktop/mobile switch and image loading finish, so the page height is still wrong by then.
-  // Here we keep re-aligning to the saved section while the document height changes, until it settles
-  // or the user takes control.
-  useEffect(() => {
-    if (ids.length === 0) return
-
-    const previousRestoration = window.history.scrollRestoration
-    window.history.scrollRestoration = 'manual'
-
-    let saved = null
-    try {
-      saved = JSON.parse(window.sessionStorage.getItem(SCROLL_STORAGE_KEY))
-    } catch (e) {}
-
-    let restoring = Boolean(saved)
-    let frame = null
-    let settleTimer = null
-    const userEvents = ['wheel', 'touchstart', 'keydown', 'pointerdown']
-
-    // last section whose top has reached the sticky nav, and where it currently sits in the viewport
-    const findPosition = () => {
-      let position = null
-      ids.forEach((id) => {
-        const top = document.getElementById(id)?.getBoundingClientRect().top
-        if (top === undefined || top > SECTION_OFFSET) return
-        if (position === null || top > position.top) position = { id, top }
-      })
-      return position
-    }
-
-    const save = () => {
-      if (restoring) return
-      try {
-        const position = findPosition()
-        if (position) window.sessionStorage.setItem(SCROLL_STORAGE_KEY, JSON.stringify(position))
-        else window.sessionStorage.removeItem(SCROLL_STORAGE_KEY)
-      } catch (e) {}
-    }
-
-    const onScroll = () => {
-      if (frame !== null || restoring) return
-      frame = window.requestAnimationFrame(() => {
-        frame = null
-        save()
-      })
-    }
-
-    const align = () => {
-      const top = document.getElementById(saved.id)?.getBoundingClientRect().top
-      if (top === undefined) return
-      const delta = top - saved.top
-      if (Math.abs(delta) > 1) window.scrollBy({ top: delta, behavior: 'instant' })
-    }
-
-    const resizeObserver = new window.ResizeObserver(() => {
-      align()
-      armSettle()
-    })
-
-    const finishRestoring = () => {
-      restoring = false
-      window.clearTimeout(settleTimer)
-      resizeObserver.disconnect()
-      window.removeEventListener('load', align)
-      userEvents.forEach((event) => window.removeEventListener(event, finishRestoring))
-    }
-
-    const armSettle = () => {
-      window.clearTimeout(settleTimer)
-      settleTimer = window.setTimeout(finishRestoring, SCROLL_SETTLE_MS)
-    }
-
-    if (restoring) {
-      align()
-      armSettle()
-      resizeObserver.observe(document.body)
-      window.addEventListener('load', align)
-      userEvents.forEach((event) => window.addEventListener(event, finishRestoring, { passive: true, once: true }))
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('pagehide', save)
-
-    return () => {
-      window.cancelAnimationFrame(frame)
-      finishRestoring()
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('pagehide', save)
-      window.history.scrollRestoration = previousRestoration
-    }
-  }, [ids])
-
   useEffect(() => {
     const nav = navRef.current
     const tab = nav?.querySelector('[aria-current]')
@@ -201,13 +105,10 @@ const HorizontalCategoryNav = memo(({ categoryNav }) => {
             category={category}
             isActive={getAnchorId(category) === activeId}
             onClick={() => {
-              const id = getAnchorId(category)
-              clickedIdRef.current = id
+              clickedIdRef.current = getAnchorId(category)
               lockUntilIdleRef.current?.()
               // sections in the same row share a scroll position, so the click may not fire a scroll event
-              setActiveId(id)
-              // no URL hash on purpose; smoothness comes from CSS scroll-behavior (respects reduced motion)
-              document.getElementById(id)?.scrollIntoView({ block: 'start' })
+              setActiveId(getAnchorId(category))
             }}
           />
         ))}
