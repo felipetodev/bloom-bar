@@ -105,10 +105,13 @@ const HorizontalCategoryNav = memo(({ categoryNav }) => {
             category={category}
             isActive={getAnchorId(category) === activeId}
             onClick={() => {
-              clickedIdRef.current = getAnchorId(category)
+              const id = getAnchorId(category)
+              clickedIdRef.current = id
               lockUntilIdleRef.current?.()
               // sections in the same row share a scroll position, so the click may not fire a scroll event
-              setActiveId(getAnchorId(category))
+              setActiveId(id)
+              // no URL hash on purpose; smoothness comes from CSS scroll-behavior (respects reduced motion)
+              document.getElementById(id)?.scrollIntoView({ block: 'start' })
             }}
           />
         ))}

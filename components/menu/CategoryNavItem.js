@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import clsx from 'clsx'
 
 export const getAnchorId = (category) => (
@@ -6,8 +5,8 @@ export const getAnchorId = (category) => (
 )
 
 const CategoryNavItem = ({ category, isActive, onClick }) => (
-  <Link
-    href={`/carta#${getAnchorId(category)}`}
+  <button
+    type='button'
     onClick={onClick}
     aria-current={isActive ? 'location' : undefined}
     className={clsx(
@@ -18,7 +17,7 @@ const CategoryNavItem = ({ category, isActive, onClick }) => (
     )}
   >
     {category?.title || category?.mainTitle}
-  </Link>
+  </button>
 )
 
 export default CategoryNavItem
