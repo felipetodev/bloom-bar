@@ -10,20 +10,13 @@ const getNavCategories = ({ menuCategories }) => (
   menuCategories?.filter((category) => getAnchorId(category)) ?? []
 )
 
-// picks by position instead of list order because desktop renders the sections in two columns
-const getActiveId = (ids, clickedId) => {
+// last section whose top has reached the offset (first one if none has)
+const getActiveId = (ids) => {
   let activeId = ids[0]
-  let activeTop = -Infinity
 
   ids.forEach((id) => {
     const top = document.getElementById(id)?.getBoundingClientRect().top
-    if (top === undefined || top > SECTION_OFFSET) return
-
-    const isSameRow = Math.abs(top - activeTop) < 1
-    if (isSameRow ? id === clickedId : top > activeTop) {
-      activeId = id
-      activeTop = top
-    }
+    if (top !== undefined && top <= SECTION_OFFSET) activeId = id
   })
 
   return activeId
@@ -35,7 +28,6 @@ const HorizontalCategoryNav = memo(({ categoryNav }) => {
 
   const [activeId, setActiveId] = useState(ids[0])
   const navRef = useRef(null)
-  const clickedIdRef = useRef(null)
   // timeout id while a tab click is scrolling the page, so the tabs in between are not highlighted
   const scrollLockRef = useRef(null)
   const lockUntilIdleRef = useRef(null)
@@ -43,7 +35,7 @@ const HorizontalCategoryNav = memo(({ categoryNav }) => {
   useEffect(() => {
     let frame = null
 
-    const updateActiveId = () => setActiveId(getActiveId(ids, clickedIdRef.current))
+    const updateActiveId = () => setActiveId(getActiveId(ids))
 
     const lockUntilIdle = () => {
       window.clearTimeout(scrollLockRef.current)
@@ -106,9 +98,7 @@ const HorizontalCategoryNav = memo(({ categoryNav }) => {
             isActive={getAnchorId(category) === activeId}
             onClick={() => {
               const id = getAnchorId(category)
-              clickedIdRef.current = id
               lockUntilIdleRef.current?.()
-              // sections in the same row share a scroll position, so the click may not fire a scroll event
               setActiveId(id)
               // no URL hash on purpose; smoothness comes from CSS scroll-behavior (respects reduced motion)
               document.getElementById(id)?.scrollIntoView({ block: 'start' })
