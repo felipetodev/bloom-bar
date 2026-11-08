@@ -10,10 +10,11 @@ const Menu = ({ menuData, categoryNav }) => {
     <>
       <Head>
         <title>Bloom Nikkei Bar | Carta</title>
+        <link rel='preload' href='/fonts/manrope/manrope-latin-wght-normal.woff2' as='font' type='font/woff2' crossOrigin='anonymous' />
       </Head>
-      <div className='relative overflow-x-clip'>
+      <div className='relative overflow-x-clip bg-bloom-softGray-100'>
         <Navbar navbarButton={menuData?.navbarButton} variant='menu' headerImage={menuData?.headerImage} contentClassName='max-w-[1200px]' />
-        <div className='relative mx-auto max-w-[1200px] px-5 sm:px-10 md:px-14 pb-14 sm:pb-40 min-h-screen flow-root'>
+        <div className='relative mx-auto max-w-[1200px] font-manrope px-5 sm:px-10 md:px-14 pb-14 sm:pb-40 min-h-screen flow-root'>
           <MenuComponent menu={menuData} categoryNav={categoryNav} />
         </div>
       </div>

@@ -1,21 +1,29 @@
-import clsx from 'clsx'
+import Image from 'next/image'
 
-const Heading = ({ title, variant = 'primary', subtitle }) => {
-  const styles = clsx(
-    'ml-4 min-w-[28px] flex-grow border-t',
-    {
-      'border-bloom-orange-100': variant === 'primary',
-      'border-bloom-celeste-100': variant === 'secondary'
-    }
-  )
+const Heading = ({ title, subtitle, image }) => {
   return (
-    <div className='relative flex items-center pb-[70px] sm:pb-20 z-10'>
-      <h2 id={title?.replaceAll(' ', '')} className='anchor w-min sm:w-full text-xl sm:text-[30px] text-bloom-softGray-100 tracking-bloom sm:max-w-[140px] md:max-w-[270px] font-marcellus leading-tight'>
+    <div className='relative flex items-center pb-4 sm:pb-10 z-10'>
+      {image?.url
+        ? (
+          <Image
+            src={image.url}
+            width={220}
+            height={220}
+            alt={image.title || title || ''}
+            className='mr-4 sm:mr-10 h-[100px] w-[100px] sm:h-[150px] sm:w-[150px] shrink-0 object-contain'
+            quality={100}
+          />
+          )
+        : null}
+      <h2 id={title?.replaceAll(' ', '')} className='font-bold anchor w-min sm:w-auto text-xl sm:text-[30px] text-bloom-darkGreen-100 tracking-bloom sm:max-w-[140px] md:max-w-[270px] font-manrope leading-tight'>
         {title}
       </h2>
-      <div className={styles} />
+      <div
+        aria-hidden
+        className="ml-3 sm:ml-5 sm:mr-5 min-w-[28px] flex-grow h-[6px] bg-[url('/section-line.svg')] bg-[length:563px_6px] bg-repeat-x bg-left"
+      />
       {subtitle && (
-        <h3 className='ml-4 text-lg text-bloom-softGray-100 font-abel min-w-fit text-end'>
+        <h3 className='ml-4 text-lg text-bloom-darkGreen-100 font-manrope min-w-fit text-end'>
           {subtitle}
         </h3>
       )}

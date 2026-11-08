@@ -13,6 +13,7 @@ module.exports = {
       fontFamily: {
         abel: ['Abel', 'sans-serif'],
         gopher: ['gopher', 'system-ui', 'sans-serif'],
+        manrope: ['Manrope', 'sans-serif'],
         marcellus: ['Marcellus', 'serif']
       },
       gridTemplateColumns: {

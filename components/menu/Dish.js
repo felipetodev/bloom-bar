@@ -1,7 +1,7 @@
-import ImagePreview from '../../ui/ImagePreview'
+import Image from 'next/image'
 import VeganIcon from '../../ui/VeganIcon'
-import clsx from 'clsx'
 import { isDesktop } from '../../utils/isDesktop'
+import formatPrice from '../../utils/formatPrice'
 
 const imageCache = {}
 
@@ -11,17 +11,9 @@ const Dish = ({
   description,
   price,
   isVegan,
-  isPrimary,
   image,
   onSelectImage
 }) => {
-  const styles = clsx(
-    'text-[17px] sm:text-[22px] font-marcellus',
-    {
-      'mb-0': hasTitle,
-      'mb-[10px]': !hasTitle
-    }
-  )
   const handlePreloadImage = () => {
     if (!isDesktop()) return
     if (image?.url && !imageCache[image.url]) {
@@ -30,47 +22,39 @@ const Dish = ({
       imageCache[image.url] = img
     }
   }
+
   return (
-    <div
-      className={clsx(
-        'text-bloom-softGray-100 flex relative z-10',
-        {
-          'mb-[10px] sm:mb-[20px]': hasTitle,
-          'first:pt-0 pt-8 sm:pt-10': !hasTitle
-        }
-      )}
-    >
-      <div className='flex flex-col justify-center'>
-        <div className='flex items-baseline'>
-          {isVegan && (
-            <span className='pr-2 md:pr-4 text-bloom-softGray-100'>
-              <VeganIcon />
-            </span>
-          )}
-          <h3 className={styles}>{title}</h3>
-          {image?.url && (
-            <button
-              onMouseEnter={handlePreloadImage}
-              onClick={onSelectImage}
-              className={clsx(
-                'self-baseline pl-2 md:pl-4 outline-none focus:outline-none transition overflow-visible', {
-                  'text-bloom-orange-100 hover:text-bloom-orange-100/70': isPrimary,
-                  'text-bloom-celeste-100 hover:text-bloom-celeste-100/70': !isPrimary
-                }
-              )}
-            >
-              <ImagePreview aria-label={`Dish image preview for ${title}`} className='size-5 -mb-1' />
-            </button>
+    <div className='relative z-10 flex gap-4 rounded-2xl bg-[#EDE8E4] p-4 sm:p-5 text-[#151B15] font-manrope'>
+      <div className='flex min-w-0 flex-1 flex-col justify-between gap-4'>
+        <div>
+          <h3 className='text-[17px] sm:text-[22px] font-bold leading-snug'>{title}</h3>
+          {!hasTitle && description && (
+            <p className='mt-1 font-medium !text-[15px]'>{description}</p>
           )}
         </div>
-        {!hasTitle && (
-          <p className='text-[15px] sm:text-lg font-abel'>{description}</p>
+        {(price || isVegan) && (
+          <div className='flex items-end justify-between gap-4'>
+            <span className='text-sm sm:text-lg font-bold text-[#DB7526]'>{formatPrice(price)}</span>
+            {isVegan && <VeganIcon className='text-[#479149]' />}
+          </div>
         )}
       </div>
-      {price && (
-        <span className='text-[15px] sm:text-lg pl-8 ml-auto font-abel'>
-          {price}
-        </span>
+      {image?.url && (
+        <button
+          type='button'
+          onMouseEnter={handlePreloadImage}
+          onClick={onSelectImage}
+          aria-label={`Ver imagen de ${title}`}
+          className='shrink-0 self-start overflow-hidden rounded-lg outline-none focus:outline-none'
+        >
+          <Image
+            src={image.url}
+            width={240}
+            height={240}
+            alt={image.title || title || ''}
+            className='size-24 sm:size-36 aspect-square object-cover'
+          />
+        </button>
       )}
     </div>
   )
