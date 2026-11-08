@@ -32,7 +32,7 @@ const Menu = ({ menu, categoryNav }) => {
                   {(category.title || category.subtitle) && (
                     <Heading title={category.title} subtitle={category.subtitle} image={category.sectionImage} />
                   )}
-                  <div className='flex flex-col gap-3'>
+                  <ul className='flex flex-col gap-3'>
                     {category.dishes?.map((dish) => (
                       <Dish
                         key={dish.id}
@@ -45,7 +45,7 @@ const Menu = ({ menu, categoryNav }) => {
                         onSelectImage={() => onSelectImage(dish.image)}
                       />
                     ))}
-                  </div>
+                  </ul>
                   {category.image && (
                     <CardImage cardInfo={category.image} variant={menu?.color} />
                   )}

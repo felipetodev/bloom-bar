@@ -12,7 +12,7 @@ const CardOutlined = ({ cardInfo }) => {
           {formatPrice(cardInfo.price)}
         </span>
       </div>
-      <div className='mb-14 flex-grow border-t mx-4' />
+      <div className='mb-14 flex-grow border-t mx-4 border-bloom-darkGreen-100' />
       <div className='flex flex-col gap-5 mb-10 font-manrope'>
         {list?.map((item) => (
           <h3 key={item} className='text-[17px] sm:text-[22px]'>{item}</h3>

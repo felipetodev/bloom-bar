@@ -15,6 +15,15 @@ module.exports = {
       }
     ]
   },
+  async headers () {
+    return [
+      {
+        // font files are not content-hashed: rename the file when replacing a font
+        source: '/fonts/:path*',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }]
+      }
+    ]
+  },
   async redirects () {
     return [
       {
