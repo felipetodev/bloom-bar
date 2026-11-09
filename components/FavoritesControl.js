@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { AnimatePresence } from 'framer-motion'
 import HeartIcon from '../ui/HeartIcon'
 import { useFavorites } from '../context/FavoritesContext'
 
@@ -32,7 +33,9 @@ export const FavoritesControl = ({ dishes }) => {
           </span>
         )}
       </button>
-      {isOpen && <FavoritesPanel dishes={dishes} onClose={() => setIsOpen(false)} />}
+      <AnimatePresence>
+        {isOpen && <FavoritesPanel dishes={dishes} onClose={() => setIsOpen(false)} />}
+      </AnimatePresence>
     </>
   )
 }
