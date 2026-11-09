@@ -41,34 +41,34 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
         onUpdate={() => {}}
         className='h-full overflow-y-auto bg-bloom-softGray-100 font-manrope text-bloom-darkGreen-100'
       >
-      <div className='mx-auto w-full max-w-[600px] md:max-w-[800px] px-5 sm:px-10 md:px-0 pb-14'>
-        <div className='flex items-center justify-between border-b border-bloom-darkGreen-100/15 py-6'>
-          <h2 className='text-lg sm:text-xl font-bold uppercase'>
-            Tus favoritos ({items.length})
-          </h2>
-          <button type='button' aria-label='Cerrar favoritos' onClick={onClose} className='flex items-center justify-center'>
-            <CloseIcon />
-          </button>
+        <div className='mx-auto w-full max-w-[600px] md:max-w-[800px] px-5 sm:px-10 md:px-0 pb-14'>
+          <div className='flex items-center justify-between border-b border-bloom-darkGreen-100/15 py-6'>
+            <h2 className='text-lg sm:text-xl font-bold uppercase'>
+              Tus favoritos ({items.length})
+            </h2>
+            <button type='button' aria-label='Cerrar favoritos' onClick={onClose} className='flex items-center justify-center'>
+              <CloseIcon />
+            </button>
+          </div>
+          {items.length === 0
+            ? <p className='py-10 text-center font-bold'>Aún no tienes favoritos</p>
+            : (
+              <ul className='mt-6 flex flex-col gap-3'>
+                {items.map((dish) => (
+                  <Dish
+                    key={dish.id}
+                    id={dish.id}
+                    title={dish.title}
+                    price={dish.price}
+                    hasTitle={dish.uniqueTitle}
+                    description={dish.description}
+                    isVegan={dish.vegan}
+                    image={dish.image}
+                  />
+                ))}
+              </ul>
+              )}
         </div>
-        {items.length === 0
-          ? <p className='py-10 text-center font-bold'>Aún no tienes favoritos</p>
-          : (
-            <ul className='mt-6 flex flex-col gap-3'>
-              {items.map((dish) => (
-                <Dish
-                  key={dish.id}
-                  id={dish.id}
-                  title={dish.title}
-                  price={dish.price}
-                  hasTitle={dish.uniqueTitle}
-                  description={dish.description}
-                  isVegan={dish.vegan}
-                  image={dish.image}
-                />
-              ))}
-            </ul>
-            )}
-      </div>
       </motion.div>
     </div>,
     document.body
