@@ -10,9 +10,9 @@ const CardImage = ({ cardInfo, variant = 'primary' }) => {
   return (
     <div className='relative z-10 overflow-hidden max-w-fit min-w-full w-full mt-14'>
       <Image
-        className='object-cover rounded-xl w-full'
-        width={600}
-        height={600}
+        className='object-cover rounded-xl w-full h-auto'
+        width={cardInfo.width ?? 600}
+        height={cardInfo.height ?? 600}
         title={cardInfo.title}
         alt={cardInfo.title ?? 'menu-image'}
         src={cardInfo.url}

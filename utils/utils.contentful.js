@@ -19,7 +19,10 @@ export const normalizeContentfulData = ({ fields }) => {
     }
 
     if (key === 'file') {
-      return { ...acc, url: `https:${value.url}` }
+      const { width, height } = value.details?.image ?? {}
+      // real image size, so <Image> can reserve the right aspect ratio and avoid layout shift on load
+      // (conditional spread: getStaticProps cannot serialize undefined)
+      return { ...acc, url: `https:${value.url}`, ...(width && height ? { width, height } : {}) }
     }
 
     return { ...acc, [key]: value }

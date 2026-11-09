@@ -7,6 +7,7 @@ import Divider from './menu/Divider'
 import FlowerIconSpacer from '../ui/FlowerIconSpacer'
 import HorizontalCategoryNav from '../ui/HorizontalCategoryNav'
 import DishDialog from './DishDialog'
+import { getAnchorId } from './menu/CategoryNavItem'
 
 const Menu = ({ menu, categoryNav }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -28,7 +29,7 @@ const Menu = ({ menu, categoryNav }) => {
             {category?.mainTitle
               ? <Divider divider={category} />
               : (
-                <div className='h-fit'>
+                <div id={category.title ? getAnchorId(category) : undefined} className='h-fit anchor'>
                   {(category.title || category.subtitle) && (
                     <Heading title={category.title} subtitle={category.subtitle} image={category.sectionImage} />
                   )}

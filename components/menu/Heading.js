@@ -15,7 +15,7 @@ const Heading = ({ title, subtitle, image }) => {
           />
           )
         : null}
-      <h2 id={title?.replaceAll(' ', '')} className='font-bold anchor w-min sm:w-auto text-xl sm:text-[30px] text-bloom-darkGreen-100 tracking-bloom sm:max-w-[140px] md:max-w-[270px] font-manrope leading-tight'>
+      <h2 className='font-bold w-min sm:w-auto text-xl sm:text-[30px] text-bloom-darkGreen-100 tracking-bloom sm:max-w-[140px] md:max-w-[270px] font-manrope leading-tight'>
         {title}
       </h2>
       <div
