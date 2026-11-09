@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import Script from 'next/script'
 import SeoLayout from '../components/Seo'
 import useLocomotiveScroll from '../hooks/useLocomotiveScroll'
+import { FavoritesProvider } from '../context/FavoritesContext'
 import '../styles/globals.css'
 
 function MyApp ({
@@ -36,7 +37,9 @@ function MyApp ({
           )
         : null}
       <div data-scroll-container className='scroll-container'>
-        <Component {...pageProps} />
+        <FavoritesProvider>
+          <Component {...pageProps} />
+        </FavoritesProvider>
       </div>
     </SeoLayout>
   )

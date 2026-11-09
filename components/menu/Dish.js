@@ -2,10 +2,12 @@ import Image from 'next/image'
 import VeganIcon from '../../ui/VeganIcon'
 import { isDesktop } from '../../utils/isDesktop'
 import formatPrice from '../../utils/formatPrice'
+import FavoriteButton from './FavoriteButton'
 
 const imageCache = {}
 
 const Dish = ({
+  id,
   title,
   hasTitle,
   description,
@@ -23,11 +25,21 @@ const Dish = ({
     }
   }
 
+  const dishImage = image?.url && (
+    <Image
+      src={image.url}
+      width={240}
+      height={240}
+      alt=''
+      className='size-32 sm:size-36 aspect-square object-cover'
+    />
+  )
+
   return (
-    <li className='relative z-10 flex gap-4 rounded-2xl bg-[#EDE8E4] p-4 sm:p-5 text-[#151B15] font-manrope'>
+    <li className='relative z-10 flex gap-4 rounded-2xl bg-[#EDE8E4] p-4 sm:p-5 text-bloom-darkGreen-100 font-manrope'>
       <div className='flex min-w-0 flex-1 flex-col justify-between gap-4'>
         <div>
-          <h3 className='text-[17px] sm:text-[22px] font-bold leading-snug'>{title}</h3>
+          <h3 className={`text-[17px] sm:text-[22px] font-bold leading-snug ${image?.url ? '' : 'pr-8'}`}>{title}</h3>
           {!hasTitle && description && (
             <p className='mt-1 font-medium !text-[15px]'>{description}</p>
           )}
@@ -40,22 +52,26 @@ const Dish = ({
         )}
       </div>
       {image?.url && (
-        <button
-          type='button'
-          onMouseEnter={handlePreloadImage}
-          onClick={onSelectImage}
-          aria-label={`Ver imagen de ${title}`}
-          aria-haspopup='dialog'
-          className='shrink-0 self-start overflow-hidden rounded-lg scroll-mt-20 outline-none focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#DB7526]'
-        >
-          <Image
-            src={image.url}
-            width={240}
-            height={240}
-            alt=''
-            className='size-32 sm:size-36 aspect-square object-cover'
-          />
-        </button>
+        <div className='relative shrink-0 self-start'>
+          {onSelectImage
+            ? (
+              <button
+                type='button'
+                onMouseEnter={handlePreloadImage}
+                onClick={onSelectImage}
+                aria-label={`Ver imagen de ${title}`}
+                aria-haspopup='dialog'
+                className='block overflow-hidden rounded-lg scroll-mt-20 outline-none focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#DB7526]'
+              >
+                {dishImage}
+              </button>
+              )
+            : <div className='overflow-hidden rounded-lg'>{dishImage}</div>}
+          <FavoriteButton id={id} title={title} className='absolute right-1.5 top-1.5' />
+        </div>
+      )}
+      {!image?.url && (
+        <FavoriteButton id={id} title={title} stroke='#151B14' className='absolute right-4 top-4 sm:right-5 sm:top-5' />
       )}
     </li>
   )

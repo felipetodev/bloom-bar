@@ -42,3 +42,7 @@ export const createCategoryNav = (menuData) => {
       }))
   }
 }
+
+// every dish of the menu in a single list (used by the favorites panel)
+export const flattenDishes = (menuData) =>
+  menuData?.menuCategories?.flatMap((category) => category.dishes ?? []) ?? []

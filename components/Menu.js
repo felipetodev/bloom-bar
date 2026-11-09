@@ -37,6 +37,7 @@ const Menu = ({ menu, categoryNav }) => {
                     {category.dishes?.map((dish) => (
                       <Dish
                         key={dish.id}
+                        id={dish.id}
                         title={dish.title}
                         price={dish.price}
                         hasTitle={dish.uniqueTitle}

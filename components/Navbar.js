@@ -7,11 +7,10 @@ import { AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import clsx from 'clsx'
 
-// client only: the menu portals into document.body
 const NavMenu = dynamic(() => import('./NavMenu'), { ssr: false })
 
 // overlay: transparent and fixed over the page hero; menu: solid gradient band at the top of the carta
-const Navbar = ({ navbarButton, variant = 'overlay', headerImage, contentClassName }) => {
+const Navbar = ({ navbarButton, variant = 'overlay', headerImage, contentClassName, children }) => {
   const [isOpen, setIsOpen] = useState(false)
   const menuTriggerRef = useRef(null)
   const isMenu = variant === 'menu'
@@ -75,6 +74,8 @@ const Navbar = ({ navbarButton, variant = 'overlay', headerImage, contentClassNa
                 </Button>
                 )
               : null}
+            {/* extra controls (e.g. favorites), placed between the button and the burger */}
+            {children}
             <span ref={menuTriggerRef} className={clsx('cursor-pointer select-none', { 'text-bloom-darkGreen-100': isMenu })} onClick={() => setIsOpen(!isOpen)}>
               <MenuIcon
                 isOpen={isOpen}
