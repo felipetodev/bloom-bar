@@ -6,6 +6,9 @@ import FavoriteButton from './FavoriteButton'
 
 const imageCache = {}
 
+// next/image is `unoptimized` here, so ask Contentful for a thumbnail instead of the full-size original (shown at 128-144px, so 288 is 2x)
+const thumbnail = (url) => `${url}?w=288&h=288&fit=fill&fm=webp&q=80`
+
 const Dish = ({
   id,
   title,
@@ -27,7 +30,7 @@ const Dish = ({
 
   const dishImage = image?.url && (
     <Image
-      src={image.url}
+      src={thumbnail(image.url)}
       width={240}
       height={240}
       alt=''
