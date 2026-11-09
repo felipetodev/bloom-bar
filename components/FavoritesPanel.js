@@ -1,13 +1,14 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { createPortal } from 'react-dom'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useIsPresent, useReducedMotion } from 'framer-motion'
 import Dish from './menu/Dish'
 import CloseIcon from '../ui/CloseIcon'
-import useScrollLock from '../hooks/useScrollLock'
+// import useScrollLock from '../hooks/useScrollLock'
 import { useFavorites } from '../context/FavoritesContext'
 
 const FavoritesPanel = ({ dishes = [], onClose }) => {
   const reduceMotion = useReducedMotion()
+  const isPresent = useIsPresent()
   const offsetY = reduceMotion ? 0 : -8
   const { favorites } = useFavorites()
   const items = useMemo(() => {
@@ -15,15 +16,23 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
     return favorites.map((id) => byId.get(id)).filter(Boolean)
   }, [favorites, dishes])
 
-  useScrollLock()
+  // useScrollLock()
 
+  // keep the latest onClose in a ref so the listener isn't re-bound on every parent render (the parent passes an inline arrow)
+  const onCloseRef = useRef(onClose)
   useEffect(() => {
+    onCloseRef.current = onClose
+  })
+
+  // only listen while the panel is present: during the exit animation isPresent is false, so a second Esc is ignored
+  useEffect(() => {
+    if (!isPresent) return
     const onKeyDown = (event) => {
-      if (event.key === 'Escape') onClose()
+      if (event.key === 'Escape') onCloseRef.current()
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [onClose])
+  }, [isPresent])
 
   // .scroll-container (the whole page, navbar included) is z-100; the panel starts under the navbar band so its heart and burger stay reachable
   return createPortal(
@@ -38,7 +47,6 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: offsetY }}
         transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-        onUpdate={() => {}}
         className='h-full overflow-y-auto bg-bloom-softGray-100 font-manrope text-bloom-darkGreen-100'
       >
         <div className='mx-auto w-full max-w-[600px] md:max-w-[800px] px-5 sm:px-10 md:px-0 pb-14'>
