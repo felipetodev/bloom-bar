@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import { motion, useIsPresent, useReducedMotion } from 'framer-motion'
 import Dish from './menu/Dish'
 import CloseIcon from '../ui/CloseIcon'
-// import useScrollLock from '../hooks/useScrollLock'
+import useScrollLock from '../hooks/useScrollLock'
 import { useFavorites } from '../context/FavoritesContext'
 
 const FavoritesPanel = ({ dishes = [], onClose }) => {
@@ -16,7 +16,7 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
     return favorites.map((id) => byId.get(id)).filter(Boolean)
   }, [favorites, dishes])
 
-  // useScrollLock()
+  useScrollLock()
 
   // keep the latest onClose in a ref so the listener isn't re-bound on every parent render (the parent passes an inline arrow)
   const onCloseRef = useRef(onClose)
