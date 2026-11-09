@@ -27,15 +27,34 @@ const HorizontalCategoryNav = memo(({ categoryNav }) => {
   const ids = useMemo(() => categories.map(getAnchorId), [categories])
 
   const [activeId, setActiveId] = useState(ids[0])
+  // false until the first scroll-based computation of the active tab, so the tabs fade in already correct
+  const [isReady, setIsReady] = useState(false)
   const navRef = useRef(null)
+  const hasShownTabsRef = useRef(false)
   // timeout id while a tab click is scrolling the page, so the tabs in between are not highlighted
   const scrollLockRef = useRef(null)
   const lockUntilIdleRef = useRef(null)
 
   useEffect(() => {
     let frame = null
+    let settleFrame = null
+    // stays false until the page has loaded and the browser had a chance to restore the scroll position
+    let isSettled = false
 
-    const updateActiveId = () => setActiveId(getActiveId(ids))
+    const updateActiveId = () => {
+      setActiveId(getActiveId(ids))
+      if (isSettled) setIsReady(true)
+    }
+
+    const settle = () => {
+      settleFrame = window.requestAnimationFrame(() => {
+        settleFrame = window.requestAnimationFrame(() => {
+          settleFrame = null
+          isSettled = true
+          updateActiveId()
+        })
+      })
+    }
 
     const lockUntilIdle = () => {
       window.clearTimeout(scrollLockRef.current)
@@ -59,11 +78,15 @@ const HorizontalCategoryNav = memo(({ categoryNav }) => {
     }
 
     onViewportChange()
+    if (document.readyState === 'complete') settle()
+    else window.addEventListener('load', settle, { once: true })
     window.addEventListener('scroll', onViewportChange, { passive: true })
     window.addEventListener('resize', onViewportChange)
 
     return () => {
       window.cancelAnimationFrame(frame)
+      window.cancelAnimationFrame(settleFrame)
+      window.removeEventListener('load', settle)
       window.clearTimeout(scrollLockRef.current)
       scrollLockRef.current = null
       window.removeEventListener('scroll', onViewportChange)
@@ -78,9 +101,11 @@ const HorizontalCategoryNav = memo(({ categoryNav }) => {
 
     nav.scrollTo({
       left: tab.offsetLeft - (nav.clientWidth - tab.offsetWidth) / 2,
-      behavior: 'smooth'
+      // the first positioning happens while the tabs are still fading in, so it must not be seen sliding
+      behavior: hasShownTabsRef.current ? 'smooth' : 'instant'
     })
-  }, [activeId])
+    if (isReady) hasShownTabsRef.current = true
+  }, [activeId, isReady])
 
   if (categories.length === 0) return null
 
@@ -96,6 +121,7 @@ const HorizontalCategoryNav = memo(({ categoryNav }) => {
             key={category.id}
             category={category}
             isActive={getAnchorId(category) === activeId}
+            isVisible={isReady}
             onClick={() => {
               const id = getAnchorId(category)
               lockUntilIdleRef.current?.()

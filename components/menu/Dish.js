@@ -53,7 +53,7 @@ const Dish = ({
             width={240}
             height={240}
             alt=''
-            className='size-24 sm:size-36 aspect-square object-cover'
+            className='size-32 sm:size-36 aspect-square object-cover'
           />
         </button>
       )}
