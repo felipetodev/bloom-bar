@@ -4,6 +4,7 @@ import Link from 'next/link'
 import SignIcon from '../ui/SignIcon'
 import MenuIcon from '../ui/MenuIcon'
 import useMediaQuery from '../hooks/useMediaQuery'
+import useScrollLock from '../hooks/useScrollLock'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV_MENU = [
@@ -34,23 +35,6 @@ const tailwindMQ = '(max-width: 640px)'
 // framer-motion runs opacity through the Web Animations API and restores the inline style one frame late,
 // which flashes the overlay when the fade ends; an onUpdate handler keeps the animation on the JS driver
 const noop = () => {}
-
-// locks page scroll while the menu is open, compensating the scrollbar width so the layout does not shift
-const useScrollLock = () => {
-  useEffect(() => {
-    const { style } = document.documentElement
-    const previous = { overflow: style.overflow, paddingRight: style.paddingRight }
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
-
-    style.overflow = 'hidden'
-    if (scrollbarWidth > 0) style.paddingRight = `${scrollbarWidth}px`
-
-    return () => {
-      style.overflow = previous.overflow
-      style.paddingRight = previous.paddingRight
-    }
-  }, [])
-}
 
 const NavMenu = ({ setIsOpen, triggerRef }) => {
   const isMobile = useMediaQuery(tailwindMQ)
