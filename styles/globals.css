@@ -23,6 +23,14 @@
 
 .carta {
   background-color: theme('colors.bloom.softGray.100');
+  /* height of the sticky MenuNavbar; the sticky category nav and the section anchors sit below it */
+  --menu-navbar-h: 120px;
+}
+
+@media (min-width: 640px) {
+  .carta {
+    --menu-navbar-h: 112px;
+  }
 }
 
 .carta #meitre-widget-root {
@@ -101,7 +109,7 @@
   }
 
   .anchor {
-    scroll-margin-top: 80px;
+    scroll-margin-top: calc(var(--menu-navbar-h, 0px) + 80px);
   }
 
   input,

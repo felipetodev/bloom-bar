@@ -21,6 +21,7 @@
     "next": "15.5.18",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-use-measure": "2.1.7",
     "snarkdown": "^2.0.0",
     "swiper": "^12.1.2"
   },

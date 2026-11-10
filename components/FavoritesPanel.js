@@ -40,7 +40,7 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
       role='dialog'
       aria-modal='true'
       aria-label='Favoritos'
-      className='fixed inset-x-0 bottom-0 top-[120px] sm:top-28 z-[101] overflow-hidden'
+      className='fixed inset-x-0 bottom-0 top-[var(--menu-navbar-h)] z-[101] overflow-hidden'
     >
       <motion.div
         initial={{ opacity: 0, y: offsetY }}
