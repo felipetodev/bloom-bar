@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useMemo } from 'react'
-import Navbar from '../components/Navbar'
+import MenuNavbar from '../components/menu/MenuNavbar'
 import { FavoritesControl } from '../components/FavoritesControl'
 import MenuComponent from '../components/Menu'
 import Promotion from '../components/Promotion'
@@ -17,9 +17,9 @@ const Menu = ({ menuData, categoryNav }) => {
         <link rel='preload' href='/fonts/manrope/manrope-latin-wght-normal.woff2' as='font' type='font/woff2' crossOrigin='anonymous' />
       </Head>
       <div className='relative overflow-x-clip bg-bloom-softGray-100'>
-        <Navbar navbarButton={menuData?.navbarButton} variant='menu' headerImage={menuData?.headerImage} contentClassName='max-w-[1200px]'>
+        <MenuNavbar navbarButton={menuData?.navbarButton} headerImage={menuData?.headerImage} contentClassName='max-w-[1200px]'>
           <FavoritesControl dishes={dishes} />
-        </Navbar>
+        </MenuNavbar>
         <div className='relative mx-auto max-w-[1200px] font-manrope px-5 sm:px-10 md:px-14 pb-14 sm:pb-40 min-h-screen flow-root'>
           <MenuComponent menu={menuData} categoryNav={categoryNav} />
         </div>
