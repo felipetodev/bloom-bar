@@ -117,7 +117,8 @@ const HorizontalCategoryNav = memo(({ categoryNav }) => {
     <nav
       ref={navRef}
       aria-label='Categorías de la carta'
-      className='sticky top-[var(--menu-navbar-h)] z-40 flex items-center h-14 mb-14 -mx-5 sm:-mx-10 md:-mx-14 px-5 sm:px-10 md:px-14 bg-bloom-darkGreen-100 shadow-[0_0_0_100vmax_theme(colors.bloom.darkGreen.100)] [clip-path:inset(0_-100vmax)] overflow-x-auto overflow-y-hidden overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
+      // the top 4px (pt-1) tuck under the band so no gap shows while it resizes; -mt-1 keeps the layout position unchanged
+      className='sticky top-[calc(var(--menu-navbar-h)-4px)] z-40 flex items-center h-[60px] pt-1 -mt-1 mb-14 -mx-5 sm:-mx-10 md:-mx-14 px-5 sm:px-10 md:px-14 bg-bloom-darkGreen-100 shadow-[0_0_0_100vmax_theme(colors.bloom.darkGreen.100)] [clip-path:inset(0_-100vmax)] overflow-x-auto overflow-y-hidden overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
     >
       <div className='flex gap-1 w-max'>
         {categories.map((category) => (

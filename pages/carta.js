@@ -16,11 +16,11 @@ const Menu = ({ menuData, categoryNav }) => {
         <title>Bloom Nikkei Bar | Carta</title>
         <link rel='preload' href='/fonts/manrope/manrope-latin-wght-normal.woff2' as='font' type='font/woff2' crossOrigin='anonymous' />
       </Head>
-      <div className='relative overflow-x-clip bg-bloom-softGray-100'>
+      <div className='relative overflow-x-clip bg-bloom-softGray-100 font-manrope'>
         <MenuNavbar navbarButton={menuData?.navbarButton} headerImage={menuData?.headerImage} contentClassName='max-w-[1200px]'>
           <FavoritesControl dishes={dishes} />
         </MenuNavbar>
-        <div className='relative mx-auto max-w-[1200px] font-manrope px-5 sm:px-10 md:px-14 pb-14 sm:pb-40 min-h-screen flow-root'>
+        <div className='relative mx-auto max-w-[1200px] px-5 sm:px-10 md:px-14 pb-14 sm:pb-40 min-h-screen flow-root'>
           <MenuComponent menu={menuData} categoryNav={categoryNav} />
         </div>
       </div>

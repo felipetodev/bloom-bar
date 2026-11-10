@@ -110,9 +110,9 @@ const MenuNavbar = ({ navbarButton, headerImage, contentClassName, children }) =
                   target='_blank'
                   type='link'
                   variant='light'
-                  className='!px-3 !py-1 max-sm:!py-1 !text-[11px] sm:!text-xs tracking-wider hover:bg-white hover:border-white font-semibold'
+                  className='!px-3 !py-1 max-sm:!py-1 !text-[11px] sm:!text-xs tracking-wider hover:bg-white hover:border-white font-extrabold uppercase'
                 >
-                  {navbarButton?.title?.toUpperCase()}
+                  {navbarButton?.title}
                 </Button>
                 )
               : null}
