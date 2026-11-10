@@ -1,8 +1,9 @@
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
 import CategoryNavItem, { getAnchorId } from '../components/menu/CategoryNavItem'
 
-// .anchor scroll-margin-top (globals.css) + 2px of tolerance, so a section is active right after clicking its tab
-const SECTION_OFFSET = 82
+// .anchor scroll-margin-top (globals.css, minus the navbar height added in getActiveId) + 2px of tolerance,
+// so a section is active right after clicking its tab
+const SECTION_OFFSET = 102
 // after a tab click the page scrolls smoothly; the active tab is recomputed once scrolling stops
 const SCROLL_IDLE_MS = 150
 

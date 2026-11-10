@@ -109,7 +109,7 @@
   }
 
   .anchor {
-    scroll-margin-top: calc(var(--menu-navbar-h, 0px) + 80px);
+    scroll-margin-top: calc(var(--menu-navbar-h, 0px) + 100px);
   }
 
   input,

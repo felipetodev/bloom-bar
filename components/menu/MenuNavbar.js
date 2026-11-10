@@ -13,6 +13,8 @@ const NavMenu = dynamic(() => import('../NavMenu'), { ssr: false })
 // scrolled past COMPACT_AT the band shrinks; it only grows back near the top (gap avoids flicker when the shrink moves the content)
 const COMPACT_AT = 120
 const EXPAND_AT = 40
+// time after load during which scroll events (the browser restoring the position) are ignored
+const RESTORE_WAIT_MS = 400
 
 // solid gradient band at the top of the carta
 const MenuNavbar = ({ navbarButton, headerImage, contentClassName, children }) => {
@@ -22,13 +24,29 @@ const MenuNavbar = ({ navbarButton, headerImage, contentClassName, children }) =
   const [ref, bounds] = useMeasure()
 
   useEffect(() => {
+    // the band always starts at its original size, even when the browser restores a scrolled position (refresh / back);
+    // scroll events are ignored until the page loaded and the restoration had time to happen, so only a later scroll shrinks it
+    let isReady = false
+    let readyTimeout = null
+
     const onScroll = () => {
+      if (!isReady) return
       const y = window.scrollY
       setIsCompact((compact) => compact ? y > EXPAND_AT : y > COMPACT_AT)
     }
-    onScroll()
+
+    const onLoad = () => {
+      readyTimeout = window.setTimeout(() => { isReady = true }, RESTORE_WAIT_MS)
+    }
+    if (document.readyState === 'complete') onLoad()
+    else window.addEventListener('load', onLoad, { once: true })
+
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      window.clearTimeout(readyTimeout)
+      window.removeEventListener('load', onLoad)
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [])
 
   // the sticky category nav and the section anchors sit below the band, so they follow its measured (animated) height
