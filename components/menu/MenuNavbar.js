@@ -118,9 +118,17 @@ const MenuNavbar = ({ navbarButton, headerImage, contentClassName, children }) =
               : null}
             {/* extra controls (e.g. favorites), placed between the button and the burger */}
             {children}
-            <span ref={menuTriggerRef} className='cursor-pointer select-none text-bloom-darkGreen-100' onClick={() => setIsOpen(!isOpen)}>
+            <button
+              ref={menuTriggerRef}
+              type='button'
+              aria-label='Abrir menú'
+              aria-haspopup='dialog'
+              aria-expanded={isOpen}
+              className='flex items-center justify-center cursor-pointer select-none text-bloom-darkGreen-100'
+              onClick={() => setIsOpen(!isOpen)}
+            >
               <MenuIcon isOpen={isOpen} color='currentColor' className='select-none !w-6 sm:!w-7 !h-auto' />
-            </span>
+            </button>
           </div>
         </div>
       </nav>

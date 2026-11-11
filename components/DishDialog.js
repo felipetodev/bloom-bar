@@ -31,7 +31,7 @@ const DishDialog = ({ isOpen, dishImage, onHandleOpen }) => (
             <Dialog.Panel className='w-full max-w-full md:max-w-[870px] transform overflow-hidden p-[10px] bg-bloom-dark-100 text-left align-middle shadow-xl transition-all font-gopher bg-modal bg-cover'>
               <div className='w-full flex justify-end text-bloom-gray-100'>
                 <button
-                  className='z-10 absolute flex items-center hover:opacity-70 border border-transparent p-1 md:p-2 focus:outline-none focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#DB7526]'
+                  className='z-10 absolute flex items-center hover:opacity-70 border border-transparent p-1 md:p-2 focus:outline-none'
                   type='button'
                   onClick={onHandleOpen}
                 >

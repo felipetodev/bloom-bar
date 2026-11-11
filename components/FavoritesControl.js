@@ -24,7 +24,7 @@ export const FavoritesControl = ({ dishes }) => {
         aria-expanded={isOpen}
         aria-haspopup='dialog'
         aria-label={`Favoritos (${count})`}
-        className='relative flex items-center justify-center text-bloom-darkGreen-100 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bloom-darkGreen-100'
+        className='relative flex items-center justify-center text-bloom-darkGreen-100'
       >
         <HeartIcon className='size-6 sm:size-7' />
         {count > 0 && (
