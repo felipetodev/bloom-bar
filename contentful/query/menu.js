@@ -14,6 +14,7 @@ fragment MenuSectionDetails on MenuSection {
       uniqueTitle
       price
       vegan
+      spicy
       description
     }
   }

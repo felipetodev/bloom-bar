@@ -71,6 +71,7 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
                     hasTitle={dish.uniqueTitle}
                     description={dish.description}
                     isVegan={dish.vegan}
+                    spicy={dish.spicy}
                     image={dish.image}
                   />
                 ))}

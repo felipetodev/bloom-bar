@@ -43,6 +43,7 @@ const Menu = ({ menu, categoryNav }) => {
                         hasTitle={dish.uniqueTitle}
                         description={dish.description}
                         isVegan={dish.vegan}
+                        spicy={dish.spicy}
                         image={dish.image}
                         onSelectImage={() => onSelectImage(dish.image)}
                       />

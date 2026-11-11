@@ -15,7 +15,7 @@ const Heading = ({ title, subtitle, image }) => {
           />
           )
         : null}
-      <h2 className='font-bold w-min sm:w-auto text-xl sm:text-[30px] text-bloom-darkGreen-100 tracking-bloom sm:max-w-[140px] md:max-w-[270px] font-manrope leading-tight'>
+      <h2 className='font-bold text-xl sm:text-[30px] text-bloom-darkGreen-100 tracking-bloom max-w-min sm:min-w-[200px] text-balance md:min-w-fit leading-tight'>
         {title}
       </h2>
       <div
@@ -23,7 +23,7 @@ const Heading = ({ title, subtitle, image }) => {
         className="ml-3 sm:ml-5 sm:mr-5 min-w-[28px] flex-grow h-[6px] bg-[url('/section-line.svg')] bg-[length:563px_6px] bg-repeat-x bg-left"
       />
       {subtitle && (
-        <h3 className='ml-4 text-lg text-bloom-darkGreen-100 font-manrope min-w-fit text-end'>
+        <h3 className='ml-4 text-lg text-bloom-darkGreen-100 min-w-fit text-end'>
           {subtitle}
         </h3>
       )}
