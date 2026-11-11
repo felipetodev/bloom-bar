@@ -23,13 +23,18 @@
 
 .carta {
   background-color: theme('colors.bloom.softGray.100');
-  /* height of the sticky MenuNavbar; the sticky category nav and the section anchors sit below it */
-  --menu-navbar-h: 120px;
+  /* MenuNavbar (band 120px): collapsed it slides up --menu-band-collapse, leaving --menu-navbar-h visible,
+     and its items move down --menu-band-shift (bottom gap 28px -> 16px) */
+  --menu-band-collapse: 40px;
+  --menu-navbar-h: 80px;
+  --menu-band-shift: 12px;
 }
 
 @media (min-width: 640px) {
   .carta {
-    --menu-navbar-h: 112px;
+    /* band 112px, bottom gap 24px -> 16px */
+    --menu-band-collapse: 32px;
+    --menu-band-shift: 8px;
   }
 }
 
@@ -39,7 +44,7 @@
   pointer-events: none !important;
 }
 
-/* overflow: hidden/auto on these ancestors would break the sticky category nav */
+/* overflow: hidden/auto on these ancestors would break the sticky MenuNavbar header */
 .carta #__next,
 .carta .scroll-container {
   overflow: clip !important;

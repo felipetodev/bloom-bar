@@ -14,7 +14,7 @@ const getNavCategories = ({ menuCategories }) => (
 // last section whose top has reached the offset (first one if none has)
 const getActiveId = (ids) => {
   let activeId = ids[0]
-  // the sticky MenuNavbar sits above the category nav
+  // collapsed MenuNavbar band height
   const navbarHeight = parseFloat(window.getComputedStyle(document.body).getPropertyValue('--menu-navbar-h')) || 0
   const offset = SECTION_OFFSET + navbarHeight
 
@@ -114,30 +114,34 @@ const HorizontalCategoryNav = memo(({ categoryNav }) => {
   if (categories.length === 0) return null
 
   return (
-    <nav
-      ref={navRef}
-      aria-label='Categorías de la carta'
-      // the top 4px (pt-1) tuck under the band so no gap shows while it resizes; -mt-1 keeps the layout position unchanged
-      className='sticky top-[calc(var(--menu-navbar-h)-4px)] z-40 flex items-center h-[60px] pt-1 -mt-1 mb-14 -mx-5 sm:-mx-10 md:-mx-14 px-5 sm:px-10 md:px-14 bg-bloom-darkGreen-100 shadow-[0_0_0_100vmax_theme(colors.bloom.darkGreen.100)] [clip-path:inset(0_-100vmax)] overflow-x-auto overflow-y-hidden overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
-    >
-      <div className='flex gap-1 w-max'>
-        {categories.map((category) => (
-          <CategoryNavItem
-            key={category.id}
-            category={category}
-            isActive={getAnchorId(category) === activeId}
-            isVisible={isReady}
-            onClick={() => {
-              const id = getAnchorId(category)
-              lockUntilIdleRef.current?.()
-              setActiveId(id)
-              // no URL hash on purpose; smoothness comes from CSS scroll-behavior (respects reduced motion)
-              document.getElementById(id)?.scrollIntoView({ block: 'start' })
-            }}
-          />
-        ))}
-      </div>
-    </nav>
+    // rendered as MenuNavbar's bottomBar
+    <div className='bg-bloom-darkGreen-100'>
+      <nav
+        ref={navRef}
+        aria-label='Categorías de la carta'
+        className='flex items-center h-14 mx-auto max-w-[1200px] px-5 sm:px-10 md:px-14 overflow-x-auto overflow-y-hidden overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
+      >
+        <div className='flex gap-1 w-max'>
+          {categories.map((category) => (
+            <CategoryNavItem
+              key={category.id}
+              category={category}
+              isActive={getAnchorId(category) === activeId}
+              isVisible={isReady}
+              onClick={() => {
+                const id = getAnchorId(category)
+                lockUntilIdleRef.current?.()
+                setActiveId(id)
+                // no URL hash on purpose; smooth scroll comes from CSS scroll-behavior.
+                // First tab scrolls to the very top so the MenuNavbar band expands again
+                if (id === ids[0]) window.scrollTo({ top: 0 })
+                else document.getElementById(id)?.scrollIntoView({ block: 'start' })
+              }}
+            />
+          ))}
+        </div>
+      </nav>
+    </div>
   )
 })
 

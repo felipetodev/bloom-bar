@@ -5,11 +5,10 @@ import CardImage from './menu/CardImage'
 import CardOutlined from './menu/CardOutlined'
 import Divider from './menu/Divider'
 import FlowerIconSpacer from '../ui/FlowerIconSpacer'
-import HorizontalCategoryNav from '../ui/HorizontalCategoryNav'
 import DishDialog from './DishDialog'
 import { getAnchorId } from './menu/CategoryNavItem'
 
-const Menu = ({ menu, categoryNav }) => {
+const Menu = ({ menu }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [dishImage, setDishImage] = useState({})
 
@@ -22,8 +21,7 @@ const Menu = ({ menu, categoryNav }) => {
 
   return (
     <>
-      <HorizontalCategoryNav categoryNav={categoryNav} />
-      <main className='mx-auto w-full max-w-[600px] md:max-w-[800px]'>
+      <main className='mt-14 mx-auto w-full max-w-[600px] md:max-w-[800px]'>
         {categories?.map((category, idx) => (
           <Fragment key={category?.id || idx}>
             {category?.mainTitle

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, useIsPresent, useReducedMotion } from 'framer-motion'
 import Dish from './menu/Dish'
@@ -17,6 +17,9 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
   }, [favorites, dishes])
 
   useScrollLock()
+
+  // start right below the band, whose height depends on whether it's collapsed (scroll is locked while open)
+  const [top] = useState(() => document.querySelector('[data-menu-band]')?.getBoundingClientRect().bottom)
 
   // keep the latest onClose in a ref so the listener isn't re-bound on every parent render (the parent passes an inline arrow)
   const onCloseRef = useRef(onClose)
@@ -41,6 +44,7 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
       aria-modal='true'
       aria-label='Favoritos'
       className='fixed inset-x-0 bottom-0 top-[var(--menu-navbar-h)] z-[101] overflow-hidden'
+      style={top === undefined ? undefined : { top }}
     >
       <motion.div
         initial={{ opacity: 0, y: offsetY }}
