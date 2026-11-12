@@ -4,7 +4,7 @@ import Image from '../ui/Image'
 
 const DishDialog = ({ isOpen, dishImage, onHandleOpen }) => (
   <Transition appear show={isOpen} as={Fragment}>
-    <Dialog as='div' className='relative z-[999]' onClose={onHandleOpen}>
+    <Dialog as='div' className='relative z-[999]' onClose={onHandleOpen} aria-label={dishImage?.title || 'Imagen del plato'}>
       <Transition.Child
         as={Fragment}
         enter='ease-out duration-300'

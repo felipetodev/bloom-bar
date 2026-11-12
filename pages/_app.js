@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import Script from 'next/script'
 import SeoLayout from '../components/Seo'
 import useLocomotiveScroll from '../hooks/useLocomotiveScroll'
+import { FavoritesProvider } from '../context/FavoritesContext'
 import '../styles/globals.css'
 
 function MyApp ({
@@ -9,16 +10,15 @@ function MyApp ({
   pageProps,
   canonical,
   isMobile,
-  asPath,
-  query
+  asPath
 }) {
   const breakpoint = typeof window !== 'undefined' && window.innerWidth < 1024
+  const isCartaPath = asPath.startsWith('/carta')
+
   useLocomotiveScroll({
     location: asPath,
-    ignore: !!query.slug || isMobile || breakpoint
+    ignore: isCartaPath || isMobile || breakpoint
   })
-
-  const isCartaPath = asPath.startsWith('/carta')
 
   useEffect(() => {
     document.body.classList.toggle('carta', isCartaPath)
@@ -37,7 +37,9 @@ function MyApp ({
           )
         : null}
       <div data-scroll-container className='scroll-container'>
-        <Component {...pageProps} />
+        <FavoritesProvider>
+          <Component {...pageProps} />
+        </FavoritesProvider>
       </div>
     </SeoLayout>
   )
@@ -56,7 +58,6 @@ MyApp.getInitialProps = async ({ ctx }) => {
   return {
     canonical,
     isMobile,
-    asPath: ctx.asPath,
-    query: ctx.query
+    asPath: ctx.asPath
   }
 }

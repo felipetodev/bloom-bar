@@ -19,25 +19,30 @@ export const normalizeContentfulData = ({ fields }) => {
     }
 
     if (key === 'file') {
-      return { ...acc, url: `https:${value.url}` }
+      const { width, height } = value.details?.image ?? {}
+      // real image size, so <Image> can reserve the right aspect ratio and avoid layout shift on load
+      // (conditional spread: getStaticProps cannot serialize undefined)
+      return { ...acc, url: `https:${value.url}`, ...(width && height ? { width, height } : {}) }
     }
 
     return { ...acc, [key]: value }
   }, {})
 }
 
-export const createMenuIsland = (menuData) => {
+export const createCategoryNav = (menuData) => {
   return {
     mainTitle: menuData.mainTitle,
     color: menuData.color,
-    slug: menuData.slug,
-    menuCategories: menuData.menuCategories.map((category) => ({
-      id: category.id,
-      navbarIsland: category.navbarIsland ?? false,
-      // used to differentiate a divider content type (as section) in island menu 👇
-      ...category.mainTitle
-        ? { mainTitle: category.mainTitle }
-        : { title: category.title }
-    }))
+    menuCategories: menuData.menuCategories
+      // dividers (mainTitle) are not navigation categories
+      .filter((category) => !category.mainTitle)
+      .map((category) => ({
+        id: category.id,
+        title: category.title ?? null
+      }))
   }
 }
+
+// every dish of the menu in a single list (used by the favorites panel)
+export const flattenDishes = (menuData) =>
+  menuData?.menuCategories?.flatMap((category) => category.dishes ?? []) ?? []

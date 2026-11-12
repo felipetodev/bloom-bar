@@ -2,10 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Manrope (self-hosted variable font, only used by the carta); latin-ext is fetched only when a glyph needs it */
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("/fonts/manrope/manrope-latin-ext-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("/fonts/manrope/manrope-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.carta {
+  background-color: theme('colors.bloom.softGray.100');
+  /* MenuNavbar (band 120px): collapsed it slides up --menu-band-collapse, leaving --menu-navbar-h visible,
+     and its items move down --menu-band-shift (bottom gap 28px -> 16px) */
+  --menu-band-collapse: 40px;
+  --menu-navbar-h: 80px;
+  --menu-band-shift: 12px;
+}
+
+@media (min-width: 640px) {
+  .carta {
+    /* band 112px, bottom gap 24px -> 16px */
+    --menu-band-collapse: 32px;
+    --menu-band-shift: 8px;
+  }
+}
+
 .carta #meitre-widget-root {
   display: none !important;
   visibility: hidden !important;
   pointer-events: none !important;
+}
+
+/* overflow: hidden/auto on these ancestors would break the sticky MenuNavbar header */
+.carta #__next,
+.carta .scroll-container {
+  overflow: clip !important;
+}
+
+/* smooth jumps between carta sections (Next keeps CSS scroll-behavior on hash-only changes) */
+@media (prefers-reduced-motion: no-preference) {
+  html:has(body.carta) {
+    scroll-behavior: smooth;
+  }
 }
 
 #meitre-widget-root .meitre-widget__launch__button button {
@@ -65,7 +114,7 @@
   }
 
   .anchor {
-    scroll-margin-top: calc(80px + 2.5em);
+    scroll-margin-top: calc(var(--menu-navbar-h, 0px) + 100px);
   }
 
   input,
@@ -159,105 +208,6 @@
   }
 
   /* LOCOMOTIVE END 🚂 */
-
-  .DropdownMenuContent,
-  .DropdownMenuSubContent {
-    min-width: 313px;
-    max-width: 313px;
-    box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2);
-    animation-duration: 400ms;
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform, opacity;
-
-    overflow: hidden;
-  }
-
-  [data-radix-popper-content-wrapper] {
-    top: -10px !important;
-    z-index: 999 !important;
-  }
-
-  .DropdownMenuContent[data-side='top'],
-  .DropdownMenuSubContent[data-side='top'] {
-    animation-name: slideDownAndFade;
-  }
-
-  .DropdownMenuContent[data-side='right'],
-  .DropdownMenuSubContent[data-side='right'] {
-    animation-name: slideLeftAndFade;
-  }
-
-  .DropdownMenuContent[data-side='bottom'],
-  .DropdownMenuSubContent[data-side='bottom'] {
-    animation-name: slideUpAndFade;
-  }
-
-  .DropdownMenuContent[data-side='left'],
-  .DropdownMenuSubContent[data-side='left'] {
-    animation-name: slideRightAndFade;
-  }
-
-  .DropdownMenuItem,
-  .DropdownMenuCheckboxItem,
-  .DropdownMenuRadioItem,
-  .DropdownMenuSubTrigger {
-    line-height: 1;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    height: 25px;
-    position: relative;
-    user-select: none;
-    outline: none;
-  }
-
-  @keyframes slideUpAndFade {
-    from {
-      opacity: 0;
-      transform: translateY(2px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideRightAndFade {
-    from {
-      opacity: 0;
-      transform: translateX(-2px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slideDownAndFade {
-    from {
-      opacity: 0;
-      transform: translateY(-2px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideLeftAndFade {
-    from {
-      opacity: 0;
-      transform: translateX(2px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
 
   .swiper {
     width: 100%;

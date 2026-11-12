@@ -4,8 +4,7 @@ export default async function handler (req, res) {
   if (req.headers['x-secret'] === process.env.REVALIDATE_SECRET) {
     if (route === process.env.ROUTE || req.headers['x-secret-route'] === process.env.ROUTE) {
       await Promise.all([
-        res.revalidate('/carta/nikkei'),
-        res.revalidate('/carta/drinks'),
+        res.revalidate('/carta'),
         res.revalidate('/'),
         res.revalidate('/contacto'),
         res.revalidate('/ubicacion'),

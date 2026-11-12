@@ -13,6 +13,7 @@ module.exports = {
       fontFamily: {
         abel: ['Abel', 'sans-serif'],
         gopher: ['gopher', 'system-ui', 'sans-serif'],
+        manrope: ['Manrope', 'sans-serif'],
         marcellus: ['Marcellus', 'serif']
       },
       gridTemplateColumns: {
@@ -40,8 +41,7 @@ module.exports = {
         'promotion-gradient': 'linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%)',
         'nav-gradient': 'linear-gradient(180deg,rgba(0,0,0,.6) -50%, transparent 80%)',
         'menu-card': 'linear-gradient(180deg, rgba(0, 0, 0, 0) 79.36%, rgba(0, 0, 0, 0.8) 100%)',
-        'island-gradient': 'linear-gradient(0deg, rgba(0, 0, 0, 0.8) -28.53%, rgba(0, 0, 0, 0) 90.35%)',
-        'bottom-island-gradient': 'linear-gradient(180deg,#0000 31.42%,#000)'
+        'promotion-bottom-gradient': 'linear-gradient(180deg,#0000 31.42%,#000)'
       },
       letterSpacing: {
         bloom: '0.3em'
@@ -50,7 +50,14 @@ module.exports = {
         bloom: {
           orange: {
             50: '#FF5C00',
-            100: '#FF5900'
+            100: '#FF5900',
+            200: '#D86C18'
+          },
+          peach: {
+            100: '#FCCFB0'
+          },
+          silver: {
+            100: '#D9D9D9'
           },
           black: {
             100: '#141414'
@@ -66,7 +73,8 @@ module.exports = {
             100: '#131B14'
           },
           darkGreen: {
-            100: '#151B15'
+            100: '#151B15',
+            200: '#292E28'
           },
           cyan: {
             50: '#03A2D4',
