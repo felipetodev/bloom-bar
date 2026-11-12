@@ -71,7 +71,6 @@ const NavMenu = ({ setIsOpen, triggerRef }) => {
       <button
         type='button'
         aria-label='Cerrar menú'
-        autoFocus
         onClick={() => setIsOpen(false)}
         style={triggerRect ? { top: triggerRect.top, left: triggerRect.left, width: triggerRect.width, height: triggerRect.height } : undefined}
         className='absolute top-5 right-5 flex items-center justify-center cursor-pointer select-none'
