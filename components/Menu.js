@@ -48,7 +48,7 @@ const Menu = ({ menu }) => {
                     ))}
                   </ul>
                   {category.image && (
-                    <CardImage cardInfo={category.image} variant={menu?.color} />
+                    <CardImage cardInfo={category.image} />
                   )}
                   {category.card && (
                     <CardOutlined cardInfo={category.card} />

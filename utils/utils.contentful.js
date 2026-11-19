@@ -32,7 +32,6 @@ export const normalizeContentfulData = ({ fields }) => {
 export const createCategoryNav = (menuData) => {
   return {
     mainTitle: menuData.mainTitle,
-    color: menuData.color,
     menuCategories: menuData.menuCategories
       // dividers (mainTitle) are not navigation categories
       .filter((category) => !category.mainTitle)

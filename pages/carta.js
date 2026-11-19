@@ -30,7 +30,6 @@ const Menu = ({ menuData, categoryNav }) => {
         </div>
       </div>
       <Promotion promotionSection={menuData?.promotion} />
-      <div className='h-32 w-full bg-black select-none pointer-events-none relative z-30' />
     </>
   )
 }
