@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion, useIsPresent, useReducedMotion } from 'framer-motion'
 import Dish from './menu/Dish'
@@ -9,25 +9,34 @@ import { useFavorites } from '../context/FavoritesContext'
 const EASE_OUT = [0.23, 1, 0.32, 1]
 const EASE_IN_OUT = [0.77, 0, 0.175, 1]
 
-// a dish removed from favorites fades out while the ones below slide up to close the gap.
-// forwardRef: AnimatePresence mode='popLayout' needs a ref to its direct children
-const FavoriteItem = forwardRef(({ reduceMotion, children }, ref) => {
+// gap between dishes in px (gap-3): the leaving dish cancels it with a negative margin as it collapses
+const LIST_GAP = 12
+
+// a dish removed from favorites fades out and collapses, so the ones below slide up to close the gap.
+// It collapses in the flow (height) instead of being popped out with transforms: the panel then shrinks
+// little by little, and when it's scrolled to the bottom the browser follows it frame by frame instead of
+// re-clamping the scroll position in one jump
+const FavoriteItem = ({ reduceMotion, children }) => {
   const isPresent = useIsPresent()
 
   return (
     <motion.li
-      ref={ref}
-      layout={reduceMotion ? false : 'position'}
-      exit={{ opacity: 0, scale: reduceMotion ? 1 : 0.97 }}
-      // plain easeOut for the fade: the strong EASE_OUT spends nearly all the opacity in the first 100ms, which reads as a cut
-      transition={{ duration: 0.25, ease: 'easeOut', layout: { duration: 0.3, ease: EASE_IN_OUT } }}
-      // while leaving, its heart can't be tapped again (that would add the dish back mid-exit)
-      className={isPresent ? undefined : 'pointer-events-none'}
+      // reduced motion: only the fade, the list closes the gap at once when the dish is gone
+      exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.97, height: 0, marginBottom: -LIST_GAP }}
+      transition={{
+        // plain easeOut for the fade: the strong EASE_OUT spends nearly all the opacity in the first 100ms, which reads as a cut
+        duration: 0.25,
+        ease: 'easeOut',
+        height: { duration: 0.3, ease: EASE_IN_OUT },
+        marginBottom: { duration: 0.3, ease: EASE_IN_OUT }
+      }}
+      // while leaving: clipped as it collapses, and its heart can't be tapped again (that would add the dish back mid-exit)
+      className={isPresent ? undefined : 'pointer-events-none overflow-hidden'}
     >
       {children}
     </motion.li>
   )
-})
+}
 
 const FavoritesPanel = ({ dishes = [], onClose }) => {
   const reduceMotion = useReducedMotion()
@@ -72,8 +81,6 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
       style={top === undefined ? undefined : { top }}
     >
       <motion.div
-        // lets the layout animations of the list account for this container's scroll offset
-        layoutScroll
         initial={{ opacity: 0, y: offsetY }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: offsetY }}
@@ -89,10 +96,8 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
               <CloseIcon />
             </button>
           </div>
-          {/* relative: popLayout takes the leaving dish out of the flow with position: absolute.
-              Reduced motion: the dishes below don't slide, so the leaving one keeps its place until it has faded */}
-          <ul className='relative mt-6 flex flex-col gap-3'>
-            <AnimatePresence initial={false} mode={reduceMotion ? 'sync' : 'popLayout'}>
+          <ul className='mt-6 flex flex-col gap-3'>
+            <AnimatePresence initial={false}>
               {items.map((dish) => (
                 <FavoriteItem key={dish.id} reduceMotion={reduceMotion}>
                   <Dish
@@ -115,8 +120,8 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
               <motion.p
                 initial={openedEmpty ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
-                // waits for the last dish to finish fading out (FavoriteItem exit), since it does so in this same spot
-                transition={{ duration: 0.2, delay: 0.25, ease: 'easeOut' }}
+                // waits for the last dish to finish collapsing (FavoriteItem exit), so it isn't seen sliding up below it
+                transition={{ duration: 0.2, delay: 0.3, ease: 'easeOut' }}
                 className='py-4 text-center font-bold'
               >
                 Aún no tienes favoritos
