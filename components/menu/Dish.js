@@ -85,13 +85,13 @@ const Dish = ({
         <div>
           <h3 className={`text-[17px] sm:text-[22px] font-bold leading-snug ${imageUrl ? '' : 'pr-8'}`}>{title}</h3>
           {!hasTitle && description
-            ? <p className='mt-1 font-medium !text-[15px]'>{description}</p>
+            ? <p className='mt-1 font-medium !text-[15px] max-sm:!text-[13px] max-sm:!leading-5 max-sm:line-clamp-4'>{description}</p>
             : null}
         </div>
         {hasFooter
           ? (
             <div className='flex items-center justify-between gap-4'>
-              <span className='text-sm sm:text-lg font-bold text-[#DB7526]'>
+              <span className='text-[15px] sm:text-lg font-bold text-[#DB7526]'>
                 {formatPrice(price)}
               </span>
               {hasTags ? <DishTags isVegan={isVegan} spicy={spicy} /> : null}

@@ -51,7 +51,7 @@ module.exports = {
           orange: {
             50: '#FF5C00',
             100: '#FF5900',
-            200: '#D86C18'
+            200: '#FF6700' // new menu
           },
           peach: {
             100: '#FCCFB0'

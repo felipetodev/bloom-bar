@@ -50,7 +50,7 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
         initial={{ opacity: 0, y: offsetY }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: offsetY }}
-        transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
+        transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
         className='h-full overflow-y-auto bg-bloom-softGray-100 font-manrope text-bloom-darkGreen-100'
       >
         <div className='mx-auto w-full max-w-[600px] md:max-w-[800px] px-5 sm:px-10 md:px-0 pb-14'>

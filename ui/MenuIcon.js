@@ -17,7 +17,7 @@ const MenuIcon = ({ isOpen, color = '#DDD6CF', ...props }) => (
       x2='39.5508'
       y2='10.918'
       stroke={color}
-      strokeWidth='2'
+      strokeWidth='3'
       strokeLinecap='round'
     />
     <motion.line
@@ -32,7 +32,7 @@ const MenuIcon = ({ isOpen, color = '#DDD6CF', ...props }) => (
       x2='39.5508'
       y2='17.918'
       stroke={color}
-      strokeWidth='2'
+      strokeWidth='3'
       strokeLinecap='round'
     />
     <motion.line
@@ -48,7 +48,7 @@ const MenuIcon = ({ isOpen, color = '#DDD6CF', ...props }) => (
       x2='39.5508'
       y2='24.918'
       stroke={color}
-      strokeWidth='2'
+      strokeWidth='3'
       strokeLinecap='round'
     />
   </svg>
