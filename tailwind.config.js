@@ -26,9 +26,27 @@ module.exports = {
         ]
       },
       animation: {
-        border: 'border 4s ease infinite'
+        border: 'border 4s ease infinite',
+        // FavoriteButton like burst; the ring outlasts the pop because its end clears the burst state
+        'heart-pop': 'heart-pop 400ms cubic-bezier(0.23, 1, 0.32, 1)',
+        // the ring grows fast but fades at a steady pace; easing the opacity too would hide it within the first 100ms
+        'heart-ring': 'heart-ring 500ms cubic-bezier(0.23, 1, 0.32, 1) forwards, heart-ring-fade 500ms linear forwards'
       },
       keyframes: {
+        'heart-pop': {
+          '0%': { transform: 'scale(1)' },
+          '20%': { transform: 'scale(0.8)' },
+          '55%': { transform: 'scale(1.2)', animationTimingFunction: 'cubic-bezier(0.77, 0, 0.175, 1)' },
+          '100%': { transform: 'scale(1)' }
+        },
+        'heart-ring': {
+          '0%': { transform: 'scale(0.5)' },
+          '100%': { transform: 'scale(1.8)' }
+        },
+        'heart-ring-fade': {
+          '0%': { opacity: '0.8' },
+          '100%': { opacity: '0' }
+        },
         border: {
           '0%, 100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' }

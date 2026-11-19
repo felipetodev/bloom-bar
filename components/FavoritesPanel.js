@@ -1,10 +1,33 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { motion, useIsPresent, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, motion, useIsPresent, useReducedMotion } from 'framer-motion'
 import Dish from './menu/Dish'
 import CloseIcon from '../ui/CloseIcon'
 import useScrollLock from '../hooks/useScrollLock'
 import { useFavorites } from '../context/FavoritesContext'
+
+const EASE_OUT = [0.23, 1, 0.32, 1]
+const EASE_IN_OUT = [0.77, 0, 0.175, 1]
+
+// a dish removed from favorites fades out while the ones below slide up to close the gap.
+// forwardRef: AnimatePresence mode='popLayout' needs a ref to its direct children
+const FavoriteItem = forwardRef(({ reduceMotion, children }, ref) => {
+  const isPresent = useIsPresent()
+
+  return (
+    <motion.li
+      ref={ref}
+      layout={reduceMotion ? false : 'position'}
+      exit={{ opacity: 0, scale: reduceMotion ? 1 : 0.97 }}
+      // plain easeOut for the fade: the strong EASE_OUT spends nearly all the opacity in the first 100ms, which reads as a cut
+      transition={{ duration: 0.25, ease: 'easeOut', layout: { duration: 0.3, ease: EASE_IN_OUT } }}
+      // while leaving, its heart can't be tapped again (that would add the dish back mid-exit)
+      className={isPresent ? undefined : 'pointer-events-none'}
+    >
+      {children}
+    </motion.li>
+  )
+})
 
 const FavoritesPanel = ({ dishes = [], onClose }) => {
   const reduceMotion = useReducedMotion()
@@ -15,6 +38,8 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
     const byId = new Map(dishes.map((dish) => [dish.id, dish]))
     return favorites.map((id) => byId.get(id)).filter(Boolean)
   }, [favorites, dishes])
+  // the empty message only fades in when the last favorite is removed, not when the panel opens already empty
+  const [openedEmpty] = useState(items.length === 0)
 
   useScrollLock()
 
@@ -47,10 +72,12 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
       style={top === undefined ? undefined : { top }}
     >
       <motion.div
+        // lets the layout animations of the list account for this container's scroll offset
+        layoutScroll
         initial={{ opacity: 0, y: offsetY }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: offsetY }}
-        transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+        transition={{ duration: 0.3, ease: EASE_OUT }}
         className='h-full overflow-y-auto bg-bloom-softGray-100 font-manrope text-bloom-darkGreen-100'
       >
         <div className='mx-auto w-full max-w-[600px] md:max-w-[800px] px-5 sm:px-10 md:px-0 pb-14'>
@@ -62,13 +89,14 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
               <CloseIcon />
             </button>
           </div>
-          {items.length === 0
-            ? <p className='py-10 text-center font-bold'>Aún no tienes favoritos</p>
-            : (
-              <ul className='mt-6 flex flex-col gap-3'>
-                {items.map((dish) => (
+          {/* relative: popLayout takes the leaving dish out of the flow with position: absolute.
+              Reduced motion: the dishes below don't slide, so the leaving one keeps its place until it has faded */}
+          <ul className='relative mt-6 flex flex-col gap-3'>
+            <AnimatePresence initial={false} mode={reduceMotion ? 'sync' : 'popLayout'}>
+              {items.map((dish) => (
+                <FavoriteItem key={dish.id} reduceMotion={reduceMotion}>
                   <Dish
-                    key={dish.id}
+                    as='div'
                     id={dish.id}
                     title={dish.title}
                     price={dish.price}
@@ -78,9 +106,23 @@ const FavoritesPanel = ({ dishes = [], onClose }) => {
                     spicy={dish.spicy}
                     image={dish.image}
                   />
-                ))}
-              </ul>
-              )}
+                </FavoriteItem>
+              ))}
+            </AnimatePresence>
+          </ul>
+          {items.length === 0
+            ? (
+              <motion.p
+                initial={openedEmpty ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                // waits for the last dish to finish fading out (FavoriteItem exit), since it does so in this same spot
+                transition={{ duration: 0.2, delay: 0.25, ease: 'easeOut' }}
+                className='py-4 text-center font-bold'
+              >
+                Aún no tienes favoritos
+              </motion.p>
+              )
+            : null}
         </div>
       </motion.div>
     </div>,

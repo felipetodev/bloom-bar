@@ -73,14 +73,16 @@ const Dish = ({
   isVegan,
   spicy,
   image,
-  onSelectImage
+  onSelectImage,
+  // FavoritesPanel wraps each dish in its own animated <li>, so there it renders as a div
+  as: Tag = 'li'
 }) => {
   const imageUrl = image?.url
   const hasTags = isVegan || spicy > 0
   const hasFooter = price || hasTags
 
   return (
-    <li className='relative z-10 flex gap-4 rounded-2xl bg-[#EDE8E4] p-4 sm:p-5 text-bloom-darkGreen-100 font-manrope'>
+    <Tag className='relative z-10 flex gap-4 rounded-2xl bg-[#EDE8E4] p-4 sm:p-5 text-bloom-darkGreen-100 font-manrope'>
       <div className='flex min-w-0 flex-1 flex-col justify-between gap-3.5'>
         <div>
           <h3 className={`text-[17px] sm:text-[22px] font-bold leading-snug ${imageUrl ? '' : 'pr-8'}`}>{title}</h3>
@@ -102,7 +104,7 @@ const Dish = ({
       {imageUrl
         ? <DishImage id={id} title={title} url={imageUrl} onSelectImage={onSelectImage} />
         : <FavoriteButton id={id} title={title} stroke='#151B14' className='absolute right-4 top-4 sm:right-5 sm:top-5' />}
-    </li>
+    </Tag>
   )
 }
 
