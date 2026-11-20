@@ -10,12 +10,15 @@ const MAX_SPICY_LEVEL = 5
 const imageCache = {}
 
 // next/image is `unoptimized` here, so ask Contentful for a thumbnail instead of the full-size original (shown at 128-144px, so 288 is 2x)
-const thumbnail = (url) => `${url}?w=288&h=288&fit=fill&fm=webp&q=80`
+export const thumbnail = (url) => `${url}?w=288&h=288&fit=fill&fm=webp&q=80`
+
+// the larger version DishDialog shows (up to 672px wide on desktop, so 1200 covers most 2x screens)
+export const fullImage = (url) => `${url}?w=1200&fm=webp&q=80`
 
 const preloadImage = (url) => {
   if (!isDesktop() || imageCache[url]) return
   const img = new window.Image()
-  img.src = url
+  img.src = fullImage(url)
   imageCache[url] = img
 }
 
@@ -25,7 +28,7 @@ const SpicyLevel = ({ level }) => (
   </span>
 )
 
-const DishTags = ({ isVegan, spicy }) => (
+export const DishTags = ({ isVegan, spicy }) => (
   <div className='flex items-baseline gap-1.5'>
     {isVegan ? <VeganIcon className='text-[#479149] size-[18px] sm:size-[21px]' /> : null}
     {spicy > 0 ? <SpicyLevel level={spicy} /> : null}
@@ -51,7 +54,7 @@ const DishImage = ({ id, title, url, onSelectImage }) => {
             type='button'
             onMouseEnter={() => preloadImage(url)}
             onClick={onSelectImage}
-            aria-label={`Ver imagen de ${title}`}
+            aria-label={`Ver detalle de ${title}`}
             aria-haspopup='dialog'
             className='block overflow-hidden rounded-lg scroll-mt-20 outline-none focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#DB7526]'
           >

@@ -1,62 +1,83 @@
-import { Fragment } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import Image from '../ui/Image'
+import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
+import CloseIcon from '../ui/CloseIcon'
+import formatPrice from '../utils/formatPrice'
+import useScrollLock from '../hooks/useScrollLock'
+import { DishTags, fullImage, thumbnail } from './menu/Dish'
 
-const DishDialog = ({ isOpen, dishImage, onHandleOpen }) => (
-  <Transition appear show={isOpen} as={Fragment}>
-    <Dialog as='div' className='relative z-[999]' onClose={onHandleOpen} aria-label={dishImage?.title || 'Imagen del plato'}>
-      <Transition.Child
-        as={Fragment}
-        enter='ease-out duration-300'
-        enterFrom='opacity-0'
-        enterTo='opacity-100'
-        leave='ease-in duration-200'
-        leaveFrom='opacity-100'
-        leaveTo='opacity-0'
-      >
-        <div className='fixed inset-0 bg-black bg-opacity-25' />
-      </Transition.Child>
+const TRANSITION = 'duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] data-[leave]:duration-150'
 
-      <div className='fixed inset-0 overflow-y-auto'>
-        <div className='flex min-h-full items-center justify-center p-4 text-center'>
-          <Transition.Child
-            as={Fragment}
-            enter='ease-out duration-300'
-            enterFrom='opacity-0 scale-95'
-            enterTo='opacity-100 scale-100'
-            leave='ease-in duration-200'
-            leaveFrom='opacity-100 scale-100'
-            leaveTo='opacity-0 scale-95'
+// Headless UI locks the scroll on <html>, which would break the sticky navbar (see useScrollLock), so on the carta
+// that lock is cancelled in globals.css and the page is locked on <body> instead while the panel is mounted
+const ScrollLock = () => {
+  useScrollLock()
+  return null
+}
+
+// dish detail: photo on top and the whole description below (the card in the list clamps it on mobile).
+// `dish` stays set while the dialog closes, so the content doesn't empty out during the leave transition
+const DishDialog = ({ isOpen, dish, onClose }) => {
+  const { title, uniqueTitle, description, price, vegan, spicy, image } = dish ?? {}
+  const hasTags = vegan || spicy > 0
+
+  return (
+    <Dialog open={isOpen} onClose={onClose} className='relative z-[999]'>
+      <DialogBackdrop
+        transition
+        className={`fixed inset-0 bg-bloom-darkGreen-100/80 transition-opacity data-[closed]:opacity-0 ${TRANSITION}`}
+      />
+      <div className='fixed inset-0 flex items-center justify-center p-3 sm:p-6'>
+        <DialogPanel
+          transition
+          // from md the panel grows with the viewport height (the photo is a square as wide as the panel), leaving room for the text below
+          className={`relative flex max-h-full w-full sm:max-w-md md:max-w-[min(42rem,calc(100dvh-16rem))] flex-col overflow-hidden rounded-2xl bg-[#EDE8E4] font-manrope text-bloom-darkGreen-100 shadow-xl transition-[opacity,transform] data-[closed]:opacity-0 motion-safe:data-[closed]:scale-95 ${TRANSITION}`}
+        >
+          <ScrollLock />
+          {/* outside the scroll area so it stays reachable when a long description scrolls */}
+          <button
+            type='button'
+            aria-label='Cerrar'
+            onClick={onClose}
+            className='absolute right-2 top-2 z-10 flex size-10 items-center justify-center rounded-full text-white drop-shadow-[0_0_3px_rgba(0,0,0,0.6)] outline-none focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-bloom-orange-200'
           >
-            <Dialog.Panel className='w-full max-w-full md:max-w-[870px] transform overflow-hidden p-[10px] bg-bloom-dark-100 text-left align-middle shadow-xl transition-all font-gopher bg-modal bg-cover'>
-              <div className='w-full flex justify-end text-bloom-gray-100'>
-                <button
-                  className='z-10 absolute flex items-center hover:opacity-70 border border-transparent p-1 md:p-2 focus:outline-none'
-                  type='button'
-                  onClick={onHandleOpen}
-                >
-                  <span className='text-[10px] md:text-[16px] mr-1'>
-                    CERRAR
-                  </span>
-                  <svg
-                    width={24}
-                    height={24}
-                    viewBox='0 0 24 24'
-                  >
-                    <path fill='currentColor' d='M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z' />
-                  </svg>
-                </button>
-              </div>
-              <Image
-                src={dishImage.url}
-                alt={dishImage.title}
-              />
-            </Dialog.Panel>
-          </Transition.Child>
-        </div>
+            <CloseIcon className='size-7' />
+          </button>
+          <div className='overflow-y-auto overscroll-contain'>
+            {image?.url
+              ? (
+                <img
+                  src={fullImage(image.url)}
+                  alt=''
+                  width={image.width}
+                  height={image.height}
+                  // the list thumbnail is already cached, so it fills in while the larger image loads
+                  // mobile keeps the photo's own proportion (reserved up front, so nothing shifts on load); from sm it's cropped to a square
+                  style={{
+                    backgroundImage: `url(${thumbnail(image.url)})`,
+                    '--ratio': image.width && image.height ? `${image.width} / ${image.height}` : 'auto'
+                  }}
+                  className='block aspect-[var(--ratio)] sm:aspect-square h-auto w-full bg-cover bg-center object-cover'
+                />
+                )
+              : null}
+            <div className='p-5 sm:p-6 md:p-8'>
+              <DialogTitle className='text-xl md:text-2xl font-bold leading-snug'>{title}</DialogTitle>
+              {!uniqueTitle && description
+                ? <p className='mt-1 md:mt-2 font-medium !text-[15px] md:!text-base !leading-relaxed'>{description}</p>
+                : null}
+              {price || hasTags
+                ? (
+                  <div className='mt-4 md:mt-6 flex items-center justify-between gap-4'>
+                    <span className='text-lg font-bold text-[#DB7526]'>{formatPrice(price)}</span>
+                    {hasTags ? <DishTags isVegan={vegan} spicy={spicy} /> : null}
+                  </div>
+                  )
+                : null}
+            </div>
+          </div>
+        </DialogPanel>
       </div>
     </Dialog>
-  </Transition>
-)
+  )
+}
 
 export default DishDialog

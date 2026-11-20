@@ -10,12 +10,12 @@ import { getAnchorId } from './menu/CategoryNavItem'
 
 const Menu = ({ menu }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [dishImage, setDishImage] = useState({})
+  const [selectedDish, setSelectedDish] = useState(null)
 
   const categories = menu?.menuCategories
 
-  const onSelectImage = (img) => {
-    setDishImage(img)
+  const onSelectDish = (dish) => {
+    setSelectedDish(dish)
     setIsOpen(true)
   }
 
@@ -43,7 +43,7 @@ const Menu = ({ menu }) => {
                         isVegan={dish.vegan}
                         spicy={dish.spicy}
                         image={dish.image}
-                        onSelectImage={() => onSelectImage(dish.image)}
+                        onSelectImage={() => onSelectDish(dish)}
                       />
                     ))}
                   </ul>
@@ -66,8 +66,8 @@ const Menu = ({ menu }) => {
 
       <DishDialog
         isOpen={isOpen}
-        onHandleOpen={() => setIsOpen(false)}
-        dishImage={dishImage}
+        onClose={() => setIsOpen(false)}
+        dish={selectedDish}
       />
 
       {/* <DialogPromo /> */}
