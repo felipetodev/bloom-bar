@@ -26,7 +26,7 @@ const DishDialog = ({ isOpen, dish, onClose }) => {
         <DialogPanel
           transition
           // from md the panel grows with the viewport height (the photo is a square as wide as the panel), leaving room for the text below
-          className={`relative flex max-h-full w-full sm:max-w-md md:max-w-[min(42rem,calc(100dvh-16rem))] flex-col overflow-hidden rounded-2xl bg-[#EDE8E4] font-manrope text-bloom-darkGreen-100 shadow-xl transition-[opacity,transform] data-[closed]:opacity-0 motion-safe:data-[closed]:scale-95 ${TRANSITION}`}
+          className={`relative flex max-h-full w-full sm:max-w-md md:max-w-[min(32rem,calc(100dvh-16rem))] flex-col overflow-hidden rounded-2xl bg-[#EDE8E4] font-manrope text-bloom-darkGreen-100 shadow-xl transition-[opacity,transform] data-[closed]:opacity-0 motion-safe:data-[closed]:scale-95 ${TRANSITION}`}
         >
           <ScrollLock />
           {/* outside the scroll area so it stays reachable when a long description scrolls */}

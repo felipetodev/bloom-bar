@@ -12,7 +12,7 @@ const imageCache = {}
 // next/image is `unoptimized` here, so ask Contentful for a thumbnail instead of the full-size original (shown at 128-144px, so 288 is 2x)
 export const thumbnail = (url) => `${url}?w=288&h=288&fit=fill&fm=webp&q=80`
 
-// the larger version DishDialog shows (up to 672px wide on desktop, so 1200 covers most 2x screens)
+// the larger version DishDialog shows (up to 512px wide on desktop, so 1200 covers 2x screens)
 export const fullImage = (url) => `${url}?w=1200&fm=webp&q=80`
 
 const preloadImage = (url) => {
