@@ -6,15 +6,11 @@ import { DishTags, fullImage, thumbnail } from './menu/Dish'
 
 const TRANSITION = 'duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] data-[leave]:duration-150'
 
-// Headless UI locks the scroll on <html>, which would break the sticky navbar (see useScrollLock), so on the carta
-// that lock is cancelled in globals.css and the page is locked on <body> instead while the panel is mounted
 const ScrollLock = () => {
   useScrollLock()
   return null
 }
 
-// dish detail: photo on top and the whole description below (the card in the list clamps it on mobile).
-// `dish` stays set while the dialog closes, so the content doesn't empty out during the leave transition
 const DishDialog = ({ isOpen, dish, onClose }) => {
   const { title, uniqueTitle, description, price, vegan, spicy, image } = dish ?? {}
   const hasTags = vegan || spicy > 0
@@ -25,7 +21,8 @@ const DishDialog = ({ isOpen, dish, onClose }) => {
         transition
         className={`fixed inset-0 bg-bloom-darkGreen-100/80 transition-opacity data-[closed]:opacity-0 ${TRANSITION}`}
       />
-      <div className='fixed inset-0 flex items-center justify-center p-3 sm:p-6'>
+      {/* p-5: same side margin as the page content on mobile, so the panel lines up with the dish cards */}
+      <div className='fixed inset-0 flex items-center justify-center p-5 sm:p-6'>
         <DialogPanel
           transition
           // from md the panel grows with the viewport height (the photo is a square as wide as the panel), leaving room for the text below
@@ -50,12 +47,9 @@ const DishDialog = ({ isOpen, dish, onClose }) => {
                   width={image.width}
                   height={image.height}
                   // the list thumbnail is already cached, so it fills in while the larger image loads
-                  // mobile keeps the photo's own proportion (reserved up front, so nothing shifts on load); from sm it's cropped to a square
-                  style={{
-                    backgroundImage: `url(${thumbnail(image.url)})`,
-                    '--ratio': image.width && image.height ? `${image.width} / ${image.height}` : 'auto'
-                  }}
-                  className='block aspect-[var(--ratio)] sm:aspect-square h-auto w-full bg-cover bg-center object-cover'
+                  style={{ backgroundImage: `url(${thumbnail(image.url)})` }}
+                  // always 1:1 (the photos are uploaded square; any other proportion is cropped to fit)
+                  className='block aspect-square h-auto w-full bg-cover bg-center object-cover'
                 />
                 )
               : null}

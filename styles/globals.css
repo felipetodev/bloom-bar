@@ -52,9 +52,9 @@
 
 /* Headless UI's Dialog sets overflow: hidden on <html> while open; a non-visible overflow there turns body into its own
    scroll container and the sticky MenuNavbar scrolls away. DishDialog locks the scroll on body instead (useScrollLock) */
-/* html:has(body.carta) {
+html:has(body.carta) {
   overflow: visible !important;
-} */
+}
 
 /* smooth jumps between carta sections (Next keeps CSS scroll-behavior on hash-only changes) */
 @media (prefers-reduced-motion: no-preference) {
