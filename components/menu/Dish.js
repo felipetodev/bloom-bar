@@ -52,8 +52,7 @@ const DishImage = ({ id, title, url, onSelectImage }) => {
         ? (
           <button
             type='button'
-            onMouseEnter={() => preloadImage(url)}
-            onClick={onSelectImage}
+            // no onClick of its own: the click bubbles to the card, which opens the dialog (see Dish)
             aria-label={`Ver detalle de ${title}`}
             aria-haspopup='dialog'
             className='block overflow-hidden rounded-lg scroll-mt-20 outline-none focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#DB7526]'
@@ -84,8 +83,14 @@ const Dish = ({
   const hasTags = isVegan || spicy > 0
   const hasFooter = price || hasTags
 
+  const isClickable = Boolean(imageUrl && onSelectImage)
+
   return (
-    <Tag className='relative z-10 flex gap-4 rounded-2xl bg-[#EDE8E4] p-4 sm:p-5 text-bloom-darkGreen-100 font-manrope'>
+    <Tag
+      onClick={isClickable ? onSelectImage : undefined}
+      onMouseEnter={isClickable ? () => preloadImage(imageUrl) : undefined}
+      className={`relative z-10 flex gap-4 rounded-2xl bg-[#EDE8E4] p-4 sm:p-5 text-bloom-darkGreen-100 font-manrope ${isClickable ? 'cursor-pointer' : ''}`}
+    >
       <div className='flex min-w-0 flex-1 flex-col justify-between gap-3.5'>
         <div>
           <h3 className={`text-[17px] sm:text-[22px] font-bold leading-snug ${imageUrl ? '' : 'pr-8'}`}>{title}</h3>

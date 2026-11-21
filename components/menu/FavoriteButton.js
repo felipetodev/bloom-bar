@@ -14,7 +14,9 @@ const FavoriteButton = ({ id, title, stroke = '#E0E0E0', className = '' }) => {
   return (
     <button
       type='button'
-      onClick={() => {
+      onClick={(event) => {
+        // the dish card around it opens the dish dialog on click
+        event.stopPropagation()
         setIsBursting(!active)
         toggleFavorite(id)
       }}
