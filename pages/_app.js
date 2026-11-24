@@ -50,7 +50,7 @@ export default MyApp
 MyApp.getInitialProps = async ({ ctx }) => {
   const userAgent = ctx.req.headers['user-agent']
   const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)
-  const baseUrl = 'https://bloomnikkeibar.cl'
+  const baseUrl = 'https://www.bloomnikkeibar.cl'
 
   const { asPath } = ctx
   const canonical = baseUrl + asPath
