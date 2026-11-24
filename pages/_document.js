@@ -1,6 +1,8 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 
-export default function Document () {
+export default function Document ({ __NEXT_DATA__: nextData }) {
+  const isCartaPath = nextData?.page?.startsWith('/carta')
+
   return (
     <Html lang='es'>
       <Head>
@@ -9,7 +11,7 @@ export default function Document () {
         <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
         <link href='https://fonts.googleapis.com/css2?family=Abel&family=Marcellus&display=swap' rel='stylesheet' />
       </Head>
-      <body className='relative'>
+      <body className={isCartaPath ? 'relative carta' : 'relative'}>
         <Main />
         <NextScript />
       </body>

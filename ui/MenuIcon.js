@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 const transition = { type: 'tween', duration: 0.2 }
 
-const MenuIcon = ({ isOpen, ...props }) => (
+const MenuIcon = ({ isOpen, color = '#DDD6CF', ...props }) => (
   <svg {...props} width='41' height='37' viewBox='0 0 41 37' fill='none' xmlns='http://www.w3.org/2000/svg'>
     <motion.line
       style={{ transformOrigin: '20.5px 10.918px' }}
@@ -16,8 +16,8 @@ const MenuIcon = ({ isOpen, ...props }) => (
       y1='10.918'
       x2='39.5508'
       y2='10.918'
-      stroke='#DDD6CF'
-      strokeWidth='2'
+      stroke={color}
+      strokeWidth='3'
       strokeLinecap='round'
     />
     <motion.line
@@ -31,8 +31,8 @@ const MenuIcon = ({ isOpen, ...props }) => (
       y1='17.918'
       x2='39.5508'
       y2='17.918'
-      stroke='#DDD6CF'
-      strokeWidth='2'
+      stroke={color}
+      strokeWidth='3'
       strokeLinecap='round'
     />
     <motion.line
@@ -47,8 +47,8 @@ const MenuIcon = ({ isOpen, ...props }) => (
       y1='24.918'
       x2='39.5508'
       y2='24.918'
-      stroke='#DDD6CF'
-      strokeWidth='2'
+      stroke={color}
+      strokeWidth='3'
       strokeLinecap='round'
     />
   </svg>

@@ -1,20 +1,10 @@
-import { useState } from 'react'
 import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import cmsApi from '../contentful/api-sdk'
-import Modal from '../components/DishDialog'
 import snarkdown from 'snarkdown'
 
 const PromotionPage = ({ promotionPosts }) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [dishImage, setDishImage] = useState({})
-
-  const onSelectImage = (img) => {
-    setDishImage(img)
-    setIsOpen(true)
-  }
-
   return (
     <>
       <Head>
@@ -52,10 +42,7 @@ const PromotionPage = ({ promotionPosts }) => {
             {promotionPosts?.promotionImages.map(({ id, url, title }) => (
               <div
                 key={id}
-                role='button'
-                tabIndex='0'
-                className='cursor-pointer rounded-xl sm:h-[210px] md:h-[240px] sm:w-[210px] md:w-[240px] bg-bloom-softGray-100 overflow-hidden transition-opacity hover:opacity-80'
-                onClick={() => onSelectImage({ url, title })}
+                className='rounded-xl sm:h-[210px] md:h-[240px] sm:w-[210px] md:w-[240px] bg-bloom-softGray-100 overflow-hidden'
               >
                 <img
                   src={url}
@@ -75,12 +62,6 @@ const PromotionPage = ({ promotionPosts }) => {
       </section>
 
       <Footer footer={promotionPosts.footer} />
-
-      <Modal
-        isOpen={isOpen}
-        onHandleOpen={() => setIsOpen(false)}
-        dishImage={dishImage}
-      />
     </>
   )
 }

@@ -39,22 +39,6 @@ async function fetchGraphQL (query, preview = false, slug = null) {
     .catch(e => console.error(e))
 }
 
-export async function getAllMenuSlugs (preview) {
-  const entries = await fetchGraphQL(
-    `
-      query {
-        menuCollection {
-          items {
-            slug
-          }
-        }
-      }
-    `,
-    preview
-  )
-  return extractMenuEntries(entries) ?? null
-}
-
 export async function getMenuBySlug (preview, slug) {
   const entries = await fetchGraphQL(
     GET_MENU_ENTRY,

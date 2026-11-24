@@ -1,0 +1,14 @@
+{
+  "name": "Bloom Nikkei Bar",
+  "short_name": "Bloom",
+  "description": "Somos el primer Bar Nikkei de la Quinta Costa",
+  "lang": "es-CL",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#141414",
+  "theme_color": "#141414",
+  "icons": [
+    { "src": "/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/favicon-bloombar.png", "sizes": "100x100", "type": "image/png" }
+  ]
+}

@@ -36,7 +36,7 @@ const Promotion = ({ hasFlower, promotionSection }) => {
           <FlowerIcon className='size-[53px]' />
         </div>
       )}
-      <div className='absolute z-30 bottom-0 top-0 left-0 right-0 bg-bottom-island-gradient' />
+      <div className='absolute z-30 bottom-0 top-0 left-0 right-0 bg-promotion-bottom-gradient' />
     </div>
   )
 }

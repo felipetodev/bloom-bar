@@ -4,9 +4,7 @@ import { normalizeContentfulData } from '../utils/utils.contentful'
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  host: process.env.NODE_ENV === 'production'
-    ? 'cdn.contentful.com'
-    : 'preview.contentful.com'
+  host: process.env.CONTENTFUL_HOST ?? 'cdn.contentful.com'
 })
 
 class ContentfulPages {
@@ -17,7 +15,7 @@ class ContentfulPages {
   async getPagesBySlug (slug) {
     const entries = await client.getEntries({
       content_type: this.contentType,
-      'fields.slug': slug,
+      ...(slug ? { 'fields.slug': slug } : {}),
       limit: 1,
       include: 5
     })

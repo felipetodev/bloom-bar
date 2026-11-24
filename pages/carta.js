@@ -1,0 +1,50 @@
+import Head from 'next/head'
+import { useMemo } from 'react'
+import MenuNavbar from '../components/menu/MenuNavbar'
+import { FavoritesControl } from '../components/FavoritesControl'
+import MenuComponent from '../components/Menu'
+import HorizontalCategoryNav from '../ui/HorizontalCategoryNav'
+import Promotion from '../components/Promotion'
+import Footer from '../components/Footer'
+import cmsApi from '../contentful/api-sdk'
+import { createCategoryNav, flattenDishes } from '../utils/utils.contentful'
+
+const Menu = ({ menuData, categoryNav, footer }) => {
+  const dishes = useMemo(() => flattenDishes(menuData), [menuData])
+
+  return (
+    <>
+      <Head>
+        <title>Bloom Nikkei Bar | Carta</title>
+        <link rel='preload' href='/fonts/manrope/manrope-latin-wght-normal.woff2' as='font' type='font/woff2' crossOrigin='anonymous' />
+      </Head>
+      <div className='relative overflow-x-clip bg-bloom-softGray-100 font-manrope'>
+        <MenuNavbar
+          navbarButton={menuData?.navbarButton}
+          headerImage={menuData?.headerImage}
+          contentClassName='max-w-[1200px]'
+          actions={<FavoritesControl dishes={dishes} />}
+          bottomBar={<HorizontalCategoryNav categoryNav={categoryNav} />}
+        />
+        <div className='relative mx-auto max-w-[1200px] px-5 sm:px-10 md:px-14 pb-14 sm:pb-40 min-h-screen flow-root'>
+          <MenuComponent menu={menuData} />
+        </div>
+      </div>
+      <Promotion promotionSection={menuData?.promotion} />
+      <Footer footer={footer} />
+    </>
+  )
+}
+
+export default Menu
+
+export async function getStaticProps ({ preview = false }) {
+  const menuData = await cmsApi({ contentType: 'menuV2' })
+  const footer = menuData.footer ?? null
+
+  const categoryNav = createCategoryNav(menuData)
+
+  return {
+    props: { preview, menuData, categoryNav, footer }
+  }
+}
