@@ -54,14 +54,14 @@ const DishDialog = ({ isOpen, dish, onClose }) => {
                 )
               : null}
             <div className='p-5 sm:p-6 md:p-8'>
-              <DialogTitle className='text-xl md:text-2xl font-bold leading-snug'>{title}</DialogTitle>
+              <DialogTitle className='text-[17px] sm:text-[22px] font-bold leading-snug'>{title}</DialogTitle>
               {!uniqueTitle && description
-                ? <p className='mt-1 md:mt-2 font-medium !text-[15px] md:!text-base !leading-relaxed'>{description}</p>
+                ? <p className='mt-1 font-medium !text-[15px] max-sm:!text-[13px] max-sm:!leading-5'>{description}</p>
                 : null}
               {price || hasTags
                 ? (
                   <div className='mt-4 md:mt-6 flex items-center justify-between gap-4'>
-                    <span className='text-lg font-bold text-[#DB7526]'>{formatPrice(price)}</span>
+                    <span className='text-[15px] sm:text-lg font-bold text-bloom-orange-200'>{formatPrice(price)}</span>
                     {hasTags ? <DishTags isVegan={vegan} spicy={spicy} /> : null}
                   </div>
                   )

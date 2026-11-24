@@ -20,7 +20,7 @@ const Heading = ({ title, subtitle, image }) => {
       </h2>
       <div
         aria-hidden
-        className="ml-3 sm:ml-5 sm:mr-5 min-w-[28px] flex-grow h-[6px] bg-[url('/section-line.svg')] bg-[length:563px_6px] bg-repeat-x bg-left"
+        className="ml-3 sm:ml-5 sm:mr-5 min-w-[28px] flex-grow h-1 sm:h-[6px] bg-[url('/section-line.svg')] bg-[length:563px_4px] sm:bg-[length:563px_6px] bg-repeat-x bg-left"
       />
       {subtitle && (
         <h3 className='ml-4 text-lg text-bloom-darkGreen-100 min-w-fit text-end'>

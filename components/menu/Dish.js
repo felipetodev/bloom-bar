@@ -101,7 +101,7 @@ const Dish = ({
         {hasFooter
           ? (
             <div className='flex items-center justify-between gap-4'>
-              <span className='text-[15px] sm:text-lg font-bold text-[#DB7526]'>
+              <span className='text-[15px] sm:text-lg font-bold text-bloom-orange-200'>
                 {formatPrice(price)}
               </span>
               {hasTags ? <DishTags isVegan={isVegan} spicy={spicy} /> : null}
