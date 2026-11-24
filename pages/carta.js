@@ -5,10 +5,11 @@ import { FavoritesControl } from '../components/FavoritesControl'
 import MenuComponent from '../components/Menu'
 import HorizontalCategoryNav from '../ui/HorizontalCategoryNav'
 import Promotion from '../components/Promotion'
+import Footer from '../components/Footer'
 import cmsApi from '../contentful/api-sdk'
 import { createCategoryNav, flattenDishes } from '../utils/utils.contentful'
 
-const Menu = ({ menuData, categoryNav }) => {
+const Menu = ({ menuData, categoryNav, footer }) => {
   const dishes = useMemo(() => flattenDishes(menuData), [menuData])
 
   return (
@@ -30,6 +31,7 @@ const Menu = ({ menuData, categoryNav }) => {
         </div>
       </div>
       <Promotion promotionSection={menuData?.promotion} />
+      <Footer footer={footer} />
     </>
   )
 }
@@ -38,10 +40,11 @@ export default Menu
 
 export async function getStaticProps ({ preview = false }) {
   const menuData = await cmsApi({ contentType: 'menuV2' })
+  const footer = menuData.footer ?? null
 
   const categoryNav = createCategoryNav(menuData)
 
   return {
-    props: { preview, menuData, categoryNav }
+    props: { preview, menuData, categoryNav, footer }
   }
 }
